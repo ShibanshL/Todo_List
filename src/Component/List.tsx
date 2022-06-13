@@ -8,9 +8,9 @@ interface props{
 interface test extends props{
  
 }
-// interface RData{
-//   FData:string
-// }
+interface RData{
+  FData:string
+}
 
 var j:any[] = []
 var i = 0
@@ -32,7 +32,8 @@ function List({FData}:props) {
   },[FData])
   return (
     <>
-    {j.map(e => e)}<br></br>
+    {j.map(e => e)}<br/>
+    {/* {j.map(ev =>)} */}
     </>
   )
 }
