@@ -1,23 +1,39 @@
 import React, { useEffect } from 'react'
 
 interface props{
-  FData:string
-}
-interface RData{
-  rdata:string
+  FData:string,
+  // ID:number
 }
 
-var List_Data:RData[] = []
+interface test extends props{
+ 
+}
+// interface RData{
+//   FData:string
+// }
 
-function List(FData:props) {
+var j:any[] = []
+var i = 0
+var a : string & number 
+function List({FData}:props) {
   console.log(FData)
+
+  // console.log('ID = '+ID)
+
+  function ch(){
+   j.push(FData)
+
+  }
   useEffect(()=>{
-    var i = 0
-    List_Data.push(i)
-    console.log(List_Data)
+  //  j.push(FData)
+  //  j.push(ID)
+  ch()
+   console.log(j)
   },[FData])
   return (
-    <div>List</div>
+    <>
+    {j.map(e => e)}<br></br>
+    </>
   )
 }
 

@@ -17,7 +17,7 @@ function Input_Data({Data, setData, handleSubmit}:props) {
             value={Data}
             variant="filled"
             size='md'
-            style={{color:'rgba(0,0,0,1) !important'}}
+            // style={{color:'rgba(0,0,0,1) !important'}}
             onChange={(e: { target: { value: React.SetStateAction<string>; }; })=>setData(e.target.value)}
           />
         </form>
