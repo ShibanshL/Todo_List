@@ -1,3 +1,4 @@
+import { Grid } from '@mantine/core'
 import React, { useEffect } from 'react'
 
 interface props{
@@ -21,6 +22,7 @@ function List({FData}:props) {
   // console.log('ID = '+ID)
 
   function ch(){
+    // var num = 0
    j.push(FData)
 
   }
@@ -32,7 +34,12 @@ function List({FData}:props) {
   },[FData])
   return (
     <>
-    {j.map(e => e)}<br/>
+    <Grid>
+      <Grid.Col span={12} style={{background:'cyan'}}>
+        {/* {j.map(e =>{ return(<>{e}<br/></>)})} */}
+        {j.map(e=> {return(<>{e}<br/></>)})}
+      </Grid.Col>
+    </Grid>
     {/* {j.map(ev =>)} */}
     </>
   )
