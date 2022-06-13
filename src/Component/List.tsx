@@ -13,7 +13,7 @@ interface RData{
   FData:string
 }
 
-var j:any[] = []
+var j:string[] = []
 var i = 0
 var a : string & number 
 function List({FData}:props) {
@@ -22,13 +22,11 @@ function List({FData}:props) {
   // console.log('ID = '+ID)
 
   function ch(){
-    // var num = 0
    j.push(FData)
-
   }
   useEffect(()=>{
   //  j.push(FData)
-  //  j.push(ID)
+
   ch()
    console.log(j)
   },[FData])
