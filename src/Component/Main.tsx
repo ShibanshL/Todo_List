@@ -40,13 +40,28 @@ function Main() {
     }
 }
 
+const handleDeleteTask = (id: number) => {
+  setTasks(tasks.filter(task => task.id_N !== id))
+  }
+
+  const handleFinishTask = (id:number) => {
+    if (document.querySelector(`#id-${id}`).classList.contains('line-through')) {
+      return document.querySelector(`#id-${id}`).classList.remove('line-through')
+    }
+    document.querySelector(`#id-${id}`).classList.add('line-through')
+  }
+
+  const handleEditTask = (id:number) => {
+
+  }
+
   return (
     <Grid align={'center'} >
       <Grid.Col span={12}>
         <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
       </Grid.Col>
       <Grid.Col span={12}>
-        <List tasks={tasks}  />
+        <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleFinishTask={handleFinishTask} />
         {/* <List FData={finaldata} ID={id} /> */}
       </Grid.Col>
     </Grid>

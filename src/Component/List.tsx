@@ -1,4 +1,4 @@
-import { Grid, Group } from '@mantine/core'
+import { Grid, Group, Text } from '@mantine/core'
 import React, { useEffect } from 'react'
 import { FaBeer } from 'react-icons/fa';
 import {TiTick} from "react-icons/ti";
@@ -12,6 +12,8 @@ interface props{
       id_N:number
     }
   ]
+  handleDeleteTask:(e: Number) => void
+  handleFinishTask:(e: Number) => void
 }
 
 interface taskGot {
@@ -19,7 +21,7 @@ interface taskGot {
   id_N:number
 }
 
-function List({tasks}:props) {
+function List({tasks,handleFinishTask, handleDeleteTask}:props) {
   // console.log(FData)
   console.log('Inside List',tasks)
   useEffect(()=>{
@@ -32,7 +34,7 @@ function List({tasks}:props) {
         {/* {j.map(e=> {return(<>{e} </>)})}{k.map(e => {return(<>{e}</>)})}<br/><br/> */}
         {/* {tasks.map(e =>{return(<Group className='ll' key={e.id_N}>{e.task_N} <button onClick={() => console.log('Working')}>P</button><br/></Group>)})}
          */}
-        {tasks.map(e =>{return(<Group className='ll' key={e.id_N}>{e.task_N}  <TiTick /> <GrClose/> <AiTwotoneEdit /><br/></Group>)})}
+        {tasks.map(e =>{return(<Group className='ll' style={{margin:'10px'}} key={e.id_N}><Text id={`id-${e.id_N}`}>{e.task_N}</Text>  <TiTick onClick={() => handleFinishTask(e.id_N)}/> <GrClose onClick={() => handleDeleteTask(e.id_N)}/> <AiTwotoneEdit /><br/></Group>)})}
 
       </Grid.Col>
     </Grid>
