@@ -8,6 +8,7 @@ var i=0
 function Main() {
   const [data, setData] = useState('')
   const [finaldata, setFinalData] = useState('')
+  const [tasks, setTasks] = useState([])
   const [id,setId] = useState(0)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -30,8 +31,8 @@ function Main() {
         <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit}/>
       </Grid.Col>
       <Grid.Col span={12}>
-        {/* <List FData={finaldata} ID={id}  /> */}
-        <List FData={finaldata}  />
+        <List FData={finaldata} ID={id}  />
+        {/* <List FData={finaldata}  /> */}
       </Grid.Col>
     </Grid>
   )
