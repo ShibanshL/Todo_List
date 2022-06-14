@@ -34,7 +34,7 @@ function List({tasks,handleFinishTask, handleDeleteTask}:props) {
         {/* {j.map(e=> {return(<>{e} </>)})}{k.map(e => {return(<>{e}</>)})}<br/><br/> */}
         {/* {tasks.map(e =>{return(<Group className='ll' key={e.id_N}>{e.task_N} <button onClick={() => console.log('Working')}>P</button><br/></Group>)})}
          */}
-        {tasks.map(e =>{return(<Group className='ll' style={{margin:'10px'}} key={e.id_N}><Text id={`id-${e.id_N}`}>{e.task_N}</Text>  <TiTick onClick={() => handleFinishTask(e.id_N)}/> <GrClose onClick={() => handleDeleteTask(e.id_N)}/> <AiTwotoneEdit /><br/></Group>)})}
+        {tasks.map(e =>{return(<Group className='ll' style={{margin:'10px', background:'white'}} key={e.id_N}><Text id={`id-${e.id_N}`}>{e.task_N}</Text>  <TiTick onClick={() => handleFinishTask(e.id_N)}/> <GrClose onClick={() => handleDeleteTask(e.id_N)}/> <AiTwotoneEdit /><br/></Group>)})}
 
       </Grid.Col>
     </Grid>

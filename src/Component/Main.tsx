@@ -45,10 +45,7 @@ const handleDeleteTask = (id: number) => {
   }
 
   const handleFinishTask = (id:number) => {
-    if (document.querySelector(`#id-${id}`).classList.contains('line-through')) {
-      return document.querySelector(`#id-${id}`).classList.remove('line-through')
-    }
-    document.querySelector(`#id-${id}`).classList.add('line-through')
+    
   }
 
   const handleEditTask = (id:number) => {
