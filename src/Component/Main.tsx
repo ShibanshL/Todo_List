@@ -5,16 +5,16 @@ import Input_Data from './Input_Data'
 import List from './List'
 
 interface TaskInput{
-  task_N:string
-  id_N:number
+  task_N:string | null
+  id_N:number | null
 }
 
 function Main() {
   const [data, setData] = useState('')
   const [finaldata, setFinalData] = useState('')
   const [tasks, setTasks] = useState<TaskInput[]>([{
-    task_N:'',
-    id_N:0
+    task_N:null,
+    id_N: null
   }])
   const [id,setId] = useState(0)
 
@@ -50,11 +50,7 @@ const handleDeleteTask = (id: number) => {
   }
 
   const handleEditTask = (id:number) => {
-    return(
-      <>
-        <Edit_Input />
-      </>
-    )
+    console.log('Data',id)
   }
 
   return (
