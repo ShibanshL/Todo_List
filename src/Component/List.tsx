@@ -31,11 +31,11 @@ function List({tasks,handleFinishTask, handleDeleteTask, handleEditTask}:props) 
   return (
     <>
     <Grid>
-      <Grid.Col span={12} style={{background:'cyan'}}>
+      <Grid.Col span={12} style={{}}>
         {/* {j.map(e=> {return(<>{e} </>)})}{k.map(e => {return(<>{e}</>)})}<br/><br/> */}
         {/* {tasks.map(e =>{return(<Group className='ll' key={e.id_N}>{e.task_N} <button onClick={() => console.log('Working')}>P</button><br/></Group>)})}
          */}
-        {tasks.map(e =>{return(<Group className='ll' style={{margin:'10px', background:'white'}} key={e.id_N}><Text id={`id-${e.id_N}`}>{e.task_N}</Text>  <TiTick onClick={() => handleFinishTask(e.id_N)}/> <GrClose onClick={() => handleDeleteTask(e.id_N)}/> <AiTwotoneEdit onClick={()=>handleEditTask} /><br/></Group>)})}
+        {tasks.map(e =>{return(<Group className='ll' style={{margin:'10px', background:'white', padding:'10px', borderRadius:'15px', display:'flex', alignItems:'center', justifyContent:'space-between'}} key={e.id_N}><Text id={`id-${e.id_N}`}>{e.task_N}</Text>  <Group><TiTick onClick={() => handleFinishTask(e.id_N)}/> <GrClose onClick={() => handleDeleteTask(e.id_N)}/> <AiTwotoneEdit onClick={()=>handleEditTask} /><br/></Group></Group>)})}
 
       </Grid.Col>
     </Grid>

@@ -1,4 +1,4 @@
-import { Group, Grid } from '@mantine/core'
+import { Group, Grid, Container } from '@mantine/core'
 import React,{useState} from 'react'
 import Edit_Input from './Edit_Input'
 import Input_Data from './Input_Data'
@@ -58,15 +58,17 @@ const handleDeleteTask = (id: number) => {
   }
 
   return (
-    <Grid align={'center'} >
-      <Grid.Col span={12}>
-        <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleFinishTask={handleFinishTask}  handleEditTask={handleEditTask}/>
-        {/* <List FData={finaldata} ID={id} /> */}
-      </Grid.Col>
-    </Grid>
+    <Container size={'xl'} style={{padding:'10px'}}>
+      <Grid align={'center'} >
+        <Grid.Col span={12}>
+          <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleFinishTask={handleFinishTask}  handleEditTask={handleEditTask}/>
+          {/* <List FData={finaldata} ID={id} /> */}
+        </Grid.Col>
+      </Grid>
+    </Container>
   )
 }
 
