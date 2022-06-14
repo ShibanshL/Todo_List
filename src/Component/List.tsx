@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 
 interface props{
   FData:string,
-  // ID:number
+  ID:number
 }
 
 interface test extends props{
@@ -14,6 +14,7 @@ interface RData{
 }
 
 var j:string[] = []
+var k:number[] = []
 var i = 0
 var a : string & number 
 function List({FData}:props) {
@@ -23,12 +24,15 @@ function List({FData}:props) {
 
   function ch(){
    j.push(FData)
+   k.push(i+1)
   }
   useEffect(()=>{
   //  j.push(FData)
 
   ch()
    console.log(j)
+   console.log(k)
+
   },[FData])
   return (
     <>
