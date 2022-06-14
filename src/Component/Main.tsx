@@ -3,22 +3,37 @@ import React,{useState} from 'react'
 import Input_Data from './Input_Data'
 import List from './List'
 
-var i=0
+interface TaskInput{
+  task_N:string
+  id_N:number
+}
 
 function Main() {
   const [data, setData] = useState('')
   const [finaldata, setFinalData] = useState('')
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([{
+    task_N:'',
+    id_N:0
+  }])
   const [id,setId] = useState(0)
+
+  const handleChange = (e: React.FormEvent) => {
+    setData((e.target as HTMLTextAreaElement).value)
+    // console.log(data)
+  }
+
+  const reset = () => {
+     setData('')
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if(data)
     {
-        setFinalData(data)
-        i++
-        setId(i)
-        setData('')
+       setTasks([...tasks,{task_N:data, id_N:id+1}])
+       setId(id+1)
+       console.log(tasks)
+       reset()
     }
     else{
         console.log('no')
@@ -28,11 +43,11 @@ function Main() {
   return (
     <Grid align={'center'} >
       <Grid.Col span={12}>
-        <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit}/>
+        <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
       </Grid.Col>
       <Grid.Col span={12}>
-        <List FData={finaldata} ID={id}  />
-        {/* <List FData={finaldata}  /> */}
+        <List tasks={tasks}  />
+        {/* <List FData={finaldata} ID={id} /> */}
       </Grid.Col>
     </Grid>
   )

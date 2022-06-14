@@ -5,8 +5,9 @@ interface props  {
     Data:string
     setData:React.Dispatch<React.SetStateAction<string>>
     handleSubmit: (e: React.FormEvent) => void
+    handleChange: (e: React.FormEvent) => void
 }
-function Input_Data({Data, setData, handleSubmit}:props) {
+function Input_Data({Data, setData, handleChange ,handleSubmit}:props) {
   return (
     <>
       <Group style={{display:'flex',alignItems:'center', justifyContent:'center'}}>
@@ -18,7 +19,7 @@ function Input_Data({Data, setData, handleSubmit}:props) {
             variant="filled"
             size='md'
             // style={{color:'rgba(0,0,0,1) !important'}}
-            onChange={(e: { target: { value: React.SetStateAction<string>; }; })=>setData(e.target.value)}
+            onChange={(e: React.FormEvent<Element>) => handleChange(e)}
           />
         </form>
       </Group>
