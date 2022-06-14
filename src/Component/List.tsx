@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core'
+import { Grid, Group } from '@mantine/core'
 import React, { useEffect } from 'react'
 
 interface props{
@@ -21,7 +21,7 @@ function List({tasks}:props) {
     <Grid>
       <Grid.Col span={12} style={{background:'cyan'}}>
         {/* {j.map(e=> {return(<>{e} </>)})}{k.map(e => {return(<>{e}</>)})}<br/><br/> */}
-        {tasks.map(e => e.task_N)}
+        {tasks.map(e =>{return(<Group className='ll' key={e.id_N}>{e.task_N} <button onClick={() => console.log('Working')}>P</button><br/></Group>)})}
       </Grid.Col>
     </Grid>
     {/* {j.map(ev =>)} */}

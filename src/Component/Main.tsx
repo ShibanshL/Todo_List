@@ -11,7 +11,7 @@ interface TaskInput{
 function Main() {
   const [data, setData] = useState('')
   const [finaldata, setFinalData] = useState('')
-  const [tasks, setTasks] = useState([{
+  const [tasks, setTasks] = useState<TaskInput[]>([{
     task_N:'',
     id_N:0
   }])
