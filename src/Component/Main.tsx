@@ -36,6 +36,9 @@ function Main() {
       //  console.log(tasks)
        reset()
     }
+    else if(null){
+
+    }
     else{
         console.log('no')
     }
