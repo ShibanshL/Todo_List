@@ -10,6 +10,11 @@ interface props{
   ]
 }
 
+interface taskGot {
+  task_N:string
+  id_N:number
+}
+
 function List({tasks}:props) {
   // console.log(FData)
 
