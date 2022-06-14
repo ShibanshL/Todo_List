@@ -32,7 +32,7 @@ function Main() {
     {
        setTasks([...tasks,{task_N:data, id_N:id+1}])
        setId(id+1)
-       console.log(tasks)
+      //  console.log(tasks)
        reset()
     }
     else{
