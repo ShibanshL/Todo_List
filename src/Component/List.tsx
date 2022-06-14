@@ -24,7 +24,8 @@ function List({FData}:props) {
 
   function ch(){
    j.push(FData)
-   k.push(i+1)
+   i++
+   k.push(i)
   }
   useEffect(()=>{
   //  j.push(FData)
@@ -39,7 +40,7 @@ function List({FData}:props) {
     <Grid>
       <Grid.Col span={12} style={{background:'cyan'}}>
         {/* {j.map(e =>{ return(<>{e}<br/></>)})} */}
-        {j.map(e=> {return(<>{e}<br/></>)})}
+        {j.map(e=> {return(<>{e} </>)})}{k.map(e => {return(<>{e}<br/></>)})}<br/>
       </Grid.Col>
     </Grid>
     {/* {j.map(ev =>)} */}
