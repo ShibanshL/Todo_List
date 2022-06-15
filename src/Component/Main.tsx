@@ -11,10 +11,11 @@ interface TaskInput{
 
 function Main() {
   const [data, setData] = useState('')
-  const [finaldata, setFinalData] = useState('')
+  const [editdata, setEditData] = useState(null)
+  const [submit, setSubmit] = useState(true)
   const [tasks, setTasks] = useState<TaskInput[]>([{
-    task_N:null,
-    id_N: null
+    task_N:'Dummy task',
+    id_N: 0
   }])
   const [id,setId] = useState(0)
 
@@ -53,7 +54,12 @@ const handleDeleteTask = (id: number) => {
   }
 
   const handleEditTask = (id:number) => {
+    let findData = tasks.find( e => e.id_N == id)
+
+    console.log(findData)
+    setData(findData?.task_N)
     console.log('Data',id)
+    setEditData(id)
   }
 
   return (

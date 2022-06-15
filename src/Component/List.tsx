@@ -14,7 +14,7 @@ interface props{
   ]
   handleDeleteTask:(e: Number) => void
   handleFinishTask:(e: Number) => void
-  handleEditTask:(e: Number) => void
+  handleEditTask:(e: number) => void
 }
 
 interface taskGot {
