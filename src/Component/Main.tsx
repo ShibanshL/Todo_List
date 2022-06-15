@@ -40,12 +40,14 @@ function Main() {
       setTasks(
         tasks.map( e => {
           if(e.id_N == i){
-            return([ ...e, e.task_N=data])
-            // console.log('working in')
+            return([...e, e.task_N=data])
           }
          return e
         })
       )
+      i = 0
+      j=true
+      reset()
     }
     else{
       setTasks([...tasks,{task_N:data, id_N:id+1}])
