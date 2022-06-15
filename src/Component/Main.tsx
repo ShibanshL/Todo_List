@@ -22,7 +22,6 @@ function Main() {
 
   const handleChange = (e: React.FormEvent) => {
     setData((e.target as HTMLTextAreaElement).value)
-    // console.log(data)
   }
 
   const reset = () => {
@@ -40,7 +39,7 @@ function Main() {
       setTasks(
         tasks.map( e => {
           if(e.id_N == i){
-            return([...e, e.task_N=data])
+            return{...e, task_N:data}
           }
          return e
         })
@@ -52,7 +51,6 @@ function Main() {
     else{
       setTasks([...tasks,{task_N:data, id_N:id+1}])
       setId(id+1)
-     //  console.log(tasks)
       reset()
     }
 }
@@ -72,18 +70,8 @@ const handleDeleteTask = (id: number) => {
     setEditData(findData?.id_N)
     setData(findData?.task_N)
     console.log('Data r ',data)
-    // console.log('Data',id)
-    // setEditData(id)
     i = id
-    console.log('Data',id)
-    console.log('I ',i)
-    setSubmit(false)
     j=false
-    console.log('j =',j)
-    // console.log('Sub =', submit)
-
-    // console.log('Edit ',editdata)
-
   }
 
   return (
@@ -94,7 +82,6 @@ const handleDeleteTask = (id: number) => {
         </Grid.Col>
         <Grid.Col span={12}>
           <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleFinishTask={handleFinishTask}  handleEditTask={handleEditTask}/>
-          {/* <List FData={finaldata} ID={id} /> */}
         </Grid.Col>
       </Grid>
     </Container>
