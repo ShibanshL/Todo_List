@@ -9,6 +9,7 @@ interface TaskInput{
   id_N:number | null
 }
   var i:number = 0
+  var j:boolean = true
 function Main() {
   const [data, setData] = useState('')
   const [editdata, setEditData] = useState<number>(0)
@@ -30,19 +31,16 @@ function Main() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if(data)
+    if(!data)
     {
-       setTasks([...tasks,{task_N:data, id_N:id+1}])
-       setId(id+1)
-      //  console.log(tasks)
-       reset()
+      console.log('please enter some data')
     }
-    else if(data && !submit){
-      console.log('Inside Sub ',editdata)
+    else if(data && !j){
+      console.log('Inside Sub ')
       setTasks(
         tasks.map( e => {
           if(e.id_N == i){
-            return([ ...e,{ task_N:data}])
+            return([ ...e, e.task_N=data])
             // console.log('working in')
           }
          return e
@@ -50,7 +48,10 @@ function Main() {
       )
     }
     else{
-        console.log('no')
+      setTasks([...tasks,{task_N:data, id_N:id+1}])
+      setId(id+1)
+     //  console.log(tasks)
+      reset()
     }
 }
 
@@ -75,6 +76,9 @@ const handleDeleteTask = (id: number) => {
     console.log('Data',id)
     console.log('I ',i)
     setSubmit(false)
+    j=false
+    console.log('j =',j)
+    // console.log('Sub =', submit)
 
     // console.log('Edit ',editdata)
 

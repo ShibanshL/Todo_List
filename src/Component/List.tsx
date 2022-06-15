@@ -24,7 +24,7 @@ interface taskGot {
 
 function List({tasks,handleFinishTask, handleDeleteTask, handleEditTask}:props) {
   // console.log(FData)
-  console.log('Inside List',tasks)
+  // console.log('Inside List',tasks)
   useEffect(()=>{
  
   },[tasks.map(e => e.id_N)])
