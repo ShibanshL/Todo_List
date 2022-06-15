@@ -1,4 +1,4 @@
-import { Group, Grid, Container } from '@mantine/core'
+import { Group, Grid, Container, Text } from '@mantine/core'
 import React,{useState} from 'react'
 import Edit_Input from './Edit_Input'
 import Input_Data from './Input_Data'
@@ -12,8 +12,6 @@ interface TaskInput{
   var j:boolean = true
 function Main() {
   const [data, setData] = useState('')
-  const [editdata, setEditData] = useState<number>(0)
-  const [submit, setSubmit] = useState(true)
   const [tasks, setTasks] = useState<TaskInput[]>([{
     task_N:'Dummy task',
     id_N: 0
@@ -32,10 +30,9 @@ function Main() {
     e.preventDefault()
     if(!data)
     {
-      console.log('please enter some data')
+      alert('please enter some data')
     }
     else if(data && !j){
-      console.log('Inside Sub ')
       setTasks(
         tasks.map( e => {
           if(e.id_N == i){
@@ -65,11 +62,7 @@ const handleDeleteTask = (id: number) => {
 
   const handleEditTask = (id:number) => {
     let findData = tasks.find( e => e.id_N == id)
-
-    console.log(findData)
-    setEditData(findData?.id_N)
     setData(findData?.task_N)
-    console.log('Data r ',data)
     i = id
     j=false
   }
@@ -77,6 +70,9 @@ const handleDeleteTask = (id: number) => {
   return (
     <Container size={'xl'} style={{padding:'10px'}}>
       <Grid align={'center'} >
+        <Grid.Col span={12}>
+          <Text size='xl' align='center' style={{color:'white'}}>Todo List</Text>
+        </Grid.Col>
         <Grid.Col span={12}>
           <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
         </Grid.Col>
