@@ -1,6 +1,5 @@
 import { Group, Grid, Container, Text } from '@mantine/core'
 import React,{useState} from 'react'
-import Edit_Input from './Edit_Input'
 import Input_Data from './Input_Data'
 import List from './List'
 
@@ -77,7 +76,7 @@ const handleDeleteTask = (id: number) => {
           <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
         </Grid.Col>
         <Grid.Col span={12}>
-          <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleFinishTask={handleFinishTask}  handleEditTask={handleEditTask}/>
+          <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleEditTask={handleEditTask}/>
         </Grid.Col>
       </Grid>
     </Container>
