@@ -68,7 +68,7 @@ const handleDeleteTask = (id: number) => {
   }
 
   return (
-    <Container size={'xl'} style={{padding:'10px'}}>
+    <Container size={'xl'} style={{padding:'10px '}}>
       <Grid align={'center'} >
         <Grid.Col span={12}>
           <Text size='xl' align='center' style={{color:'white'}}>Todo List</Text>
