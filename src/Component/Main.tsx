@@ -8,10 +8,10 @@ interface TaskInput{
   task_N:string | null
   id_N:number | null
 }
-
+  var i:number = 0
 function Main() {
   const [data, setData] = useState('')
-  const [editdata, setEditData] = useState(null)
+  const [editdata, setEditData] = useState<number>(0)
   const [submit, setSubmit] = useState(true)
   const [tasks, setTasks] = useState<TaskInput[]>([{
     task_N:'Dummy task',
@@ -37,8 +37,17 @@ function Main() {
       //  console.log(tasks)
        reset()
     }
-    else if(null){
-
+    else if(data && !submit){
+      console.log('Inside Sub ',editdata)
+      setTasks(
+        tasks.map( e => {
+          if(e.id_N == i){
+            return([ ...e,{ task_N:data}])
+            // console.log('working in')
+          }
+         return e
+        })
+      )
     }
     else{
         console.log('no')
@@ -57,9 +66,18 @@ const handleDeleteTask = (id: number) => {
     let findData = tasks.find( e => e.id_N == id)
 
     console.log(findData)
+    setEditData(findData?.id_N)
     setData(findData?.task_N)
+    console.log('Data r ',data)
+    // console.log('Data',id)
+    // setEditData(id)
+    i = id
     console.log('Data',id)
-    setEditData(id)
+    console.log('I ',i)
+    setSubmit(false)
+
+    // console.log('Edit ',editdata)
+
   }
 
   return (
