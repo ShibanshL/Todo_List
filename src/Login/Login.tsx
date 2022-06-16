@@ -1,11 +1,12 @@
 import React from 'react'
-import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
+import { TextInput, Checkbox, Button, Group, Box , Loader } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate } from 'react-router-dom'
 
 
 function Login() {
     let nav = useNavigate()
+    let load = false
     const form = useForm({
         initialValues: {
           email: '',
@@ -20,11 +21,16 @@ function Login() {
 
         function handleSubmit(e: { email: string; password: string; termsOfService: boolean; }){
             console.log(e)
-            nav('/Todo')
+            console.log('load b = ',load)
+            load = true
+            setInterval(() =>  nav('/Todo') ,3000)
+            console.log('load = ',load)
             
         }
 
   return (
+    <>
+    {load?<h1 style={{}}>Loading</h1>:
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <form onSubmit={form.onSubmit(e => handleSubmit(e))}>
         <TextInput
@@ -54,7 +60,8 @@ function Login() {
           <Button type="submit">Submit</Button>
         </Group>
       </form>
-    </Box>
+    </Box>}
+    </>
   )
 }
 
