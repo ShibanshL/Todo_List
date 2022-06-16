@@ -12,7 +12,7 @@ function Input_Data({Data, j, setData, handleChange ,handleSubmit}:props) {
   return (
     <>
     {j?
-      <Group style={{display:'flex',alignItems:'center', justifyContent:'center'}}>
+      <Group position='center' style={{}}>
         <form onSubmit={e => handleSubmit(e)}>
           <Input
             placeholder ="Enter the Task"

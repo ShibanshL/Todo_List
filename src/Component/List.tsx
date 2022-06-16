@@ -40,7 +40,7 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
         <Grid.Col span={12} style={{}}>
           {j?tasks.map(e =>{
             return(
-                <Group className='ll' style={{margin:'10px', background:'white', padding:'10px', borderRadius:'25px', display:'flex', alignItems:'center', justifyContent:'space-between'}} key={e.id_N}>
+                <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px',/* display:'flex', alignItems:'center', justifyContent:'space-between'*/}} key={e.id_N}>
                   <Text id={`id-${e.id_N}`}>{e.task_N}</Text>  
                   <Group> 
                     <GrClose onClick={() => handleDeleteTask(e.id_N)} style={{cursor:'pointer'}}/> <AiTwotoneEdit onClick={()=>handleEditTask(e.id_N)} style={{cursor:'pointer'}}/><br/>
@@ -49,7 +49,7 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
                 )
               }
             ):
-            <Group style={{display:'flex',alignItems:'center', justifyContent:'center'}}>
+            <Group position='center' style={{}}>
               <form onSubmit={e => handleSubmit(e)}>
                 <Input
                   placeholder ="Enter the Task"
