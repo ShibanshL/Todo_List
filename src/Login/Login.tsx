@@ -30,8 +30,8 @@ function Login() {
         if(load==false){
             return (
                 <>
-                <Box sx={{ maxWidth: 300 }} mx="auto">
-                <form onSubmit={form.onSubmit(e => handleSubmit(e))}>
+                <Box sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw', height:'30vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
                     <TextInput
                     required
                     label="Email"
