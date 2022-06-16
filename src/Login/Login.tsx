@@ -1,9 +1,11 @@
 import React from 'react'
 import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useNavigate } from 'react-router-dom'
 
 
 function Login() {
+    let nav = useNavigate()
     const form = useForm({
         initialValues: {
           email: '',
@@ -18,6 +20,7 @@ function Login() {
 
         function handleSubmit(e: { email: string; password: string; termsOfService: boolean; }){
             console.log(e)
+            nav('/Todo')
             
         }
 
