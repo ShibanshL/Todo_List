@@ -11,7 +11,6 @@ function Login() {
         initialValues: {
           email: '',
           password:'',
-          termsOfService: false,
         },
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
@@ -19,7 +18,7 @@ function Login() {
           },
         });
 
-        function handleSubmit(e: { email: string; password: string; termsOfService: boolean; }){
+        function handleSubmit(e: { email: string; password: string; }){
             console.log(e)
             console.log('load b = ',load)
             load = true
@@ -47,13 +46,6 @@ function Login() {
                     placeholder="Password"
                     {...form.getInputProps('password')}
                     
-                    />
-
-                    <Checkbox
-                    mt="md"
-                    label="I agree to sell my privacy"
-                    {...form.getInputProps('termsOfService', { type: 'checkbox' })}
-                    style={{color:'white'}}
                     />
 
                     <Group position="right" mt="md">

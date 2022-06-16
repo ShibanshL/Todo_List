@@ -36,36 +36,36 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
 
   return (
     <>
-    <Grid>
-      <Grid.Col span={12} style={{}}>
-        {j?tasks.map(e =>{
-          return(
-              <Group className='ll' style={{margin:'10px', background:'white', padding:'10px', borderRadius:'25px', display:'flex', alignItems:'center', justifyContent:'space-between'}} key={e.id_N}>
-                <Text id={`id-${e.id_N}`}>{e.task_N}</Text>  
-                <Group> 
-                  <GrClose onClick={() => handleDeleteTask(e.id_N)} style={{cursor:'pointer'}}/> <AiTwotoneEdit onClick={()=>handleEditTask(e.id_N)} style={{cursor:'pointer'}}/><br/>
+      <Grid>
+        <Grid.Col span={12} style={{}}>
+          {j?tasks.map(e =>{
+            return(
+                <Group className='ll' style={{margin:'10px', background:'white', padding:'10px', borderRadius:'25px', display:'flex', alignItems:'center', justifyContent:'space-between'}} key={e.id_N}>
+                  <Text id={`id-${e.id_N}`}>{e.task_N}</Text>  
+                  <Group> 
+                    <GrClose onClick={() => handleDeleteTask(e.id_N)} style={{cursor:'pointer'}}/> <AiTwotoneEdit onClick={()=>handleEditTask(e.id_N)} style={{cursor:'pointer'}}/><br/>
+                  </Group>
                 </Group>
-              </Group>
-              )
-            }
-          ):
-          <Group style={{display:'flex',alignItems:'center', justifyContent:'center'}}>
-            <form onSubmit={e => handleSubmit(e)}>
-              <Input
-                placeholder ="Enter the Task"
-                radius="xl"
-                value={Data}
-                variant="filled"
-                size='md'
-                // style={{color:'rgba(0,0,0,1) !important'}}
-                onChange={(e: React.FormEvent<Element>) => handleChange(e)}
-                />
-              </form>
-          </Group>
-        }
-      
-      </Grid.Col>
-    </Grid>
+                )
+              }
+            ):
+            <Group style={{display:'flex',alignItems:'center', justifyContent:'center'}}>
+              <form onSubmit={e => handleSubmit(e)}>
+                <Input
+                  placeholder ="Enter the Task"
+                  radius="xl"
+                  value={Data}
+                  variant="filled"
+                  size='md'
+                  // style={{color:'rgba(0,0,0,1) !important'}}
+                  onChange={(e: React.FormEvent<Element>) => handleChange(e)}
+                  />
+                </form>
+            </Group>
+          }
+        
+        </Grid.Col>
+      </Grid>
     </>
   )
         }
