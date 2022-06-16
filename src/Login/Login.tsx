@@ -12,12 +12,13 @@ function Login() {
         },
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            password : (value) => (value)? null : 'Please Enter Something'
+            password : (value) => (value.length < 4)? 'Please Enter a biggger [assword' : null
           },
         });
 
         function handleSubmit(e: { email: string; password: string; termsOfService: boolean; }){
             console.log(e)
+            
         }
 
   return (
