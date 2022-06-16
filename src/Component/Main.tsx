@@ -70,13 +70,13 @@ const handleDeleteTask = (id: number) => {
     <Container size={'xl'} style={{padding:'10px '}}>
       <Grid align={'center'} >
         <Grid.Col span={12}>
-          <Text size='xl' align='center' style={{color:'white'}}>Todo List</Text>
+          {j?<Text size='xl' align='center' style={{color:'white'}}>Todo List</Text>:<Text size='xl' align='center' style={{color:'white'}}>Edit List</Text>}
         </Grid.Col>
         <Grid.Col span={12}>
-          <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange}/>
+          <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange} j={j}/>
         </Grid.Col>
         <Grid.Col span={12}>
-          <List tasks={tasks} handleDeleteTask={handleDeleteTask} handleEditTask={handleEditTask}/>
+          <List tasks={tasks} Data={data} handleDeleteTask={handleDeleteTask} handleEditTask={handleEditTask} j={j} handleChange={handleChange} handleSubmit={handleSubmit}/>
         </Grid.Col>
       </Grid>
     </Container>
