@@ -28,41 +28,50 @@ function Login() {
             
         }
 
-  return (
-    <>
-    {load?<h1 style={{}}>Loading</h1>:
-    <Box sx={{ maxWidth: 300 }} mx="auto">
-      <form onSubmit={form.onSubmit(e => handleSubmit(e))}>
-        <TextInput
-          required
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
-          
-        />
-        <TextInput
-          required
-          type='password'
-          label="password"
-          placeholder="Password"
-          {...form.getInputProps('password')}
-          
-        />
+        if(load==false){
+            return (
+                <>
+                <Box sx={{ maxWidth: 300 }} mx="auto">
+                <form onSubmit={form.onSubmit(e => handleSubmit(e))}>
+                    <TextInput
+                    required
+                    label="Email"
+                    placeholder="your@email.com"
+                    {...form.getInputProps('email')}
+                    
+                    />
+                    <TextInput
+                    required
+                    type='password'
+                    label="password"
+                    placeholder="Password"
+                    {...form.getInputProps('password')}
+                    
+                    />
 
-        <Checkbox
-          mt="md"
-          label="I agree to sell my privacy"
-          {...form.getInputProps('termsOfService', { type: 'checkbox' })}
-          style={{color:'white'}}
-        />
+                    <Checkbox
+                    mt="md"
+                    label="I agree to sell my privacy"
+                    {...form.getInputProps('termsOfService', { type: 'checkbox' })}
+                    style={{color:'white'}}
+                    />
 
-        <Group position="right" mt="md">
-          <Button type="submit">Submit</Button>
-        </Group>
-      </form>
-    </Box>}
-    </>
-  )
+                    <Group position="right" mt="md">
+                    <Button type="submit">Submit</Button>
+                    </Group>
+                </form>
+                </Box>
+                </>
+            )
+        }
+        else{
+            return( 
+            <Box sx={{ maxWidth: 300 }} mx="auto">
+                <Loader style={{position:'absolute'}}/>
+            </Box>
+            )
+        }
+
 }
 
 export default Login
