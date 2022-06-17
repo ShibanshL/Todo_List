@@ -1,7 +1,7 @@
 import React from 'react'
-import { TextInput, Checkbox, Button, Group, Box , Loader } from '@mantine/core';
+import { TextInput, Text, Button, Group, Box , Loader } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 
 
 function Login() {
@@ -51,6 +51,8 @@ function Login() {
                     <Group position="right" mt="md">
                     <Button type="submit">Submit</Button>
                     </Group>
+
+                    <Text align='center' >Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
                 </form>
                 </Box>
                 </>
