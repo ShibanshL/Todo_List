@@ -47,9 +47,26 @@ function Main() {
     else{
       setTasks([...tasks,{task_N:data, id_N:id+1}])
       setId(id+1)
+      firbaseSub(data)
       reset()
     }
 }
+
+async function firbaseSub(e: string){
+  var Task_Sub =e
+
+  const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userTaskRecord.json',
+      {
+          method:'POST',
+          headers:{
+             'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+             Task_Sub
+          })
+      })
+}
+
 
 const handleDeleteTask = (id: number) => {
   setTasks(tasks.filter(task => task.id_N !== id))

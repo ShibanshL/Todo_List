@@ -14,7 +14,7 @@ function Login() {
         },
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            password : (value) => (value.length < 4)? 'Please Enter a biggger [assword' : null
+            password : (value) => (value.length < 4)? 'Please Enter a biggger Password' : null
           },
         });
 
