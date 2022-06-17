@@ -5,10 +5,7 @@ import { useNavigate, Link} from 'react-router-dom'
 
 
 function SignUp() {
-    const [signUp, setSignUp] = useState({
-        email:'',
-        password:''
-    })
+   
     let nav = useNavigate()
     const form = useForm({
         initialValues: {
@@ -21,14 +18,23 @@ function SignUp() {
           },
         });
 
-        function handleSubmit(e: { email: string; password: string; }){
-            console.log(e)
-            setSignUp(e)
-            console.log('Signup - ',signUp)
-        //    console.log('load b = ',load)
-            // load = true
-            // setInterval(() =>  nav('/') ,1500)
-            // console.log('load = ',load)
+         async function handleSubmit(e: { email: string; password: string; }){
+            var Email = e.email
+            var Password = e.password
+            const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord.json',
+            {
+                method:'POST',
+                headers:{
+                   'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    Email,Password
+                })
+            })
+
+            form.setFieldValue('email', '')
+            form.setFieldValue('password', '')
+
             
         }
   return (

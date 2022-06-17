@@ -22,7 +22,7 @@ function Login() {
             console.log(e)
             console.log('load b = ',load)
             load = true
-            setInterval(() =>  nav('/Todo') ,1500)
+            setTimeout(() =>  nav('/Todo') ,1500)
             console.log('load = ',load)
             
         }
