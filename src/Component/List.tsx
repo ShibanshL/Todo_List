@@ -24,16 +24,6 @@ interface props{
 
 function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, handleEditTask}:props) {
 
-  if(tasks.map(e => e.id_N)==null){
-    return(
-      <>
-      <Group style={{display:'none'}}>Nothing yet</Group>
-      </>
-    )
-  }
-
-  else{
-
   return (
     <>
       <Grid>
@@ -68,7 +58,7 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
       </Grid>
     </>
   )
-        }
+        
 }
 
 export default List
