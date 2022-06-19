@@ -24,6 +24,7 @@ interface props{
 
 function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, handleEditTask}:props) {
 
+  // if(tasks.map(e => e.task_N) == Data[])
   return (
     <>
       <Grid>
@@ -53,21 +54,24 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
             </Group>
           } */}
 
-          {tasks.map(e =>{
+          {/* {tasks.map(e =>
+          { 
             return(
                 <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px'}} key={e.id_N}>
                   {j?
-                  <Text id={`id-${e.id_N}`}>{e.task_N}</Text>: <form onSubmit={e => handleSubmit(e)}>
-                      <Input
-                      placeholder ="Enter the Task"
-                      radius="xl"
-                      value={Data}
-                      variant="filled"
-                      size='md'
-                      onChange={(e: React.FormEvent<Element>) => handleChange(e)}
-                      />
-                    </form>
-                     }
+                    <Text id={`id-${e.id_N}`}>{e.task_N}</Text>: 
+                    <form onSubmit={e => handleSubmit(e)}>
+                        <Input
+                        placeholder ="Enter the Task"
+                        radius="xl"
+                        value={Data}
+                        variant="filled"
+                        size='md'
+                        onChange={(e: React.FormEvent<Element>) => handleChange(e)}
+                        // onSubmit={(e:React.FormEvent<Element>) => handleSubmit(e)}
+                        />
+                      </form>
+                    }
                   <Group> 
                     <GrClose onClick={() => handleDeleteTask(e.id_N)} style={{cursor:'pointer'}}/> <AiTwotoneEdit onClick={()=>handleEditTask(e.id_N)} style={{cursor:'pointer'}}/><br/>
                   </Group>
@@ -75,7 +79,9 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
                 )
               }
           )
-          }
+          } */}
+
+          
         
         </Grid.Col>
       </Grid>
