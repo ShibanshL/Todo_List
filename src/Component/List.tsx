@@ -54,7 +54,7 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
             </Group>
           } */}
 
-          {/* {tasks.map(e =>
+          {tasks.map(e =>
           { 
             return(
                 <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px'}} key={e.id_N}>
@@ -79,7 +79,7 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
                 )
               }
           )
-          } */}
+          }
 
           
         
