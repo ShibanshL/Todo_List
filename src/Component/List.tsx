@@ -28,9 +28,9 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
     <>
       <Grid>
         <Grid.Col span={12} style={{}}>
-          {j?tasks.map(e =>{
+          {/* {j?tasks.map(e =>{
             return(
-                <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px',/* display:'flex', alignItems:'center', justifyContent:'space-between'*/}} key={e.id_N}>
+                <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px'}} key={e.id_N}>
                   <Text id={`id-${e.id_N}`}>{e.task_N}</Text>  
                   <Group> 
                     <GrClose onClick={() => handleDeleteTask(e.id_N)} style={{cursor:'pointer'}}/> <AiTwotoneEdit onClick={()=>handleEditTask(e.id_N)} style={{cursor:'pointer'}}/><br/>
@@ -47,11 +47,34 @@ function List({tasks,j, Data,  handleDeleteTask, handleSubmit, handleChange, han
                   value={Data}
                   variant="filled"
                   size='md'
-                  // style={{color:'rgba(0,0,0,1) !important'}}
                   onChange={(e: React.FormEvent<Element>) => handleChange(e)}
                   />
                 </form>
             </Group>
+          } */}
+
+          {tasks.map(e =>{
+            return(
+                <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px'}} key={e.id_N}>
+                  {j?
+                  <Text id={`id-${e.id_N}`}>{e.task_N}</Text>: <form onSubmit={e => handleSubmit(e)}>
+                      <Input
+                      placeholder ="Enter the Task"
+                      radius="xl"
+                      value={Data}
+                      variant="filled"
+                      size='md'
+                      onChange={(e: React.FormEvent<Element>) => handleChange(e)}
+                      />
+                    </form>
+                     }
+                  <Group> 
+                    <GrClose onClick={() => handleDeleteTask(e.id_N)} style={{cursor:'pointer'}}/> <AiTwotoneEdit onClick={()=>handleEditTask(e.id_N)} style={{cursor:'pointer'}}/><br/>
+                  </Group>
+                </Group>
+                )
+              }
+          )
           }
         
         </Grid.Col>

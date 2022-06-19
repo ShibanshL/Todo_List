@@ -47,13 +47,14 @@ function Main() {
     else{
       setTasks([...tasks,{task_N:data, id_N:id+1}])
       setId(id+1)
-      firbaseSub(data)
+      firbaseSub({task_N:data, id_N:id})
       reset()
     }
 }
 
-async function firbaseSub(e: string){
-  var Task_Sub =e
+async function firbaseSub(e:{task_N:string,id_N:number}){
+  var Task_Sub = e.task_N
+  var Task_Id = e.id_N
 
   const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userTaskRecord.json',
       {
@@ -62,7 +63,7 @@ async function firbaseSub(e: string){
              'Content-Type':'application/json'
           },
           body:JSON.stringify({
-             Task_Sub
+             Task_Sub, Task_Id
           })
       })
 }
