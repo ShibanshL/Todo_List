@@ -1,27 +1,19 @@
 import { initializeApp } from "firebase/app";
 import {getDatabase} from "firebase/database"
-// import {getAuth} from 'fireBase/auth'
+import { getFirestore } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const firebaseConfig = {
+  apiKey: "AIzaSyBuMtV9sE_rBiiwCiFDBEUvrWCoVEruLrk",
+  authDomain: "reactfirebasebackend.firebaseapp.com",
+  databaseURL: "https://reactfirebasebackend-default-rtdb.firebaseio.com",
+  projectId: "reactfirebasebackend",
+  storageBucket: "reactfirebasebackend.appspot.com",
+  messagingSenderId: "1088953803583",
+  appId: "1:1088953803583:web:67f7d33f8d4da0678be98a"
+};
 
-// Your web app's Firebase configuration
-function FireBase(){
-    const firebaseConfig = {
-        apiKey: "AIzaSyBuMtV9sE_rBiiwCiFDBEUvrWCoVEruLrk",
-        authDomain: "reactfirebasebackend.firebaseapp.com",
-        databaseURL: "https://reactfirebasebackend-default-rtdb.firebaseio.com",
-        projectId: "reactfirebasebackend",
-        storageBucket: "reactfirebasebackend.appspot.com",
-        messagingSenderId: "1088953803583",
-        appId: "1:1088953803583:web:67f7d33f8d4da0678be98a"
-      };
-      
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      // const auth = getAuth(app)
-      return( getDatabase(app) )
-}
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const db1 = getFirestore(app)
 
-
-export default FireBase
+export { db, db1 };

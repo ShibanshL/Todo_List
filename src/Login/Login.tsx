@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { TextInput, Text, Button, Group, Box , Loader } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
-import FireBase from '../FireBase'
+import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 
-const db = FireBase()
+// const db = FireBase()
 var i = 0
 
 interface Authenticate {
@@ -47,7 +47,7 @@ function Login() {
                 console.log('load b = ',load)
                 console.log('Mail =',e.email)
                 load = true
-                setTimeout(() =>  nav('/Todo') ,1500)
+                setTimeout(() =>  nav('/NTodo') ,1500)
                 console.log('load = ',load)
                 i++
             }

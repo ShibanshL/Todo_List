@@ -2,10 +2,11 @@ import { Grid, Group, Text, Input } from '@mantine/core'
 import React, { useEffect, useState } from 'react'
 import {GrClose} from 'react-icons/gr'
 import {AiTwotoneEdit} from 'react-icons/ai'
-import FireBase from '../FireBase'
+// import FireBase from '../FireBase'
 import {ref,onValue} from 'firebase/database'
+import { db } from '../FireBase'
 
-const db = FireBase()
+// const db = FireBase()
 
 interface props{
   tasks:[
@@ -16,9 +17,9 @@ interface props{
   ]
   j:boolean
   Data:string
-  handleDeleteTask:(e: Number) => void
+  handleDeleteTask:(e: String) => void
   handleFinishTask:(e: Number) => void
-  handleEditTask:(e: number) => void
+  handleEditTask:(e: String) => void
   handleChange: (e: React.FormEvent) => void
   handleSubmit: (e: React.FormEvent) => void
 
@@ -80,10 +81,10 @@ function List({tasks,j, Data , handleDeleteTask, handleSubmit, handleChange, han
                   <Group> 
                     <GrClose onClick={() => {
                         // setMainData(e.data.Task_Id)
-                        handleDeleteTask(e.data.Task_Id)}} style={{cursor:'pointer'}}/> 
+                        handleDeleteTask(e.key)}} style={{cursor:'pointer'}}/> 
                       <AiTwotoneEdit onClick={()=>{
                         // setMainData(e.data.Task_Id)
-                        handleEditTask(e.data.Task_Id)}} style={{cursor:'pointer'}}/><br/>
+                        handleEditTask(e.key)}} style={{cursor:'pointer'}}/><br/>
                   </Group>
                 </Group>
               )

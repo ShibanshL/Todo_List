@@ -5,7 +5,7 @@ import Main from './Component/Main';
 import Login from './Login/Login';
 import Error from './Login/Error'
 import SignUp from './Login/SignUp';
-
+import Main_1 from './Component_2/Main_1';
 function App() {
 
   return (
@@ -26,6 +26,9 @@ function App() {
             <Route path='*' element={
                 <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Error /></Container>
           } />
+          <Route path='/NTodo' element={
+                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,1)', borderRadius:'25px'}}><Main_1 /></Container>
+          }/>
           <Route path='/signUp' element={
                 <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,1)', borderRadius:'25px'}}><SignUp /></Container>
           }/>

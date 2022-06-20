@@ -2,6 +2,11 @@ import { Group, Grid, Container, Text } from '@mantine/core'
 import React,{useState} from 'react'
 import Input_Data from './Input_Data'
 import List from './List'
+// import FireBase from '../FireBase'
+import {ref,onValue} from 'firebase/database'
+import { db } from '../FireBase'
+
+// const db = FireBase()
 
 interface TaskInput{
   task_N:string | null
@@ -65,13 +70,14 @@ async function firbaseSub(e:{task_N:string,id_N:number}){
 }
 
 
-const handleDeleteTask = (num: number) => {
+const handleDeleteTask = async (num: string) => {
   // setTasks(tasks.filter(task => task.id_N !== id))
-
+  
   console.log('Delete = ', num)
 }
 
-  const handleEditTask = (id:number) => {
+  const handleEditTask = (id:string) => {
+  console.log('Edit = ', id)
     
 
   }
