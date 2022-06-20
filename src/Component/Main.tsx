@@ -15,6 +15,7 @@ function Main() {
     task_N:'Dummy task',
     id_N: 0
   }])
+  const [mainData, setMainData] = useState<number>(0)
   const [id,setId] = useState(0)
 
   const handleChange = (e: React.FormEvent) => {
@@ -25,7 +26,10 @@ function Main() {
      setData('')
   }
 
+
   const handleSubmit = (e: React.FormEvent) => {
+  // var Uid = (new Date()).getTime()
+
     e.preventDefault()
     if(!data)
     {
@@ -45,8 +49,8 @@ function Main() {
       reset()
     }
     else{
-      setTasks([...tasks,{task_N:data, id_N:id+1}])
-      setId(id+1)
+      setTasks([...tasks,{task_N:data, id_N:mainData}])
+      setId(mainData)
       firbaseSub({task_N:data, id_N:id})
       reset()
     }
@@ -70,7 +74,9 @@ async function firbaseSub(e:{task_N:string,id_N:number}){
 
 
 const handleDeleteTask = (id: number) => {
-  setTasks(tasks.filter(task => task.id_N !== id))
+  // setTasks(tasks.filter(task => task.id_N !== id))
+
+  console.log('Delete = ', id)
   }
 
   const handleFinishTask = (id:number) => {
@@ -78,10 +84,12 @@ const handleDeleteTask = (id: number) => {
   }
 
   const handleEditTask = (id:number) => {
-    let findData = tasks.find( e => e.id_N == id)
-    setData(findData?.task_N)
-    i = id
+    // let findData = tasks.find( e => e.id_N == id)
+    // setData(findData?.task_N)
+    // i = id
     j=false
+    console.log('Edit = ', id)
+
   }
 
   return (
@@ -94,7 +102,14 @@ const handleDeleteTask = (id: number) => {
           <Input_Data Data={data} setData={setData} handleSubmit={handleSubmit} handleChange={handleChange} j={j}/>
         </Grid.Col>
         <Grid.Col span={12}>
-          <List tasks={tasks} Data={data} handleDeleteTask={handleDeleteTask} handleEditTask={handleEditTask} j={j} handleChange={handleChange} handleSubmit={handleSubmit}/>
+          <List tasks={tasks} 
+                Data={data} 
+                handleDeleteTask={handleDeleteTask} 
+                handleEditTask={handleEditTask} 
+                j={j} 
+                handleChange={handleChange} 
+                handleSubmit={handleSubmit} 
+                setMainData={setMainData}/>
         </Grid.Col>
       </Grid>
     </Container>

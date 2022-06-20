@@ -11,6 +11,7 @@ function SignUp() {
         initialValues: {
           email: '',
           password:'',
+          id:0
         },
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
@@ -18,9 +19,10 @@ function SignUp() {
           },
         });
 
-         async function handleSubmit(e: { email: string; password: string; }){
+         async function handleSubmit(e: { email: string; password: string; id:number }){
             var Email = e.email
             var Password = e.password
+            var id = e.id+(new Date()).getTime()
             const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord.json',
             {
                 method:'POST',
@@ -28,7 +30,7 @@ function SignUp() {
                    'Content-Type':'application/json'
                 },
                 body:JSON.stringify({
-                    Email,Password
+                    Email,Password,id
                 })
             })
 
