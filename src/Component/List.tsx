@@ -47,11 +47,14 @@ function List({tasks,j, Data , handleDeleteTask, handleSubmit, handleChange, han
         record.push({"key":keyName, "data":data})
       })
       setFireBaseData(record)
-      console.log(fireBaseData)
+      // console.log('Data =',fireBaseData)
     })
   },[tasks])
   
+  console.log('Data =',fireBaseData)
+
   return (
+    
     <>
       <Grid>
         <Grid.Col span={12} style={{}}>
@@ -59,7 +62,7 @@ function List({tasks,j, Data , handleDeleteTask, handleSubmit, handleChange, han
             fireBaseData.map(e =>{
               
               return(
-                <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px'}} key={e.data.Task_Id}>
+                <Group className='ll' position='apart' m='10px' p='10px' style={{ background:'white', borderRadius:'25px'}} key={e.key}>
                   {j?
                     <Text id={`id-${e.data.Task_Id}`}>{e.data.Task_Sub}</Text>: 
                     <form onSubmit={e => handleSubmit(e)}>

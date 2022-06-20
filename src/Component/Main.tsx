@@ -65,15 +65,11 @@ async function firbaseSub(e:{task_N:string,id_N:number}){
 }
 
 
-const handleDeleteTask = (id: number) => {
+const handleDeleteTask = (num: number) => {
   // setTasks(tasks.filter(task => task.id_N !== id))
 
-  console.log('Delete = ', id)
-  }
-
-  const handleFinishTask = (id:number) => {
-    
-  }
+  console.log('Delete = ', num)
+}
 
   const handleEditTask = (id:number) => {
     
