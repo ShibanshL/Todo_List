@@ -77,31 +77,32 @@ function Login() {
         if(load==false){
             return (
                 <>
-                <Box sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw', height:'30vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
-                <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
-                    <TextInput
-                    required
-                    label="Email"
-                    placeholder="your@email.com"
-                    {...form.getInputProps('email')}
-                    
-                    />
-                    <TextInput
-                    required
-                    type='password'
-                    label="password"
-                    placeholder="Password"
-                    {...form.getInputProps('password')}
-                    
-                    />
+               <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw', height:'40vh'}} direction='column' position='center'>
+                    <Text size='xl'>Login Here!!</Text>
+                    <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
+                        <TextInput
+                        required
+                        label="Email"
+                        placeholder="your@email.com"
+                        {...form.getInputProps('email')}
+                        
+                        />
+                        <TextInput
+                        required
+                        type='password'
+                        label="password"
+                        placeholder="Password"
+                        {...form.getInputProps('password')}
+                        
+                        />
 
-                    <Group position="right" mt="md">
-                    <Button type="submit">Submit</Button>
-                    </Group>
+                        <Group position="right" mt="md">
+                        <Button type="submit">Submit</Button>
+                        </Group>
 
-                    <Text align='center' >Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
-                </form>
-                </Box>
+                        <Text align='center' >Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
+                    </form>
+                </Group>
                 </>
             )
         }
