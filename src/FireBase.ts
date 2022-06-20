@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getDatabase} from "firebase/database"
+// import {getAuth} from 'fireBase/auth'
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,7 +19,8 @@ function FireBase(){
       
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      return getDatabase(app)
+      // const auth = getAuth(app)
+      return( getDatabase(app) )
 }
 
 

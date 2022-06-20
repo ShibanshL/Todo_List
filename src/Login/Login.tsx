@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextInput, Text, Button, Group, Box , Loader } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
+import FireBase from '../FireBase'
+import {ref,onValue} from 'firebase/database'
 
+const db = FireBase()
+var i = 0
+
+interface Authenticate {
+    data:
+    {
+        Email: string,
+        Password: string,
+        id: number
+    },
+    key: string | null
+}
 
 function Login() {
+    
+    const [authData, setAuthData] = useState<Authenticate[]>([])
+    // var c = auth()
     let nav = useNavigate()
     let load = false
     const form = useForm({
@@ -19,13 +36,43 @@ function Login() {
         });
 
         function handleSubmit(e: { email: string; password: string; }){
-            console.log(e)
-            console.log('load b = ',load)
-            load = true
-            setTimeout(() =>  nav('/Todo') ,1500)
-            console.log('load = ',load)
+
+          
+            var Mail = e.email
+            var Password = e.password
+            var check = authData.filter( e => e.data.Email == Mail )
+            console.log('check', check)
+            if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
+                console.log(e)
+                console.log('load b = ',load)
+                console.log('Mail =',e.email)
+                load = true
+                setTimeout(() =>  nav('/Todo') ,1500)
+                console.log('load = ',load)
+                i++
+            }
+            else{
+                alert('Wrong Email Id or Password')
+            }
+            // form.setFieldValue('email', '')
+            // form.setFieldValue('password', '')
+
+           
             
         }
+        useEffect(() => {
+            const dbref = ref(db,'userDataRecord')
+            onValue(dbref,(snapshot) => {
+              let record:Authenticate[] = []
+              snapshot.forEach(childSnapshot => {
+                let keyName = childSnapshot.key
+                let data = childSnapshot.val()
+                record.push({"key":keyName, "data":data})
+              })
+              setAuthData(record)
+              console.log('Get ',authData)
+            })
+          },[i])
 
         if(load==false){
             return (

@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useForm } from '@mantine/form';
-import { TextInput, Text, Button, Group, Box , Loader } from '@mantine/core';
+import { TextInput, Text, Button, Group, Box , Loader, Container } from '@mantine/core';
 import { useNavigate, Link} from 'react-router-dom'
 
 
@@ -37,36 +37,38 @@ function SignUp() {
             form.setFieldValue('email', '')
             form.setFieldValue('password', '')
 
+            setTimeout(() =>  nav('/') ,1500)
             
         }
   return (
     <>
-    <Box sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw', height:'30vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
-    <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
-        <TextInput
-        required
-        label="Email"
-        // value={signUp.email}
-        placeholder="your@email.com"
-        {...form.getInputProps('email')}
-        
-        />
-        <TextInput
-        required
-        type='password'
-        label="password"
-        placeholder="Password"
-        {...form.getInputProps('password')}
-        
-        />
+    <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw', height:'40vh'}} direction='column' position='center'>
+      <Text size='xl'>Sign Up Here!!</Text>
+      <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
+          <TextInput
+          required
+          label="Email"
+          // value={signUp.email}
+          placeholder="your@email.com"
+          {...form.getInputProps('email')}
+          
+          />
+          <TextInput
+          required
+          type='password'
+          label="password"
+          placeholder="Password"
+          {...form.getInputProps('password')}
+          
+          />
 
-        <Group position="right" mt="md">
-        <Button type="submit">Submit</Button>
-        </Group>
+          <Group position="right" mt="md">
+          <Button type="submit">Submit</Button>
+          </Group>
 
-        <Text align='center' >Do you have an account? <Link to={'/'}>Login</Link></Text>
-    </form>
-    </Box>
+          <Text align='center' >Do you have an account? <Link to={'/'}>Login</Link></Text>
+      </form>
+    </Group>
     </>
   )
 }

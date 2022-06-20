@@ -21,7 +21,6 @@ interface props{
   handleEditTask:(e: number) => void
   handleChange: (e: React.FormEvent) => void
   handleSubmit: (e: React.FormEvent) => void
-  setMainData:React.Dispatch<React.SetStateAction<Number>>
 
 }
 
@@ -34,7 +33,7 @@ interface Fbase {
 }
 
 
-function List({tasks,j, Data,setMainData,  handleDeleteTask, handleSubmit, handleChange, handleEditTask}:props) {
+function List({tasks,j, Data , handleDeleteTask, handleSubmit, handleChange, handleEditTask}:props) {
 
   const [fireBaseData, setFireBaseData] = useState<Fbase[]>([])
 
@@ -51,7 +50,7 @@ function List({tasks,j, Data,setMainData,  handleDeleteTask, handleSubmit, handl
       console.log(fireBaseData)
     })
   },[tasks])
-  // if(tasks.map(e => e.task_N) == Data[])
+  
   return (
     <>
       <Grid>
@@ -77,19 +76,16 @@ function List({tasks,j, Data,setMainData,  handleDeleteTask, handleSubmit, handl
                     }
                   <Group> 
                     <GrClose onClick={() => {
-                        setMainData(e.data.Task_Id)
+                        // setMainData(e.data.Task_Id)
                         handleDeleteTask(e.data.Task_Id)}} style={{cursor:'pointer'}}/> 
                       <AiTwotoneEdit onClick={()=>{
-                        setMainData(e.data.Task_Id)
+                        // setMainData(e.data.Task_Id)
                         handleEditTask(e.data.Task_Id)}} style={{cursor:'pointer'}}/><br/>
                   </Group>
                 </Group>
               )
             })
           }
-
-          
-        
         </Grid.Col>
       </Grid>
     </>

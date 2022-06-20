@@ -15,6 +15,8 @@ function Main() {
     task_N:'Dummy task',
     id_N: 0
   }])
+
+
   const [mainData, setMainData] = useState<number>(0)
   const [id,setId] = useState(0)
 
@@ -36,21 +38,11 @@ function Main() {
       alert('please enter some data')
     }
     else if(data && !j){
-      setTasks(
-        tasks.map( e => {
-          if(e.id_N == i){
-            return{...e, task_N:data}
-          }
-         return e
-        })
-      )
-      i = 0
-      j=true
+      
       reset()
     }
     else{
-      setTasks([...tasks,{task_N:data, id_N:mainData}])
-      setId(mainData)
+      
       firbaseSub({task_N:data, id_N:id})
       reset()
     }
@@ -84,11 +76,7 @@ const handleDeleteTask = (id: number) => {
   }
 
   const handleEditTask = (id:number) => {
-    // let findData = tasks.find( e => e.id_N == id)
-    // setData(findData?.task_N)
-    // i = id
-    j=false
-    console.log('Edit = ', id)
+    
 
   }
 
@@ -109,7 +97,7 @@ const handleDeleteTask = (id: number) => {
                 j={j} 
                 handleChange={handleChange} 
                 handleSubmit={handleSubmit} 
-                setMainData={setMainData}/>
+                />
         </Grid.Col>
       </Grid>
     </Container>
