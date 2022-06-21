@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TextInput, Text, Button, Group, Box , Loader } from '@mantine/core';
+import { TextInput, Text, Button, Group, Box , Loader, Center } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
 import {db} from '../FireBase'
@@ -7,7 +7,7 @@ import {ref,onValue} from 'firebase/database'
 
 // const db = FireBase()
 var i = 0
-
+var j = 0
 interface Authenticate {
     data:
     {
@@ -21,6 +21,7 @@ interface Authenticate {
 function Login() {
     
     const [authData, setAuthData] = useState<Authenticate[]>([])
+    const [num,setNum] = useState(0)
     let nav = useNavigate()
     let load = false
     const form = useForm({
@@ -42,13 +43,12 @@ function Login() {
             var check = authData.filter( e => e.data.Email == Mail )
             console.log('check', check)
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
-                console.log(e)
-                console.log('load b = ',load)
-                console.log('Mail =',e.email)
                 load = true
-                setTimeout(() =>  nav('/NTodo') ,1500)
-                console.log('load = ',load)
+                setTimeout(() =>{setNum(j+1)},2000)
+                
                 i++
+                setTimeout(() =>  nav('/NTodo') ,3000)
+               
             }
             else{
                 alert('Wrong Email Id or Password')
@@ -111,9 +111,10 @@ function Login() {
         }
         else{
             return( 
-            <Box sx={{ maxWidth: 300 }} mx="auto" style={{width:'30vw',height:'10vw'}}>
-                <Loader style={{position:'absolute'}}/>
-            </Box>
+            <Center style={{width:'30vw',height:'10vw'}}>
+                {/* {num} */}
+                {num%2==0?<Loader style={{position:'absolute'}}/>:<Text size='xl' weight={700}>Login Success!!</Text>}
+            </Center>
             )
         }
 
