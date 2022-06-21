@@ -30,10 +30,10 @@ export default function Todo({ todo, toggleComplete, handleDelete, i, handleEdit
     return (
         <Grid>
             <Grid.Col className="todo" span={12}>
-                <Group direction="column" p='5px'>
-                    <Group direction="row">
+                <Group direction="column" p='10px' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px'}}>
+                    <Group direction="row" p='5px'>
                         <Input
-                             variant="filled"
+                             variant="unstyled"
                              radius='xl'
                              type="text"
                              value={todo.title === "" ? newTitle : todo.title}

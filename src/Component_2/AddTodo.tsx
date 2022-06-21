@@ -31,7 +31,7 @@ export default function AddTodo() {
             size="md"
             onChange={(e:any) => setTitle(e.target.value)}
             />&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button radius={'xl'}>Add</Button>
+            <Button onClick={handleSubmit} radius={'xl'}>Add</Button>
         </form>
     </Group>
     </Grid>
