@@ -20,7 +20,7 @@ export default function AddTodo() {
   };
   return (
     <Grid dir='row'>
-    <Group direction="row" ml='-1.5vw' align={'center'} position='center' grow>
+    <Group direction="row"  align={'center'} position='center' grow>
         <form onSubmit={handleSubmit} style={{display:'flex',justifyContent:'space-between'}}>
             <Input
             type="text"

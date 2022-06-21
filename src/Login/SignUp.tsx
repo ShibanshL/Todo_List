@@ -43,13 +43,15 @@ function SignUp() {
   return (
     <>
     <Group sx={{ maxWidth: 500}} mx="auto" style={{/*width:'60vw', height:'40vh'*/}} direction='column' position='center'>
-      <Text size='xl'>Sign Up Here!!</Text>
-      <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
+      <Text size='xl' weight={700}>Sign Up Here!!</Text>
+      <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{color:'white'}}>
           <TextInput
           required
           label="Email"
+          // color="white"
           // value={signUp.email}
           placeholder="your@email.com"
+          radius="xl"
           {...form.getInputProps('email')}
           
           />
@@ -58,6 +60,7 @@ function SignUp() {
           type='password'
           label="password"
           placeholder="Password"
+          radius="xl"
           {...form.getInputProps('password')}
           
           />

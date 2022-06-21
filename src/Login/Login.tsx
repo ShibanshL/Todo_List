@@ -21,7 +21,6 @@ interface Authenticate {
 function Login() {
     
     const [authData, setAuthData] = useState<Authenticate[]>([])
-    // var c = auth()
     let nav = useNavigate()
     let load = false
     const form = useForm({
@@ -78,12 +77,13 @@ function Login() {
             return (
                 <>
                <Group sx={{ maxWidth: 500}} mx="auto" style={{}} direction='column' position='center'>
-                    <Text size='xl'>Login Here!!</Text>
+                    <Text size='xl' weight={700}>Login Here!!</Text>
                     <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
                         <TextInput
                         required
                         label="Email"
                         placeholder="your@email.com"
+                        radius="xl"
                         {...form.getInputProps('email')}
                         
                         />
@@ -92,6 +92,7 @@ function Login() {
                         type='password'
                         label="password"
                         placeholder="Password"
+                        radius="xl"
                         {...form.getInputProps('password')}
                         
                         />
@@ -100,7 +101,7 @@ function Login() {
                         <Button type="submit">Submit</Button>
                         </Group>
 
-                        <Text align='center' >Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
+                        <Text align='center' color={'white'}>Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
                     </form>
                 </Group>
                 </>
