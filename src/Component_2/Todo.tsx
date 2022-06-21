@@ -29,7 +29,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit}:p
     return (
         <Grid>
             <Grid.Col className="todo" span={12}>
-                <Group direction="column">
+                <Group direction="column" p='5px'>
                     <Group direction="row">
                         <Input
                              variant="filled"
@@ -41,7 +41,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit}:p
                         />
                         <Group>
                         
-                            <TiTick id="i"  style={{cursor:'pointer'}} onClick={() => toggleComplete(todo)} />
+                            {/* <TiTick id="i"  style={{cursor:'pointer'}} onClick={() => toggleComplete(todo)} /> */}
                             <AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() => handleEdit(todo, newTitle)} />
                             <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
                         </Group>

@@ -38,9 +38,9 @@ function Main_1() {
         await deleteDoc(doc(db1, "todos", id));
       };
       return (
-        <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{width:'30vw', height:'40vh'}} grow>
+        <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{/*width:'30vw', height:'40vh'*/backdropFilter:'blur(10px)'}} grow>
             <Text size='xl'>Todo List</Text>
-          <Group direction='row' position='center' spacing='xs' grow>
+          <Group direction='row' position='center' spacing='xs' p='10px' grow>
             <AddTodo/>
           </Group>
           <Grid>
