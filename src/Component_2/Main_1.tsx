@@ -12,7 +12,7 @@ import AddTodo from './AddTodo';
 import Todo from './Todo';
 import { Grid, Group, Text } from '@mantine/core';
 
-var i:boolean = true
+
 function Main_1() {
     const [todoData, setTodoData]:any[] = useState([]);
 
@@ -30,8 +30,6 @@ function Main_1() {
 
       const handleEdit = async (todo:any, title:string) => {
         await updateDoc(doc(db1, "todos", todo.id), { title: title });
-        i=false
-
       };
       const toggleComplete = async (todo:any) => {
         await updateDoc(doc(db1, "todos", todo.id), { completed: !todo.completed });
@@ -45,7 +43,7 @@ function Main_1() {
           <Group direction='row' position='center' spacing='xs' p='10px' grow>
             <AddTodo/>
           </Group>
-          <Grid>
+          <Grid style={{}}>
             <Grid.Col span={12}>
                 {todoData.map((todo:any) => (
                 <Todo
@@ -54,7 +52,7 @@ function Main_1() {
                     toggleComplete={toggleComplete}
                     handleDelete={handleDelete}
                     handleEdit={handleEdit}
-                    i={i}
+                    todoData={todoData}
                 />
                 ))}
             </Grid.Col>

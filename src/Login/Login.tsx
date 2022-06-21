@@ -73,11 +73,11 @@ function Login() {
             })
           },[i])
 
-        if(load==false){
+        if(i%2==0){
             return (
                 <>
                <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center'>
-                    <Text size='xl' weight={700}>Login Here!!</Text>
+                    <Text size='xl' weight={700}>Login</Text>
                     <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
                         <TextInput
                         required
@@ -111,7 +111,7 @@ function Login() {
         }
         else{
             return( 
-            <Box sx={{ maxWidth: 300 }} mx="auto">
+            <Box sx={{ maxWidth: 300 }} mx="auto" style={{width:'30vw',height:'10vw'}}>
                 <Loader style={{position:'absolute'}}/>
             </Box>
             )

@@ -1,6 +1,10 @@
 import React,{useState} from "react";
 import {GrClose} from 'react-icons/gr'
 import {AiTwotoneEdit} from 'react-icons/ai'
+import {IoAddCircle} from 'react-icons/io5'
+import {IoIosAddCircleOutline} from 'react-icons/io'
+import {MdAddCircleOutline} from 'react-icons/md'
+
 import { Grid, Group, Text } from "@mantine/core";
 import {TiTick} from 'react-icons/ti'
 import { Input } from '@mantine/core';
@@ -8,16 +12,21 @@ import { Input } from '@mantine/core';
 interface props {
     key:any
     todo:any,
+    todoData:any[],
     toggleComplete: (todo: any) => Promise<void>,
     handleDelete: (todo: any) => Promise<void>,
     handleEdit:(todo: any, title: string) => Promise<void>,
-    i:boolean
+    
 }
 
+// var i:boolean = true
+var k:number = 0
 
-export default function Todo({ todo, toggleComplete, handleDelete, i, handleEdit}:props) {
+export default function Todo({ todo, toggleComplete, handleDelete, todoData, handleEdit}:props) {
+
+  // console.log(todoData)
     const [newTitle, setNewTitle] = useState(todo.title);
-  
+    const [num,setNum] = useState<number>(0)
     const handleChange = (e:any) => {
       e.preventDefault();
       if (todo.complete === true) {
@@ -27,23 +36,41 @@ export default function Todo({ todo, toggleComplete, handleDelete, i, handleEdit
         setNewTitle(e.target.value);
       }
     };
+
+    const Input_Tag = () => {
+      k++
+      setNum(k)
+    }
+
     return (
         <Grid>
             <Grid.Col className="todo" span={12}>
                 <Group direction="column" p='10px' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px'}}>
                     <Group direction="row" p='5px'>
-                        <Input
+                        {num%2==0?<Input
                              variant="unstyled"
                              radius='xl'
                              type="text"
                              value={todo.title === "" ? newTitle : todo.title}
                              className="list"
                              onChange={handleChange}
-                        />
+                        />:
+                        <Input
+                             variant="default"
+                             radius='xl'
+                             type="text"
+                             value={todo.title === "" ? newTitle : todo.title}
+                             className="list"
+                             onChange={handleChange}
+                        />}
                         <Group>
-                        
-                            {/* <TiTick id="i"  style={{cursor:'pointer'}} onClick={() => toggleComplete(todo)} /> */}
-                            <AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() => handleEdit(todo, newTitle)} />
+                            {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                              handleEdit(todo, newTitle) 
+                              Input_Tag()
+                              }}/>:<MdAddCircleOutline id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                                handleEdit(todo, newTitle) 
+                                Input_Tag()
+                                }}/>}
                             <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
                         </Group>
                     </Group>
