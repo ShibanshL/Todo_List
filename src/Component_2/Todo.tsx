@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import {GrClose} from 'react-icons/gr'
 import {AiTwotoneEdit} from 'react-icons/ai'
-import { Grid, Group } from "@mantine/core";
+import { Grid, Group, Text } from "@mantine/core";
 import {TiTick} from 'react-icons/ti'
 import { Input } from '@mantine/core';
 
@@ -10,11 +10,12 @@ interface props {
     todo:any,
     toggleComplete: (todo: any) => Promise<void>,
     handleDelete: (todo: any) => Promise<void>,
-    handleEdit:(todo: any, title: string) => Promise<void>
+    handleEdit:(todo: any, title: string) => Promise<void>,
+    i:boolean
 }
 
 
-export default function Todo({ todo, toggleComplete, handleDelete, handleEdit}:props) {
+export default function Todo({ todo, toggleComplete, handleDelete, i, handleEdit}:props) {
     const [newTitle, setNewTitle] = useState(todo.title);
   
     const handleChange = (e:any) => {

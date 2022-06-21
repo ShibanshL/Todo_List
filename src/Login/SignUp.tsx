@@ -42,8 +42,8 @@ function SignUp() {
         }
   return (
     <>
-    <Group sx={{ maxWidth: 500}} mx="auto" style={{/*width:'60vw', height:'40vh'*/}} direction='column' position='center'>
-      <Text size='xl' weight={700}>Sign Up Here!!</Text>
+    <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center' grow>
+      <Text size='xl' align='center' weight={700}>Sign Up Here!!</Text>
       <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{color:'white'}}>
           <TextInput
           required
@@ -52,24 +52,26 @@ function SignUp() {
           // value={signUp.email}
           placeholder="your@email.com"
           radius="xl"
+          p="5px"
           {...form.getInputProps('email')}
           
           />
           <TextInput
           required
           type='password'
-          label="password"
+          label="Password"
           placeholder="Password"
           radius="xl"
+          p="5px"
           {...form.getInputProps('password')}
           
           />
 
           <Group position="right" mt="md">
-          <Button type="submit">Submit</Button>
+          <Button radius={'xl'} type="submit">Submit</Button>
           </Group>
 
-          <Text align='center' >Do you have an account? <Link to={'/'}>Login</Link></Text>
+          <Text p='10px' align='center' >Do you have an account? <Link to={'/'}>Login</Link></Text>
       </form>
     </Group>
     </>

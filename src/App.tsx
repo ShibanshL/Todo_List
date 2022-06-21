@@ -18,19 +18,19 @@ function App() {
       })}>
         <Routes>
           <Route path='/' element={
-            <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px', }}><Login /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px', }}><Login /></Container>
           }/>
           <Route path='/Todo' element={
-                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Main /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main /></Container>
           } />
             <Route path='*' element={
-                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Error /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Error /></Container>
           } />
           <Route path='/NTodo' element={
-                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,1)', borderRadius:'25px'}}><Main_1 /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main_1 /></Container>
           }/>
           <Route path='/signUp' element={
-                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><SignUp /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><SignUp /></Container>
           }/>
         </Routes>
     </AppShell>

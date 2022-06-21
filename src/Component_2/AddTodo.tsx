@@ -28,6 +28,7 @@ export default function AddTodo() {
             value={title}
             variant="filled"
             radius='xl'
+            size="md"
             onChange={(e:any) => setTitle(e.target.value)}
             />&nbsp;&nbsp;&nbsp;&nbsp;
             <Button radius={'xl'}>Add</Button>

@@ -76,7 +76,7 @@ function Login() {
         if(load==false){
             return (
                 <>
-               <Group sx={{ maxWidth: 500}} mx="auto" style={{}} direction='column' position='center'>
+               <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center'>
                     <Text size='xl' weight={700}>Login Here!!</Text>
                     <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
                         <TextInput
@@ -84,24 +84,26 @@ function Login() {
                         label="Email"
                         placeholder="your@email.com"
                         radius="xl"
+                        p='5px'
                         {...form.getInputProps('email')}
                         
                         />
                         <TextInput
                         required
                         type='password'
-                        label="password"
+                        label="Password"
                         placeholder="Password"
                         radius="xl"
+                        p='5px'
                         {...form.getInputProps('password')}
                         
                         />
 
                         <Group position="right" mt="md">
-                        <Button type="submit">Submit</Button>
+                        <Button radius={'xl'} type="submit">Submit</Button>
                         </Group>
 
-                        <Text align='center' color={'white'}>Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
+                        <Text align='center' p='10px' color={'white'}>Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
                     </form>
                 </Group>
                 </>
