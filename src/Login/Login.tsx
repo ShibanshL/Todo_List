@@ -115,8 +115,8 @@ function Login() {
             return( 
             <Center style={{width:'30vw'}}>
                 {/* {num} */}
-                {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="SignUp was succesfull!!">
-                      Your Details have been submitted, you are being redirected.
+                {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
+                      Login was Successful, you are being redirected.
                     </Notification>}
             </Center>
             )
