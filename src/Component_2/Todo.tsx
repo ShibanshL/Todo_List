@@ -55,14 +55,6 @@ export default function Todo({ todo, toggleComplete, handleDelete, todoData, han
                              className="list"
                              onChange={handleChange}
                         />}
-                        {/* // <Input
-                        //      variant="default"
-                        //      radius='xl'
-                        //      type="text"
-                        //      value={todo.title === "" ? newTitle : todo.title}
-                        //      className="list"
-                        //      onChange={handleChange}
-                        // />} */}
                         <Group style={{}} position="right">
                             {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                               handleEdit(todo, newTitle) 
