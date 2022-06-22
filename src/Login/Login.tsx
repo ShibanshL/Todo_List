@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { TextInput, Text, Button, Group, Box , Loader, Center } from '@mantine/core';
+import { TextInput, Text, Button, Group, Notification, Loader, Center } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
+import {AiFillCheckCircle} from 'react-icons/ai'
+
 
 // const db = FireBase()
 var i = 0
@@ -111,9 +113,11 @@ function Login() {
         }
         else{
             return( 
-            <Center style={{width:'30vw',height:'10vw'}}>
+            <Center style={{width:'30vw'}}>
                 {/* {num} */}
-                {num%2==0?<Loader/>:<Text size='xl' variant="gradient" gradient={{ from: '#14FF36', to: '#27D6FF', deg: 45 }} weight={700}>Login Success!!</Text>}
+                {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="SignUp was succesfull!!">
+                      Your Details have been submitted, you are being redirected.
+                    </Notification>}
             </Center>
             )
         }

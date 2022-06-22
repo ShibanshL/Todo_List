@@ -45,25 +45,25 @@ export default function Todo({ todo, toggleComplete, handleDelete, todoData, han
     return (
         <Grid>
             <Grid.Col className="todo" span={12}>
-                <Group direction="column" p='10px' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px'}}>
-                    <Group direction="row" p='5px'>
-                        {num%2==0?<Input
-                             variant="unstyled"
-                             radius='xl'
-                             type="text"
-                             value={todo.title === "" ? newTitle : todo.title}
-                             className="list"
-                             onChange={handleChange}
-                        />:
-                        <Input
-                             variant="default"
+                <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px', justifyContent:'space-between'}} grow>
+                    <Group  direction="row" p='5px' grow>
+                        {num%2==0?<Text>{todo.title}</Text>:<Input
+                             variant="filled"
                              radius='xl'
                              type="text"
                              value={todo.title === "" ? newTitle : todo.title}
                              className="list"
                              onChange={handleChange}
                         />}
-                        <Group>
+                        {/* // <Input
+                        //      variant="default"
+                        //      radius='xl'
+                        //      type="text"
+                        //      value={todo.title === "" ? newTitle : todo.title}
+                        //      className="list"
+                        //      onChange={handleChange}
+                        // />} */}
+                        <Group style={{}} position="right">
                             {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                               handleEdit(todo, newTitle) 
                               Input_Tag()

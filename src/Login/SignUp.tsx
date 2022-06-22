@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import { useForm } from '@mantine/form';
-import { TextInput, Text, Button, Group, Center, Loader, Container } from '@mantine/core';
+import { TextInput, Text, Button, Group, Center, Loader, Notification } from '@mantine/core';
 import { useNavigate, Link} from 'react-router-dom'
-
+import {AiFillCheckCircle} from 'react-icons/ai'
 
 var i = 0
 var j = 0
@@ -85,8 +85,10 @@ function SignUp() {
         }
         else{
           return(
-            <Center style={{width:'30vw',height:'10vw'}}>
-                  {num%2==0?<Loader color={'cyan'}/>:<Text size='xl' variant="gradient" gradient={{ from: '#14FF36', to: '#27D6FF', deg: 45 }} weight={700}>SignUp Success!!</Text>}
+            <Center style={{width:'30vw'}}>
+                  {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="SignUp was succesfull!!">
+                      Your Details have been submitted, you are being redirected.
+                    </Notification>}
             </Center>
           )
         }
