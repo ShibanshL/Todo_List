@@ -113,7 +113,7 @@ function Login() {
             return( 
             <Center style={{width:'30vw',height:'10vw'}}>
                 {/* {num} */}
-                {num%2==0?<Loader style={{position:'absolute'}}/>:<Text size='xl' weight={700}>Login Success!!</Text>}
+                {num%2==0?<Loader/>:<Text size='xl' variant="gradient" gradient={{ from: '#14FF36', to: '#27D6FF', deg: 45 }} weight={700}>Login Success!!</Text>}
             </Center>
             )
         }
