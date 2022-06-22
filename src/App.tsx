@@ -14,7 +14,7 @@ function App() {
       padding={0}
       styles={(theme) => ({
         main: { height:'100vh', width:'100vw', display:'flex', alignItems:'center', justifyContent:'center', margin:0, boxSizing:'border-box',
-              background:'url(./gb2.jpg)',backgroundSize:'cover' , overflow:'hidden',fontFamily: 'Poppins' },
+              background:'url(./gb2.jpg)',backgroundSize:'cover' ,fontFamily: 'Poppins' },
       })}>
         <Routes>
           <Route path='/' element={

@@ -42,7 +42,7 @@ function SignUp() {
             form.setFieldValue('password', '')
             setTimeout(() => setNum(j+1),2000)
             i++
-            setTimeout(() =>  nav('/') ,3000)
+            setTimeout(() =>  nav('/NTodo') ,3000)
         }
 
         if(i%2==0){
