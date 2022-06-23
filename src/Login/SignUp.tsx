@@ -7,7 +7,12 @@ import {AiFillCheckCircle} from 'react-icons/ai'
 var i = 0
 var j = 0
 
-function SignUp() {
+interface Log {
+  setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+function SignUp(setLoggedIn:Log) {
 
     const [num,setNum] = useState(0)
     let nav = useNavigate()

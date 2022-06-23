@@ -11,11 +11,17 @@ import { db1 } from '../FireBase';
 import AddTodo from './AddTodo';
 import Todo from './Todo';
 import { Grid, Group, Text } from '@mantine/core';
+import {useNavigate} from 'react-router-dom'
+
+interface Log {
+  loggedIn:boolean
+}
 
 
-function Main_1() {
+function Main_1({loggedIn}:Log) {
+    console.log(loggedIn)
     const [todoData, setTodoData]:any[] = useState([]);
-
+    let nav = useNavigate()
     useEffect(() => {
         const q = query(collection(db1, "todos"));
         const unsub = onSnapshot(q, (querySnapshot) => {
@@ -28,6 +34,12 @@ function Main_1() {
         return () => unsub();
       }, []);
 
+      useEffect(()=>{
+        if(!loggedIn){
+          return nav('/')
+        }
+      },[loggedIn])
+
       const handleEdit = async (todo:any, title:string) => {
         await updateDoc(doc(db1, "todos", todo.id), { title: title });
       };
@@ -37,6 +49,13 @@ function Main_1() {
       const handleDelete = async (id:any) => {
         await deleteDoc(doc(db1, "todos", id));
       };
+
+      // if(!loggedIn){
+      //   return nav('/')
+      // }
+      // else {
+
+      // }
       return (
         <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
             <Text size='xl' weight={700}>Todo List</Text>

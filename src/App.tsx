@@ -7,7 +7,7 @@ import Error from './Login/Error'
 import SignUp from './Login/SignUp';
 import Main_1 from './Component_2/Main_1';
 function App() {
-
+    const [loggedIn, setLoggedIn] = useState<boolean>(false)
   return (
    <Router>
     <AppShell
@@ -18,7 +18,7 @@ function App() {
       })}>
         <Routes>
           <Route path='/' element={
-              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px', }}><Login /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px', }}><Login setLoggedIn={setLoggedIn}/></Container>
           }/>
           <Route path='/Todo' element={
               <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main /></Container>
@@ -27,10 +27,10 @@ function App() {
               <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Error /></Container>
           } />
           <Route path='/NTodo' element={
-              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main_1 /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main_1 loggedIn={loggedIn}/></Container>
           }/>
           <Route path='/signUp' element={
-              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><SignUp /></Container>
+              <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><SignUp setLoggedIn={setLoggedIn}/></Container>
           }/>
         </Routes>
     </AppShell>

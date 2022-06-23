@@ -5,7 +5,7 @@ import { useNavigate, Link} from 'react-router-dom'
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import {AiFillCheckCircle} from 'react-icons/ai'
-
+// import {} from 'react-router-dom'
 
 // const db = FireBase()
 var i = 0
@@ -20,7 +20,11 @@ interface Authenticate {
     key: string | null
 }
 
-function Login() {
+interface Log {
+    setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function Login({setLoggedIn}:Log) {
     
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
@@ -50,7 +54,7 @@ function Login() {
                 
                 i++
                 setTimeout(() =>  nav('/NTodo') ,3000)
-               
+                setLoggedIn(true)
             }
             else{
                 alert('Wrong Email Id or Password')
