@@ -1,19 +1,19 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import { useForm } from '@mantine/form';
 import { TextInput, Text, Button, Group, Center, Loader, Notification } from '@mantine/core';
 import { useNavigate, Link} from 'react-router-dom'
 import {AiFillCheckCircle} from 'react-icons/ai'
+import { UserContext } from '../UserContext';
+
 
 var i = 0
 var j = 0
 
-interface Log {
-  setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>
-}
 
 
-function SignUp(setLoggedIn:Log) {
+function SignUp() {
 
+    const {log,setLog} = useContext(UserContext)
     const [num,setNum] = useState(0)
     let nav = useNavigate()
     const form = useForm({
@@ -45,10 +45,26 @@ function SignUp(setLoggedIn:Log) {
 
             form.setFieldValue('email', '')
             form.setFieldValue('password', '')
-            setTimeout(() => setNum(j+1),2000)
+            // Logged = true
+            // console.log('Log =',Logged)
+            // setTimeout(() => setNum(j+1),2000)
+            setLog(true)
             i++
-            setTimeout(() =>  nav('/NTodo') ,3000)
+            
+            // setTimeout(() =>  nav('/NTodo') ,3000)
         }
+        useEffect(() => {
+          if(log){
+            return nav('/NTodo')
+          }
+          // else return nav('/')
+        },[log])
+        // useEffect(() => {
+        //   if(Logged){
+        //     return nav('/NTodo')
+        //   }
+        //   // else return nav('/')
+        // },[Logged])
 
         if(i%2==0){
             return (

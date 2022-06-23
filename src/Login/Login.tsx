@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { TextInput, Text, Button, Group, Notification, Loader, Center } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import {AiFillCheckCircle} from 'react-icons/ai'
+import { UserContext } from '../UserContext';
+import { showNotification } from '@mantine/notifications';
 // import {} from 'react-router-dom'
 
 // const db = FireBase()
@@ -20,12 +22,9 @@ interface Authenticate {
     key: string | null
 }
 
-interface Log {
-    setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>
-}
 
-function Login({setLoggedIn}:Log) {
-    
+function Login() {
+    const {log,setLog} = useContext(UserContext)
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -42,8 +41,6 @@ function Login({setLoggedIn}:Log) {
         });
 
         function handleSubmit(e: { email: string; password: string; }){
-
-          
             var Mail = e.email
             var Password = e.password
             var check = authData.filter( e => e.data.Email == Mail )
@@ -53,17 +50,13 @@ function Login({setLoggedIn}:Log) {
                 setTimeout(() =>{setNum(j+1)},2000)
                 
                 i++
-                setTimeout(() =>  nav('/NTodo') ,3000)
-                setLoggedIn(true)
+                // setTimeout(() =>  nav('/NTodo') ,3000)
+                // Logged = true
             }
             else{
                 alert('Wrong Email Id or Password')
             }
-            // form.setFieldValue('email', '')
-            // form.setFieldValue('password', '')
-
            
-            
         }
         useEffect(() => {
             const dbref = ref(db,'userDataRecord')
@@ -78,6 +71,15 @@ function Login({setLoggedIn}:Log) {
               console.log('Get ',authData)
             })
           },[i])
+
+          useEffect(() => {
+            if(log){
+              return nav('/NTodo')
+            }
+            else{
+                // return nav('/')
+            }
+          },[log])
 
         if(i%2==0){
             return (
@@ -119,9 +121,10 @@ function Login({setLoggedIn}:Log) {
             return( 
             <Center style={{width:'30vw'}}>
                 {/* {num} */}
-                {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
+                {/* {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
                       Login was Successful, you are being redirected.
-                    </Notification>}
+                    </Notification>} */}
+                     {num%2==0?<Loader color={'cyan'}/>:<Group position='center' onLoad={()=>{}}></Group>}
             </Center>
             )
         }

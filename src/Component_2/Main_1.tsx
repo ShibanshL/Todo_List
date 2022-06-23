@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import {
     collection,
     query,
@@ -12,14 +12,13 @@ import AddTodo from './AddTodo';
 import Todo from './Todo';
 import { Grid, Group, Text } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
-
-interface Log {
-  loggedIn:boolean
-}
+import { UserContext } from '../UserContext';
 
 
-function Main_1({loggedIn}:Log) {
-    console.log(loggedIn)
+function Main_1() {
+
+    const log = useContext(UserContext)
+    // const [log,setLog] = useState()
     const [todoData, setTodoData]:any[] = useState([]);
     let nav = useNavigate()
     useEffect(() => {
@@ -34,12 +33,6 @@ function Main_1({loggedIn}:Log) {
         return () => unsub();
       }, []);
 
-      useEffect(()=>{
-        if(!loggedIn){
-          return nav('/')
-        }
-      },[loggedIn])
-
       const handleEdit = async (todo:any, title:string) => {
         await updateDoc(doc(db1, "todos", todo.id), { title: title });
       };
@@ -49,7 +42,13 @@ function Main_1({loggedIn}:Log) {
       const handleDelete = async (id:any) => {
         await deleteDoc(doc(db1, "todos", id));
       };
-
+      
+      useEffect(() => {
+        if(!log){
+          return nav('/')
+        }
+        else return nav('/NTodo')
+      },[log])
       // if(!loggedIn){
       //   return nav('/')
       // }
