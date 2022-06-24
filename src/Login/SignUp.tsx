@@ -6,6 +6,7 @@ import {AiFillCheckCircle} from 'react-icons/ai'
 import { UserContext } from '../UserContext';
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
+import { showNotification } from '@mantine/notifications';
 
 
 var i = 0
@@ -73,9 +74,22 @@ function SignUp({log,setLog,vid,setVid}:props) {
             form.setFieldValue('password', '')
             i++
             setLog(true)
+            showNotification(
+              { 
+               title: 'Welcome New User',
+               message: 'Welcom back to your TodoList',
+               color:'teal',
+              }
+             )
           }
           else{
-            alert('This Email has aleready been registerd')
+            showNotification(
+              { 
+               title: 'An account with this email alerady exist!!',
+               message: 'This email already exist on the Database.',
+               color:'red',
+              }
+             )
           }
         }
 
