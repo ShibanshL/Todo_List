@@ -1,12 +1,12 @@
 import React,{useState} from "react";
 import {GrClose} from 'react-icons/gr'
 import {AiTwotoneEdit} from 'react-icons/ai'
-import {IoAddCircle} from 'react-icons/io5'
-import {IoIosAddCircleOutline} from 'react-icons/io'
+// import {IoAddCircle} from 'react-icons/io5'
+// import {IoIosAddCircleOutline} from 'react-icons/io'
 import {MdAddCircleOutline} from 'react-icons/md'
 import { useNavigate } from "react-router-dom";
 import { Grid, Group, Text } from "@mantine/core";
-import {TiTick} from 'react-icons/ti'
+// import {TiTick} from 'react-icons/ti'
 import { Input } from '@mantine/core';
 
 interface props {

@@ -1,5 +1,11 @@
-import React,{ useState } from "react"
+// import React,{ useState } from "react"
 
-const [log,setLog] = useState(false)
+// interface value {
+//     log:boolean,
+//     setLog:React.Dispatch<React.SetStateAction<boolean>>
+// }
+// const [log,setLog] = useState<value>(false)
 
-export let Log = {log,setLog}
+// export let Log = {log,setLog}
+
+export const l ='lode'

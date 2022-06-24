@@ -22,9 +22,16 @@ interface Authenticate {
     key: string | null
 }
 
+interface props{
+  log:boolean
+  setLog:React.Dispatch<React.SetStateAction<boolean>>
+}
 
-function Login() {
-    const {log,setLog} = useContext(UserContext)
+
+function Login({log,setLog}:props) {
+    let logg = useContext(UserContext)
+    setTimeout(() =>{ logg=true
+                    console.log("ins =",logg)},3000)
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -45,19 +52,23 @@ function Login() {
             var Password = e.password
             var check = authData.filter( e => e.data.Email == Mail )
             console.log('check', check)
+            logg = true
+
+
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
-                load = true
                 setTimeout(() =>{setNum(j+1)},2000)
                 
                 i++
                 // setTimeout(() =>  nav('/NTodo') ,3000)
-                // Logged = true
+                console.log('Loh =',logg)
+                
             }
             else{
                 alert('Wrong Email Id or Password')
             }
            
         }
+        const a = () => { logg = true}
         useEffect(() => {
             const dbref = ref(db,'userDataRecord')
             onValue(dbref,(snapshot) => {
@@ -73,20 +84,22 @@ function Login() {
           },[i])
 
           useEffect(() => {
-            if(log){
+            console.log('lojj = ',logg)
+            if(logg){
               return nav('/NTodo')
             }
             else{
                 // return nav('/')
             }
-          },[log])
+          },[logg])
 
         if(i%2==0){
             return (
                 <>
                <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center'>
                     <Text size='xl' weight={700}>Login</Text>
-                    <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{width:'100%'}}>
+                    <form onSubmit={form.onSubmit(e => {handleSubmit(e)
+                                                        a()})} style={{width:'100%'}}>
                         <TextInput
                         required
                         label="Email"
@@ -124,7 +137,7 @@ function Login() {
                 {/* {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
                       Login was Successful, you are being redirected.
                     </Notification>} */}
-                     {num%2==0?<Loader color={'cyan'}/>:<Group position='center' onLoad={()=>{}}></Group>}
+                     {num%2==0?<Loader color={'cyan'}/>:<Group position='center' onLoad={()=>{}}>working</Group>}
             </Center>
             )
         }

@@ -9,11 +9,15 @@ import { UserContext } from '../UserContext';
 var i = 0
 var j = 0
 
+interface props{
+  log:boolean
+  setLog:React.Dispatch<React.SetStateAction<boolean>>
+}
 
 
-function SignUp() {
+function SignUp({log,setLog}:props) {
 
-    const {log,setLog} = useContext(UserContext)
+    // const {log,setLog} = useContext(UserContext)
     const [num,setNum] = useState(0)
     let nav = useNavigate()
     const form = useForm({
@@ -48,23 +52,20 @@ function SignUp() {
             // Logged = true
             // console.log('Log =',Logged)
             // setTimeout(() => setNum(j+1),2000)
-            setLog(true)
+            // setLog(true)
             i++
             
             // setTimeout(() =>  nav('/NTodo') ,3000)
         }
-        useEffect(() => {
-          if(log){
-            return nav('/NTodo')
-          }
-          // else return nav('/')
-        },[log])
+
+
         // useEffect(() => {
-        //   if(Logged){
+        //   if(log){
         //     return nav('/NTodo')
         //   }
         //   // else return nav('/')
-        // },[Logged])
+        // },[log])
+     
 
         if(i%2==0){
             return (

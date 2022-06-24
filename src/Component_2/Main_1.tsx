@@ -15,9 +15,14 @@ import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../UserContext';
 
 
-function Main_1() {
+interface props{
+  log:boolean
+  setLog:React.Dispatch<React.SetStateAction<boolean>>
+}
 
-    const log = useContext(UserContext)
+function Main_1({log,setLog}:props) {
+
+    const logg = useContext(UserContext)
     // const [log,setLog] = useState()
     const [todoData, setTodoData]:any[] = useState([]);
     let nav = useNavigate()
@@ -44,17 +49,12 @@ function Main_1() {
       };
       
       useEffect(() => {
-        if(!log){
+        if(!logg){
           return nav('/')
         }
         else return nav('/NTodo')
-      },[log])
-      // if(!loggedIn){
-      //   return nav('/')
-      // }
-      // else {
-
-      // }
+      },[logg])
+   
       return (
         <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
             <Text size='xl' weight={700}>Todo List</Text>

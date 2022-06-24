@@ -1,3 +1,6 @@
-import React, {createContext} from 'react'
-import { Log } from './Log'
-export const UserContext = createContext(Log)
+import React, {createContext,useState} from 'react'
+// import { Log } from './Log'
+
+// const [log,setLog] = useState(false)
+
+export let UserContext = createContext<boolean>(false)
