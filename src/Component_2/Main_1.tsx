@@ -18,11 +18,13 @@ import { UserContext } from '../UserContext';
 interface props{
   log:boolean
   setLog:React.Dispatch<React.SetStateAction<boolean>>
+  vid:number
+  setVid:React.Dispatch<React.SetStateAction<number>>
 }
 
-function Main_1({log,setLog}:props) {
+function Main_1({log,setLog,vid,setVid}:props) {
 
-    const logg = useContext(UserContext)
+    // const Vid = useContext(UserContext)
     // const [log,setLog] = useState()
     const [todoData, setTodoData]:any[] = useState([]);
     let nav = useNavigate()
@@ -57,7 +59,7 @@ function Main_1({log,setLog}:props) {
    
       return (
         <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
-            <Text size='xl' weight={700}>Todo List</Text>
+            <Text size='xl' weight={700}>Todo List {vid}</Text>
           <Group direction='row' position='center' spacing='xs' p='10px' grow>
             <AddTodo/>
           </Group>

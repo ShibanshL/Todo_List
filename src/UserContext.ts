@@ -3,4 +3,4 @@ import React, {createContext,useState} from 'react'
 
 // const [log,setLog] = useState(false)
 
-export let UserContext = createContext<boolean>(false)
+export let UserContext = createContext<number>(0)

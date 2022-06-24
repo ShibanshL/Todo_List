@@ -25,13 +25,14 @@ interface Authenticate {
 interface props{
   log:boolean
   setLog:React.Dispatch<React.SetStateAction<boolean>>
+  vid:number
+  setVid:React.Dispatch<React.SetStateAction<number>>
 }
 
 
-function Login({log,setLog}:props) {
+function Login({log,setLog,vid,setVid}:props) {
     let logg = useContext(UserContext)
-    setTimeout(() =>{ logg=true
-                    console.log("ins =",logg)},3000)
+
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -47,12 +48,11 @@ function Login({log,setLog}:props) {
           },
         });
 
-        function handleSubmit(e: { email: string; password: string; }){
+        function handleSubmit(e: { email: string; password: string }){
             var Mail = e.email
             var Password = e.password
             var check = authData.filter( e => e.data.Email == Mail )
             console.log('check', check)
-            logg = true
 
 
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
@@ -62,6 +62,8 @@ function Login({log,setLog}:props) {
                 // setTimeout(() =>  nav('/NTodo') ,3000)
                 setLog(true)
                 console.log('Loh =',logg)
+
+                // console.log('id :',e.id)
 
                 // showNotification({
                 //   title: 'Default notification',
@@ -74,7 +76,7 @@ function Login({log,setLog}:props) {
             }
            
         }
-        const a = () => { logg = true}
+        const a = () => { null}
         useEffect(() => {
             const dbref = ref(db,'userDataRecord')
             onValue(dbref,(snapshot) => {

@@ -12,12 +12,16 @@ var j = 0
 interface props{
   log:boolean
   setLog:React.Dispatch<React.SetStateAction<boolean>>
+  vid:number
+  setVid:React.Dispatch<React.SetStateAction<number>>
 }
 
 
-function SignUp({log,setLog}:props) {
+function SignUp({log,setLog,vid,setVid}:props) {
 
     // const {log,setLog} = useContext(UserContext)
+    // var Vid = useContext(UserContext)
+
     const [num,setNum] = useState(0)
     let nav = useNavigate()
     const form = useForm({
@@ -35,7 +39,11 @@ function SignUp({log,setLog}:props) {
          async function handleSubmit(e: { email: string; password: string; id:number }){
             var Email = e.email
             var Password = e.password
-            var id = e.id+(new Date()).getTime()
+            var id= e.id+(new Date()).getTime()
+            setVid(id)
+
+            console.log('Vid =' ,vid)
+            // Vid = id
             const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord.json',
             {
                 method:'POST',
