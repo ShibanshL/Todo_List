@@ -60,10 +60,23 @@ function Login({log,setLog,vid,setVid}:props) {
                 i++
                 setLog(true)
                 setVid(check[0].data.id)
+                showNotification(
+                  { 
+                   title: 'Welcome User',
+                   message: 'Welcom back to your TodoList',
+                   color:'teal',
+                  }
+                 )
                
             }
             else{
-                alert('Wrong Email Id or Password')
+                showNotification(
+                 { 
+                  title: 'Wrong Email or Password',
+                  message: 'Please Check you login data and retry!',
+                  color:'red'
+                }
+                )
             }
 
            

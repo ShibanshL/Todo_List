@@ -13,6 +13,8 @@ import Todo from './Todo';
 import { Grid, Group, Text, Button } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../UserContext';
+import { showNotification } from '@mantine/notifications';
+
 
 
 interface props{
@@ -72,6 +74,17 @@ function Main_1({log,setLog,vid,setVid}:props) {
      
       },[todoData])
 
+      const LogOut = () => {
+        setLog(false)
+        showNotification(
+          { 
+           title: 'GoodBye User',
+           message: 'Thankyou for Visiting!!',
+           color:'red',
+          }
+         )
+      }
+
       return (
         <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
             <Text size='xl' weight={700}>Todo List</Text>
@@ -92,7 +105,7 @@ function Main_1({log,setLog,vid,setVid}:props) {
                 ))}
             </Grid.Col>
           </Grid>
-          <Group position='center' mt='50vh' style={{position:'absolute', zIndex:'1'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => setLog(false)} radius="xl">Log0ut</Button></Group>
+          <Group position='center' mt='50vh' style={{position:'absolute', zIndex:'1'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
         </Group>
       );
 }
