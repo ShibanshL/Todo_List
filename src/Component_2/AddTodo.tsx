@@ -4,8 +4,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { Grid, Group} from "@mantine/core";
 import { Input,Button } from '@mantine/core';
 
+interface props {
+  vid:number
+}
 
-export default function AddTodo() {
+export default function AddTodo(vid:props) {
   const [title, setTitle] = React.useState("");
 
   const handleSubmit = async (e:any) => {
@@ -14,6 +17,7 @@ export default function AddTodo() {
       await addDoc(collection(db1, "todos"), {
         title,
         completed: false,
+        Vid:vid
       });
       setTitle("");
     }

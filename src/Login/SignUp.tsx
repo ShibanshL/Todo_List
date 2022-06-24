@@ -4,6 +4,8 @@ import { TextInput, Text, Button, Group, Center, Loader, Notification } from '@m
 import { useNavigate, Link} from 'react-router-dom'
 import {AiFillCheckCircle} from 'react-icons/ai'
 import { UserContext } from '../UserContext';
+import {db} from '../FireBase'
+import {ref,onValue} from 'firebase/database'
 
 
 var i = 0
@@ -16,12 +18,22 @@ interface props{
   setVid:React.Dispatch<React.SetStateAction<number>>
 }
 
+interface Authenticate {
+  data:
+  {
+      Email: string,
+      Password: string,
+      id: number
+  },
+  key: string | null
+}
+
 
 function SignUp({log,setLog,vid,setVid}:props) {
 
     // const {log,setLog} = useContext(UserContext)
     // var Vid = useContext(UserContext)
-
+    const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
     const form = useForm({
@@ -44,6 +56,8 @@ function SignUp({log,setLog,vid,setVid}:props) {
 
             console.log('Vid =' ,vid)
             // Vid = id
+            if(!authData.filter(e => e.data.Email == Email).length){
+
             const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord.json',
             {
                 method:'POST',
@@ -57,14 +71,27 @@ function SignUp({log,setLog,vid,setVid}:props) {
 
             form.setFieldValue('email', '')
             form.setFieldValue('password', '')
-            // Logged = true
-            // console.log('Log =',Logged)
-            // setTimeout(() => setNum(j+1),2000)
-            // setLog(true)
             i++
             setLog(true)
-            // setTimeout(() =>  nav('/NTodo') ,3000)
+          }
+          else{
+            alert('This Email has aleready been registerd')
+          }
         }
+
+        useEffect(() => {
+          const dbref = ref(db,'userDataRecord')
+          onValue(dbref,(snapshot) => {
+            let record:Authenticate[] = []
+            snapshot.forEach(childSnapshot => {
+              let keyName = childSnapshot.key
+              let data = childSnapshot.val()
+              record.push({"key":keyName, "data":data})
+            })
+            setAuthData(record)
+            console.log('Get ',authData)
+          })
+        },[i])
 
 
         useEffect(() => {

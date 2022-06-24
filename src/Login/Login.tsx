@@ -57,23 +57,15 @@ function Login({log,setLog,vid,setVid}:props) {
 
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
                 setTimeout(() =>{setNum(j+1)},2000)
-                
                 i++
-                // setTimeout(() =>  nav('/NTodo') ,3000)
                 setLog(true)
-                console.log('Loh =',logg)
-
-                // console.log('id :',e.id)
-
-                // showNotification({
-                //   title: 'Default notification',
-                //   message: 'Hey there, your code is awesome! 🤥',
-                // })
-                
+                setVid(check[0].data.id)
+               
             }
             else{
                 alert('Wrong Email Id or Password')
             }
+
            
         }
         const a = () => { null}
