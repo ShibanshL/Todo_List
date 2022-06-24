@@ -14,8 +14,8 @@ import { Grid, Group, Text, Button } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
-
-
+import {BiLogOut} from 'react-icons/bi'
+import { useHover } from '@mantine/hooks';
 
 interface props{
   log:boolean
@@ -30,6 +30,7 @@ function Main_1({log,setLog,vid,setVid}:props) {
     // const [log,setLog] = useState()
     const [todoData, setTodoData]:any[] = useState([]);
     const [filterData,setFilterData]:any[] = useState([])
+    const { hovered, ref } = useHover();
 
     let nav = useNavigate()
     useEffect(() => {
@@ -89,7 +90,9 @@ function Main_1({log,setLog,vid,setVid}:props) {
         <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
             <Text size='xl' weight={700}>Todo List</Text>
           <Group direction='row' position='center' spacing='xs' p='10px' grow>
-            {/* <Group position='center' mt='-0.1vw' p='10px' style={{}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group> */}
+            <Group position='center' ml='-1.5vw' direction='column' p='10px' ref={ref}>
+              <BiLogOut width='10vw' cursor={'pointer'} onClick={() => {LogOut()}}/>
+            </Group>
             <AddTodo vid={vid}/> 
           </Group>
           <Grid style={{}}>
@@ -106,7 +109,7 @@ function Main_1({log,setLog,vid,setVid}:props) {
                 ))}
             </Grid.Col>
           </Grid>
-          <Group position='center' mt='50vh' style={{position:'absolute', zIndex:'1'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
+          {/* <Group position='center' mt='50vh' style={{position:'absolute', zIndex:'1'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group> */}
         </Group>
       );
 }

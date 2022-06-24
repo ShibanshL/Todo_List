@@ -3,6 +3,7 @@ import { db1 } from "../FireBase";
 import { collection, addDoc } from "firebase/firestore";
 import { Grid, Group} from "@mantine/core";
 import { Input,Button } from '@mantine/core';
+import {MdAddCircleOutline} from 'react-icons/md'
 
 interface props {
   vid:number
@@ -35,7 +36,10 @@ export default function AddTodo(vid:props) {
             size="md"
             onChange={(e:any) => setTitle(e.target.value)}
             />&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button onClick={handleSubmit} radius={'xl'}>Add</Button>
+            {/* <Button onClick={handleSubmit} radius={'xl'}>Add</Button> */}
+            <Group ml='-0.5vw'> 
+              <MdAddCircleOutline onClick={handleSubmit} cursor='pointer'/>
+            </Group>
         </form>
     </Group>
     </Grid>
