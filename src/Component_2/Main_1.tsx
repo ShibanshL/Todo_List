@@ -10,7 +10,7 @@ import {
 import { db1 } from '../FireBase';
 import AddTodo from './AddTodo';
 import Todo from './Todo';
-import { Grid, Group, Text } from '@mantine/core';
+import { Grid, Group, Text, Button } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../UserContext';
 
@@ -49,11 +49,11 @@ function Main_1({log,setLog}:props) {
       };
       
       useEffect(() => {
-        if(!logg){
+        if(!log){
           return nav('/')
         }
         else return nav('/NTodo')
-      },[logg])
+      },[log])
    
       return (
         <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
@@ -75,6 +75,7 @@ function Main_1({log,setLog}:props) {
                 ))}
             </Grid.Col>
           </Grid>
+          <Group position='center' mt='70vh' style={{position:'absolute'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => setLog(false)} radius="xl">LogOut</Button></Group>
         </Group>
       );
 }

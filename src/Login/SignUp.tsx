@@ -54,17 +54,17 @@ function SignUp({log,setLog}:props) {
             // setTimeout(() => setNum(j+1),2000)
             // setLog(true)
             i++
-            
+            setLog(true)
             // setTimeout(() =>  nav('/NTodo') ,3000)
         }
 
 
-        // useEffect(() => {
-        //   if(log){
-        //     return nav('/NTodo')
-        //   }
-        //   // else return nav('/')
-        // },[log])
+        useEffect(() => {
+          if(log){
+            return nav('/NTodo')
+          }
+          // else return nav('/')
+        },[log])
      
 
         if(i%2==0){

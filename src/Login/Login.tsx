@@ -60,7 +60,13 @@ function Login({log,setLog}:props) {
                 
                 i++
                 // setTimeout(() =>  nav('/NTodo') ,3000)
+                setLog(true)
                 console.log('Loh =',logg)
+
+                // showNotification({
+                //   title: 'Default notification',
+                //   message: 'Hey there, your code is awesome! 🤥',
+                // })
                 
             }
             else{
@@ -85,15 +91,15 @@ function Login({log,setLog}:props) {
 
           useEffect(() => {
             console.log('lojj = ',logg)
-            if(logg){
+            if(log){
               return nav('/NTodo')
             }
             else{
                 // return nav('/')
             }
-          },[logg])
+          },[log])
 
-        if(i%2==0){
+        // if(i%2==0){
             return (
                 <>
                <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center'>
@@ -129,18 +135,18 @@ function Login({log,setLog}:props) {
                 </Group>
                 </>
             )
-        }
-        else{
-            return( 
-            <Center style={{width:'30vw'}}>
-                {/* {num} */}
-                {/* {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
-                      Login was Successful, you are being redirected.
-                    </Notification>} */}
-                     {num%2==0?<Loader color={'cyan'}/>:<Group position='center' onLoad={()=>{}}>working</Group>}
-            </Center>
-            )
-        }
+        // }
+        // else{
+        //     return( 
+        //     <Center style={{width:'30vw'}}>
+        //         {/* {num} */}
+        //         {/* {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
+        //               Login was Successful, you are being redirected.
+        //             </Notification>} */}
+        //              {num%2==0?<Loader color={'cyan'}/>:<Group position='center' onLoad={()=>{}}>working</Group>}
+        //     </Center>
+        //     )
+        // }
 
 }
 
