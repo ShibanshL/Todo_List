@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { AppShell, Container} from '@mantine/core';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Main from './Component/Main';
 import Login from './Login/Login';
 import Error from './Login/Error'
 import SignUp from './Login/SignUp';
@@ -29,9 +28,6 @@ function App() {
             <Route path='/' element={
                 <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px', }}><Login vid={vid} setVid={setVid} log={log} setLog={setLog}/></Container>
             }/>
-            <Route path='/Todo' element={
-                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main /></Container>
-            } />
               <Route path='*' element={
                 <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Error /></Container>
             } />
