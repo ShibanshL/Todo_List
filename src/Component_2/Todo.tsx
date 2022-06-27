@@ -47,8 +47,8 @@ export default function Todo({ todo, toggleComplete, handleDelete, todoData, han
         <Grid>
             <Grid.Col className="todo" span={12}>
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px', justifyContent:'space-between'}} grow>
-                    <Group  direction="row" p='5px' grow>
-                        {num%2==0?<Text>{todo.title}</Text>:<Input
+                    <Group direction="row" p='5px' style={{}} grow>
+                        {num%2==0?<Text size="md">{todo.title}</Text>:<Input
                             variant="filled"
                             radius='xl'
                             type="text"
@@ -56,7 +56,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, todoData, han
                             className="list"
                             onChange={handleChange}
                         />}
-                        <Group style={{}} position="right">
+                        <Group style={{}} position="right" direction="row">
                             {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                               handleEdit(todo, newTitle) 
                               Input_Tag()

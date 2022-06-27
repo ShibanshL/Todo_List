@@ -89,9 +89,11 @@ function Main_1() {
       }
 
       return (
-        <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{}} grow>
+        <>
+        <Group style={{}} align={'center'}  position='center' grow>
+        <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{overflow:'hidden'}}>
             <Text size='xl' weight={700}>Todo List</Text>
-          <Group direction='row' position='center' spacing='xs' p='10px' grow>
+          <Group direction='row' position='center' spacing='xs' p='10px'>
             <Group position='center' ml='-1.5vw' direction='column' p='10px' ref={ref}>
               <BiLogOut width='10vw' cursor={'pointer'} onClick={() => {LogOut()}}/>
             </Group>
@@ -111,8 +113,10 @@ function Main_1() {
                 ))}
             </Grid.Col>
           </Grid>
-          {/* <Group position='center' mt='50vh' style={{position:'absolute', zIndex:'1'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group> */}
         </Group>
+        {/* <Group position='center' ml='-40.2vw' mt='-79.5vh' style={{height:'100vh',width:'100vw',position:'absolute', zIndex:'-2'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group> */}
+        </Group>
+        </>
       );
 }
 

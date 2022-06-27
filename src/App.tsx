@@ -29,7 +29,7 @@ function App() {
                 <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.2)', borderRadius:'25px'}}><Error /></Container>
             } />
             <Route path='/NTodo' element={
-                <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><Main_1/></Container>
+                <Container p='20px' style={{background:'rgba(255,255,255,1)', backdropFilter:'blur(30px)', borderRadius:'25px'}} size={1480} ><Main_1/></Container>
             }/>
             <Route path='/signUp' element={
                 <Container size="xl" p='20px' px="xl" style={{background:'rgba(255,255,255,0.3)', backdropFilter:'blur(30px)', borderRadius:'25px'}}><SignUp/></Container>
