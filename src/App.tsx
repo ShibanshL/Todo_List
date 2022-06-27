@@ -11,10 +11,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 
 var logg = false
 function App() {
-  const [log, setLog] = useState(false)
-  const [vid, setVid] = useState(0)
 
-  var Vid = 0
   return (
    <Router>
     <AppShell

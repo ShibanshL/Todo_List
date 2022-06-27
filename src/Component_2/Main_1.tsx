@@ -18,27 +18,20 @@ import {BiLogOut} from 'react-icons/bi'
 import { useHover } from '@mantine/hooks';
 import {useStore,useStore1} from '../Store'
 
-// interface props{
-//   log:boolean
-//   setLog:React.Dispatch<React.SetStateAction<boolean>>
-//   vid:number
-//   setVid:React.Dispatch<React.SetStateAction<number>>
-// }
 
 function Main_1() {
 
-    // const Vid = useContext(UserContext)
-    // const [log,setLog] = useState()
+   
     const [todoData, setTodoData]:any[] = useState([]);
     const [filterData,setFilterData]:any[] = useState([])
     const { hovered, ref } = useHover();
 
     const Zlog = useStore(state => state.log)
-    const ZsetLog_True = useStore(state => state.setLog_True)
+    // const ZsetLog_True = useStore(state => state.setLog_True)
     const ZsetLog_False = useStore(state => state.setLog_False)
 
     const Znum = useStore1(state => state.num)
-    const ZsetNums = useStore1(state => state.setNum)
+    // const ZsetNums = useStore1(state => state.setNum)
 
     let nav = useNavigate()
     useEffect(() => {

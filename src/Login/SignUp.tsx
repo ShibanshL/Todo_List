@@ -3,7 +3,6 @@ import { useForm } from '@mantine/form';
 import { TextInput, Text, Button, Group, Center, Loader, Notification } from '@mantine/core';
 import { useNavigate, Link} from 'react-router-dom'
 import {AiFillCheckCircle} from 'react-icons/ai'
-import { UserContext } from '../UserContext';
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
@@ -13,12 +12,6 @@ import {useStore,useStore1} from '../Store'
 var i = 0
 var j = 0
 
-// interface props{
-//   log:boolean
-//   setLog:React.Dispatch<React.SetStateAction<boolean>>
-//   vid:number
-//   setVid:React.Dispatch<React.SetStateAction<number>>
-// }
 
 interface Authenticate {
   data:
@@ -35,8 +28,8 @@ function SignUp() {
 
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
-    const ZsetLog_False = useStore(state => state.setLog_False)
-    const Znum = useStore1(state => state.num)
+    // const ZsetLog_False = useStore(state => state.setLog_False)
+    // const Znum = useStore1(state => state.num)
     const ZsetNums = useStore1(state => state.setNum)
 
     const [authData, setAuthData] = useState<Authenticate[]>([])
