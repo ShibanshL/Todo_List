@@ -7,6 +7,7 @@ import { UserContext } from '../UserContext';
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
+import {useStore} from '../Store'
 
 
 var i = 0
@@ -32,8 +33,9 @@ interface Authenticate {
 
 function SignUp({log,setLog,vid,setVid}:props) {
 
-    // const {log,setLog} = useContext(UserContext)
-    // var Vid = useContext(UserContext)
+    const Zlog = useStore(state => state.log)
+    const ZsetLog_True = useStore(state => state.setLog_True)
+    const ZsetLog_False = useStore(state => state.setLog_False)
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -73,7 +75,8 @@ function SignUp({log,setLog,vid,setVid}:props) {
             form.setFieldValue('email', '')
             form.setFieldValue('password', '')
             i++
-            setLog(true)
+            // setLog(true)
+            ZsetLog_True()
             showNotification(
               { 
                title: 'Welcome New User',
@@ -109,11 +112,11 @@ function SignUp({log,setLog,vid,setVid}:props) {
 
 
         useEffect(() => {
-          if(log){
+          if(Zlog){
             return nav('/NTodo')
           }
           // else return nav('/')
-        },[log])
+        },[Zlog])
      
 
         if(i%2==0){

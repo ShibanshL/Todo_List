@@ -8,6 +8,8 @@ import {AiFillCheckCircle} from 'react-icons/ai'
 import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
 // import {} from 'react-router-dom'
+import {useStore} from '../Store'
+
 
 // const db = FireBase()
 var i = 0
@@ -32,7 +34,9 @@ interface props{
 
 function Login({log,setLog,vid,setVid}:props) {
     let logg = useContext(UserContext)
-
+    const Zlog = useStore(state => state.log)
+    const ZsetLog_True = useStore(state => state.setLog_True)
+    const ZsetLog_False = useStore(state => state.setLog_False)
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -58,7 +62,10 @@ function Login({log,setLog,vid,setVid}:props) {
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
                 setTimeout(() =>{setNum(j+1)},2000)
                 i++
-                setLog(true)
+                // setLog(true)
+                ZsetLog_True()
+                console.log('lojj in = ',Zlog)
+
                 setVid(check[0].data.id)
                 showNotification(
                   { 
@@ -97,14 +104,14 @@ function Login({log,setLog,vid,setVid}:props) {
           },[i])
 
           useEffect(() => {
-            console.log('lojj = ',logg)
-            if(log){
+            console.log('lojj = ',Zlog)
+            if(Zlog){
               return nav('/NTodo')
             }
             else{
                 // return nav('/')
             }
-          },[log])
+          },[Zlog])
 
         // if(i%2==0){
             return (

@@ -16,6 +16,7 @@ import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
 import {BiLogOut} from 'react-icons/bi'
 import { useHover } from '@mantine/hooks';
+import {useStore} from '../Store'
 
 interface props{
   log:boolean
@@ -31,6 +32,12 @@ function Main_1({log,setLog,vid,setVid}:props) {
     const [todoData, setTodoData]:any[] = useState([]);
     const [filterData,setFilterData]:any[] = useState([])
     const { hovered, ref } = useHover();
+
+    const Zlog = useStore(state => state.log)
+    const ZsetLog_True = useStore(state => state.setLog_True)
+    const ZsetLog_False = useStore(state => state.setLog_False)
+
+
 
     let nav = useNavigate()
     useEffect(() => {
@@ -57,11 +64,11 @@ function Main_1({log,setLog,vid,setVid}:props) {
       };
       
       useEffect(() => {
-        if(!log){
+        if(!Zlog){
           return nav('/')
         }
         else return nav('/NTodo')
-      },[log])
+      },[Zlog])
       
       useEffect(()=>{
         if(todoData.filter((e: any) => e.Vid.vid  == vid).length){
@@ -76,7 +83,8 @@ function Main_1({log,setLog,vid,setVid}:props) {
       },[todoData])
 
       const LogOut = () => {
-        setLog(false)
+        // setLog(false)
+        ZsetLog_False()
         showNotification(
           { 
            title: 'GoodBye User',
