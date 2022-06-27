@@ -8,7 +8,7 @@ import {AiFillCheckCircle} from 'react-icons/ai'
 import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
 // import {} from 'react-router-dom'
-import {useStore} from '../Store'
+import {useStore,useStore1} from '../Store'
 
 
 // const db = FireBase()
@@ -24,19 +24,21 @@ interface Authenticate {
     key: string | null
 }
 
-interface props{
-  log:boolean
-  setLog:React.Dispatch<React.SetStateAction<boolean>>
-  vid:number
-  setVid:React.Dispatch<React.SetStateAction<number>>
-}
+// interface props{
+//   log:boolean
+//   setLog:React.Dispatch<React.SetStateAction<boolean>>
+//   vid:number
+//   setVid:React.Dispatch<React.SetStateAction<number>>
+// }
 
 
-function Login({log,setLog,vid,setVid}:props) {
+function Login() {
     let logg = useContext(UserContext)
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
     const ZsetLog_False = useStore(state => state.setLog_False)
+    const Znum = useStore1(state => state.num)
+    const ZsetNums = useStore1(state => state.setNum)
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -65,8 +67,8 @@ function Login({log,setLog,vid,setVid}:props) {
                 // setLog(true)
                 ZsetLog_True()
                 console.log('lojj in = ',Zlog)
-
-                setVid(check[0].data.id)
+                ZsetNums(check[0].data.id)
+                // setVid(check[0].data.id)
                 showNotification(
                   { 
                    title: 'Welcome User',

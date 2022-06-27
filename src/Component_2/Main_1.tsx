@@ -16,16 +16,16 @@ import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
 import {BiLogOut} from 'react-icons/bi'
 import { useHover } from '@mantine/hooks';
-import {useStore} from '../Store'
+import {useStore,useStore1} from '../Store'
 
-interface props{
-  log:boolean
-  setLog:React.Dispatch<React.SetStateAction<boolean>>
-  vid:number
-  setVid:React.Dispatch<React.SetStateAction<number>>
-}
+// interface props{
+//   log:boolean
+//   setLog:React.Dispatch<React.SetStateAction<boolean>>
+//   vid:number
+//   setVid:React.Dispatch<React.SetStateAction<number>>
+// }
 
-function Main_1({log,setLog,vid,setVid}:props) {
+function Main_1() {
 
     // const Vid = useContext(UserContext)
     // const [log,setLog] = useState()
@@ -37,7 +37,8 @@ function Main_1({log,setLog,vid,setVid}:props) {
     const ZsetLog_True = useStore(state => state.setLog_True)
     const ZsetLog_False = useStore(state => state.setLog_False)
 
-
+    const Znum = useStore1(state => state.num)
+    const ZsetNums = useStore1(state => state.setNum)
 
     let nav = useNavigate()
     useEffect(() => {
@@ -71,8 +72,8 @@ function Main_1({log,setLog,vid,setVid}:props) {
       },[Zlog])
       
       useEffect(()=>{
-        if(todoData.filter((e: any) => e.Vid.vid  == vid).length){
-          var v = todoData.filter((e: any) => e.Vid.vid  == vid)
+        if(todoData.filter((e: any) => e.Vid.vid  == Znum).length){
+          var v = todoData.filter((e: any) => e.Vid.vid  == Znum)
           setFilterData(v)
           console.log('DD',v)
         }
@@ -101,7 +102,7 @@ function Main_1({log,setLog,vid,setVid}:props) {
             <Group position='center' ml='-1.5vw' direction='column' p='10px' ref={ref}>
               <BiLogOut width='10vw' cursor={'pointer'} onClick={() => {LogOut()}}/>
             </Group>
-            <AddTodo vid={vid}/> 
+            <AddTodo vid={Znum}/> 
           </Group>
           <Grid style={{}}>
             <Grid.Col span={12}>

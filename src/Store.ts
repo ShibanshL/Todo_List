@@ -12,6 +12,16 @@ const useStore = create<LOG>((set) => ({
     setLog_True:() => set(() => ({log:true})),
 }))
 
+interface NUMBER {
+    num:number
+    setNum:(e:number) => void
+}
+
+const useStore1 = create<NUMBER>((set) => ({
+    num:0,
+    setNum:(e:number) => set(() => ({num:e}))
+})) 
 
 
-export {useStore}
+
+export {useStore, useStore1}

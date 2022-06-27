@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { Grid, Group} from "@mantine/core";
 import { Input,Button } from '@mantine/core';
 import {MdAddCircleOutline} from 'react-icons/md'
+import {useStore1} from '../Store'
 
 interface props {
   vid:number
@@ -11,6 +12,8 @@ interface props {
 
 export default function AddTodo(vid:props) {
   const [title, setTitle] = React.useState("");
+  const Znum = useStore1(state => state.num)
+  const ZsetNums = useStore1(state => state.setNum)
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();

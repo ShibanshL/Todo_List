@@ -7,18 +7,18 @@ import { UserContext } from '../UserContext';
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
-import {useStore} from '../Store'
+import {useStore,useStore1} from '../Store'
 
 
 var i = 0
 var j = 0
 
-interface props{
-  log:boolean
-  setLog:React.Dispatch<React.SetStateAction<boolean>>
-  vid:number
-  setVid:React.Dispatch<React.SetStateAction<number>>
-}
+// interface props{
+//   log:boolean
+//   setLog:React.Dispatch<React.SetStateAction<boolean>>
+//   vid:number
+//   setVid:React.Dispatch<React.SetStateAction<number>>
+// }
 
 interface Authenticate {
   data:
@@ -31,11 +31,14 @@ interface Authenticate {
 }
 
 
-function SignUp({log,setLog,vid,setVid}:props) {
+function SignUp() {
 
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
     const ZsetLog_False = useStore(state => state.setLog_False)
+    const Znum = useStore1(state => state.num)
+    const ZsetNums = useStore1(state => state.setNum)
+
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -55,9 +58,9 @@ function SignUp({log,setLog,vid,setVid}:props) {
             var Email = e.email
             var Password = e.password
             var id= e.id+(new Date()).getTime()
-            setVid(id)
-
-            console.log('Vid =' ,vid)
+            // setVid(id)
+            ZsetNums(id)
+            // console.log('Vid =' ,vid)
             // Vid = id
             if(!authData.filter(e => e.data.Email == Email).length){
 
