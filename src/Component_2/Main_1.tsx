@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react'
+import {useState, useEffect} from 'react'
 import {
     collection,
     query,
@@ -12,11 +12,22 @@ import AddTodo from './AddTodo';
 import Todo from './Todo';
 import { Grid, Group, Text, Button, Container } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
-import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
-import {BiLogOut} from 'react-icons/bi'
 import { useHover } from '@mantine/hooks';
 import {useStore,useStore1} from '../Store'
+import {db0} from '../FireBase'
+import {onValue,ref} from 'firebase/database'
+import {update} from 'firebase/database'
+
+
+var j = 0
+
+interface Authenticate {
+  data:{
+    Zlog:boolean
+  }
+  key: string | null
+}
 
 
 function Main_1() {
@@ -24,7 +35,9 @@ function Main_1() {
    
     const [todoData, setTodoData]:any[] = useState([]);
     const [filterData,setFilterData]:any[] = useState([])
-    const { hovered, ref } = useHover();
+    const [logHistory, setLogHistory]:any[] = useState([])
+    const [currentPageLog,setCurrentPageLog] = useState<boolean>()
+
 
     const Zlog = useStore(state => state.log)
     // const ZsetLog_True = useStore(state => state.setLog_True)
@@ -47,7 +60,28 @@ function Main_1() {
         return () => unsub();
       }, []);
 
+      useEffect(() => {
+        const dbref1 = ref(db0,'userLogRecord')
+        onValue(dbref1,(snapshot) => {
+          let record:Authenticate[] = []
+          snapshot.forEach(childSnapshot => {
+            let keyName = childSnapshot.key
+            let data = childSnapshot.val()
+            record.push({"key":keyName, "data":data})
+          })
+          console.log('RRR',record)
+          setLogHistory(record)
+          setCurrentPageLog(record[0].data.Zlog)
+          console.log('Got data ',logHistory)
+        })
+        j++
+
+      },[])
+
+
       const handleEdit = async (todo:any, title:string) => {
+        console.log('t',todo)
+        console.log('Id ',todo.id)
         await updateDoc(doc(db1, "todos", todo.id), { title: title });
       };
       const toggleComplete = async (todo:any) => {
@@ -58,11 +92,12 @@ function Main_1() {
       };
       
       useEffect(() => {
-        if(!Zlog){
+        console.log('LogHistory',currentPageLog)
+        if(!currentPageLog && currentPageLog != undefined){
           return nav('/')
         }
-        else return nav('/NTodo')
-      },[Zlog])
+        else {}
+      },[j])
       
       useEffect(()=>{
         if(todoData.filter((e: any) => e.Vid.vid  == Znum).length){
@@ -76,7 +111,10 @@ function Main_1() {
      
       },[todoData])
 
-      const LogOut = () => {
+      
+
+      const LogOut = async ( data:string) => {
+        await update(ref(db0, "userLogRecord"), { Zlog: false });
         // setLog(false)
         ZsetLog_False()
         showNotification(
@@ -116,7 +154,7 @@ function Main_1() {
             </Group>
           </Group>
         </Container>
-        <Group position='center' style={{position:'absolute', zIndex:'5', top:'5vh', right:'5vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
+        <Group position='center' style={{position:'absolute', zIndex:'5', top:'5vh', right:'5vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut(logHistory[0].key)}} radius="xl">Log0ut</Button></Group>
 
         </>
       );

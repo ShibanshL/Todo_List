@@ -68,11 +68,15 @@ function SignUp() {
                 })
             })
 
+           
+
             form.setFieldValue('email', '')
             form.setFieldValue('password', '')
             i++
             // setLog(true)
             ZsetLog_True()
+           
+
             showNotification(
               { 
                title: 'Welcome New User',
@@ -106,9 +110,24 @@ function SignUp() {
           })
         },[i])
 
+        async function LogHistory(){
+          console.log('Zlog = ',Zlog)
+          const res1 = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userLogRecord.json',
+          {
+            method:'POST',
+              headers:{
+                 'Content-Type':'application/json'
+              },
+              body:JSON.stringify({
+                  Zlog
+              })
+          })
+        }
 
         useEffect(() => {
           if(Zlog){
+            LogHistory()
+            j++
             return nav('/NTodo')
           }
           // else return nav('/')
