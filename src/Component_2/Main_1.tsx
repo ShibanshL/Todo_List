@@ -91,16 +91,13 @@ function Main_1() {
       return (
         <>
         <Container sx={{maxWidth:600}} mt='15vh' style={{height:'100%'}} fluid>
-          <Group style={{ background:'white', borderRadius:'10px'}} align={'center'} p='30px' position='center' grow>
+          <Group style={{ background:'white', borderRadius:'10px'}} align={'center'} position='center' grow>
             <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{overflow:'hidden'}} grow>
-                <Text size='xl' weight={700}>Todo List</Text>
+                <Text size='xl' p='5px' weight={700}>Todo List</Text>
                 <Group direction='row' position='center' spacing='xs' p='10px' style={{}} grow>
-                  <Group position='center' ml='-1.5vw' direction='column' p='10px' ref={ref}>
-                    {/* <BiLogOut width='10vw' cursor={'pointer'} onClick={() => {LogOut()}}/> */}
-                  </Group>
                   <AddTodo vid={Znum}/> 
                 </Group>
-              <Grid p='0' style={{width:'100%'}}>
+              <Grid p='0' style={{width:'100%', maxHeight:'50vh', overflowY:'auto'}}>
                 <Grid.Col span={12} style={{}} >
                   <Container size={600} style={{}}>
                       {filterData.map((todo:any) => (
