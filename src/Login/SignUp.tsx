@@ -1,6 +1,6 @@
 import React,{useState, useEffect, useContext} from 'react'
 import { useForm } from '@mantine/form';
-import { TextInput, Text, Button, Group, Center, Loader, Notification } from '@mantine/core';
+import { TextInput, Text, Button, Group, Center, Container, Loader, Notification } from '@mantine/core';
 import { useNavigate, Link} from 'react-router-dom'
 import {AiFillCheckCircle} from 'react-icons/ai'
 import {db} from '../FireBase'
@@ -118,38 +118,40 @@ function SignUp() {
         if(i%2==0){
             return (
               <>
-              <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center' grow>
-                <Text size='xl' align='center' weight={700}>Sign Up Here!!</Text>
-                <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{color:'white'}}>
-                    <TextInput
-                    required
-                    label="Email"
-                    // color="white"
-                    // value={signUp.email}
-                    placeholder="your@email.com"
-                    radius="xl"
-                    p="5px"
-                    {...form.getInputProps('email')}
-                    
-                    />
-                    <TextInput
-                    required
-                    type='password'
-                    label="Password"
-                    placeholder="Password"
-                    radius="xl"
-                    p="5px"
-                    {...form.getInputProps('password')}
-                    
-                    />
+              <Container style={{}} fluid>
+                <Group sx={{ maxWidth: 500}} mx="auto" p='20px' style={{background:'white',borderRadius:'10px'}} direction='column' position='center' grow>
+                  <Text size='xl' align='center' weight={700}>Sign Up Here!!</Text>
+                  <form onSubmit={form.onSubmit(e => handleSubmit(e))} style={{color:'white'}}>
+                      <TextInput
+                      required
+                      label="Email"
+                      // color="white"
+                      // value={signUp.email}
+                      placeholder="your@email.com"
+                      radius="xl"
+                      p="5px"
+                      {...form.getInputProps('email')}
+                      
+                      />
+                      <TextInput
+                      required
+                      type='password'
+                      label="Password"
+                      placeholder="Password"
+                      radius="xl"
+                      p="5px"
+                      {...form.getInputProps('password')}
+                      
+                      />
 
-                    <Group position="right" mt="md">
-                    <Button radius={'xl'} type="submit">Submit</Button>
-                    </Group>
+                      <Group position="right" mt="md">
+                      <Button radius={'xl'} type="submit">Submit</Button>
+                      </Group>
 
-                    <Text p='10px' align='center' >Do you have an account? <Link to={'/'}>Login</Link></Text>
-                </form>
-              </Group>
+                      <Text p='10px' align='center' color={'black'}>Do you have an account? <Link to={'/'}>Login</Link></Text>
+                  </form>
+                </Group>
+              </Container>
               </>
             )
         }

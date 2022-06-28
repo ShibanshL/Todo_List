@@ -10,7 +10,7 @@ import {
 import { db1 } from '../FireBase';
 import AddTodo from './AddTodo';
 import Todo from './Todo';
-import { Grid, Group, Text, Button } from '@mantine/core';
+import { Grid, Group, Text, Button, Container } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
@@ -90,32 +90,37 @@ function Main_1() {
 
       return (
         <>
-        <Group style={{}} align={'center'}  position='center' grow>
-        <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{overflow:'hidden'}}>
-            <Text size='xl' weight={700}>Todo List</Text>
-          <Group direction='row' position='center' spacing='xs' p='10px'>
-            <Group position='center' ml='-1.5vw' direction='column' p='10px' ref={ref}>
-              <BiLogOut width='10vw' cursor={'pointer'} onClick={() => {LogOut()}}/>
+        <Container sx={{maxWidth:600}} mt='15vh' style={{height:'100%'}} fluid>
+          <Group style={{ background:'white', borderRadius:'10px'}} align={'center'} p='30px' position='center' grow>
+            <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{overflow:'hidden'}} grow>
+                <Text size='xl' weight={700}>Todo List</Text>
+                <Group direction='row' position='center' spacing='xs' p='10px' style={{}} grow>
+                  <Group position='center' ml='-1.5vw' direction='column' p='10px' ref={ref}>
+                    {/* <BiLogOut width='10vw' cursor={'pointer'} onClick={() => {LogOut()}}/> */}
+                  </Group>
+                  <AddTodo vid={Znum}/> 
+                </Group>
+              <Grid p='0' style={{width:'100%'}}>
+                <Grid.Col span={12} style={{}} >
+                  <Container size={600} style={{}}>
+                      {filterData.map((todo:any) => (
+                      <Todo
+                          key={todo.id}
+                          todo={todo}
+                          toggleComplete={toggleComplete}
+                          handleDelete={handleDelete}
+                          handleEdit={handleEdit}
+                          todoData={todoData}
+                      />
+                      ))}
+                    </Container>
+                </Grid.Col>
+              </Grid>
             </Group>
-            <AddTodo vid={Znum}/> 
           </Group>
-          <Grid style={{}}>
-            <Grid.Col span={12}>
-                {filterData.map((todo:any) => (
-                <Todo
-                    key={todo.id}
-                    todo={todo}
-                    toggleComplete={toggleComplete}
-                    handleDelete={handleDelete}
-                    handleEdit={handleEdit}
-                    todoData={todoData}
-                />
-                ))}
-            </Grid.Col>
-          </Grid>
-        </Group>
-        {/* <Group position='center' ml='-40.2vw' mt='-79.5vh' style={{height:'100vh',width:'100vw',position:'absolute', zIndex:'-2'}}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group> */}
-        </Group>
+        </Container>
+        <Group position='center' style={{position:'absolute', zIndex:'5', top:'5vh', right:'5vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
+
         </>
       );
 }

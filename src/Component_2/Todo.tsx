@@ -44,7 +44,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, todoData, han
     }
     
    return (
-        <Grid>
+        <Grid style={{}}>
             <Grid.Col className="todo" span={12}>
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px' style={{}} grow>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { TextInput, Text, Button, Group, Notification, Loader, Center } from '@mantine/core';
+import { TextInput, Text, Button, Group, Notification, Loader, Center, Container, Card } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
 import {db} from '../FireBase'
@@ -108,37 +108,41 @@ function Login() {
         // if(i%2==0){
             return (
                 <>
-               <Group sx={{ maxWidth: 500}} mx="auto" style={{width:'60vw'}} direction='column' position='center'>
-                    <Text size='xl' weight={700}>Login</Text>
-                    <form onSubmit={form.onSubmit(e => {handleSubmit(e)
-                                                        a()})} style={{width:'100%'}}>
-                        <TextInput
-                        required
-                        label="Email"
-                        placeholder="your@email.com"
-                        radius="xl"
-                        p='5px'
-                        {...form.getInputProps('email')}
-                        
-                        />
-                        <TextInput
-                        required
-                        type='password'
-                        label="Password"
-                        placeholder="Password"
-                        radius="xl"
-                        p='5px'
-                        {...form.getInputProps('password')}
-                        
-                        />
+                <Container style={{}} fluid>
+                  {/* <Card sx={{maxWidth:500}}> */}
+                    <Group sx={{maxWidth:500 }} mx="auto" p='20px' style={{background:'white',borderRadius:'10px'}} direction='column' position='center' grow>
+                          <Text size='xl'align='center'  weight={700}>Login</Text>
+                          <form onSubmit={form.onSubmit(e => {handleSubmit(e)
+                                                              a()})} style={{width:'100%'}}>
+                              <TextInput
+                              required
+                              label="Email"
+                              placeholder="your@email.com"
+                              radius="xl"
+                              p='5px'
+                              {...form.getInputProps('email')}
+                              
+                              />
+                              <TextInput
+                              required
+                              type='password'
+                              label="Password"
+                              placeholder="Password"
+                              radius="xl"
+                              p='5px'
+                              {...form.getInputProps('password')}
+                              
+                              />
 
-                        <Group position="right" mt="md">
-                        <Button radius={'xl'} type="submit">Submit</Button>
-                        </Group>
+                              <Group position="right" mt="md">
+                              <Button radius={'xl'} type="submit">Submit</Button>
+                              </Group>
 
-                        <Text align='center' p='10px' color={'white'}>Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
-                    </form>
-                </Group>
+                              <Text align='center' p='10px' color={'black'}>Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
+                          </form>
+                      </Group>
+                    {/* </Card> */}
+                </Container>
                 </>
             )
         // }
