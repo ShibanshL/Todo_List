@@ -5,7 +5,6 @@ import Login from './Login/Login';
 import Error from './Login/Error'
 import SignUp from './Login/SignUp';
 import Main_1 from './Component_2/Main_1';
-import { UserContext } from './UserContext';
 import { NotificationsProvider } from '@mantine/notifications';
 // import { Log } from './Log';
 
