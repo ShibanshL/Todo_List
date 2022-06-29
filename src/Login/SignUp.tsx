@@ -30,7 +30,7 @@ interface Authenticate1 {
   key: string | null
 }
 
-var isLoggedIn;
+
 
 function SignUp() {
 
@@ -39,7 +39,7 @@ function SignUp() {
     const [logHistory, setLogHistory]:any[] = useState([])
     const [currentPageLog,setCurrentPageLog] = useState<boolean>()
     const ZsetNums = useStore1(state => state.setNum)
-    
+    const isLoggedIn = window.localStorage.getItem('Data');
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -82,9 +82,11 @@ function SignUp() {
             form.setFieldValue('password', '')
             i++
             // setLog(true)
-            ZsetLog_True()
+            // ZsetLog_True()
             
-            isLoggedIn = window.localStorage.setItem('IsLoggedIN',true)
+            window.localStorage.setItem('Data',true)
+            window.localStorage.setItem('Id_Token',String(id))
+
 
             showNotification(
               { 
@@ -103,6 +105,7 @@ function SignUp() {
               }
              )
           }
+          // nav('/NTodo')
         }
 
         // useEffect(() => {
@@ -152,13 +155,15 @@ function SignUp() {
         }
 
         useEffect(() => {
-          if(Zlog){
-            LogHistory()
-            j++
+          if(isLoggedIn){
+            // LogHistory()
+            // j++/
             return nav('/NTodo')
           }
-          // else return nav('/')
-        },[Zlog])
+          else {
+            null
+          }
+        },[isLoggedIn])
      
 
         // if(i%2==0){

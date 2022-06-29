@@ -4,7 +4,6 @@ import { useForm } from '@mantine/form';
 import { useNavigate, Link} from 'react-router-dom'
 import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
-import { UserContext } from '../UserContext';
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
 
@@ -24,7 +23,6 @@ interface Authenticate {
 var isLoggedIn;
 
 function Login() {
-    let logg = useContext(UserContext)
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
     // const ZsetLog_False = useStore(state => state.setLog_False)

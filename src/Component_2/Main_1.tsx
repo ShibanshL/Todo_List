@@ -52,6 +52,7 @@ function Main_1() {
     // const ZsetNums = useStore1(state => state.setNum)
 
     let nav = useNavigate()
+
     useEffect(() => {
         const q = query(collection(db1, "todos"));
         const unsub = onSnapshot(q, (querySnapshot) => {
@@ -116,18 +117,7 @@ function Main_1() {
      
       },[todoData])
 
-      const LogOut_Sub = async (a:string) => {
-       const Ref = ref(db0,'userLogRecord/'+a)
-       set(Ref,{
-        
-          Zlog:false
-      
-       })
-       console.log('LogU ',logHistory)
-       console.log('current ',currentPageLog)
-      // update()
-      }
-      
+   
 
       const LogOut = () => {
        
@@ -155,7 +145,7 @@ function Main_1() {
             <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{overflow:'hidden'}} grow>
                 <Text size='xl' p='5px' weight={700}>Todo List</Text>
                 <Group direction='row' position='center' spacing='xs' p='10px' style={{}} grow>
-                  <AddTodo vid={Znum}/> 
+                  <AddTodo vid={parseFloat(token)}/> 
                 </Group>
               <Grid p='0' style={{width:'100%', maxHeight:'50vh', overflowY:'auto'}}>
                 <Grid.Col span={12} style={{}} >
