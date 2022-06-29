@@ -166,7 +166,7 @@ function Main_1() {
             </Group>
           </Group>
         </Container>
-        <Group position='center' style={{position:'absolute', zIndex:'5', top:'5vh', right:'5vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
+        <Group position='center' style={{position:'absolute', zIndex:'5', top:'0vh', right:'0vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
 
         </>
       );
