@@ -5,7 +5,7 @@ import {AiTwotoneEdit} from 'react-icons/ai'
 // import {IoIosAddCircleOutline} from 'react-icons/io'
 import {MdAddCircleOutline} from 'react-icons/md'
 import { useNavigate } from "react-router-dom";
-import { Grid, Group, Text } from "@mantine/core";
+import { Grid, Group, Text,  Checkbox  } from "@mantine/core";
 // import {TiTick} from 'react-icons/ti'
 import { Input } from '@mantine/core';
 
@@ -16,13 +16,14 @@ interface props {
     toggleComplete: (todo: any) => Promise<void>,
     handleDelete: (todo: any) => Promise<void>,
     handleEdit:(todo: any, title: string) => Promise<void>,
-    
+    newToggleComplete:() => void
+    completed:number
 }
 
 // var i:boolean = true
 var k:number = 0
 
-export default function Todo({ todo, toggleComplete, handleDelete, todoData, handleEdit}:props) {
+export default function Todo({ todo, toggleComplete, handleDelete, newToggleComplete, completed, handleEdit}:props) {
 
   // console.log(todoData)
     let nav = useNavigate()
@@ -44,18 +45,21 @@ export default function Todo({ todo, toggleComplete, handleDelete, todoData, han
     }
     
    return (
-        <Grid style={{}}>
+        <Grid style={{}} grow>
             <Grid.Col className="todo" span={12}>
-                <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(0,0,0,0.05)',borderRadius:'50px', justifyContent:'space-between'}} grow>
-                    <Group direction="row" p='5px' style={{}} grow>
-                        {num%2==0?<Text size="md">{todo.title}</Text>:<Input
-                            variant="filled"
-                            radius='xl'
-                            type="text"
-                            value={todo.title === "" ? newTitle : todo.title}
-                            className="list"
-                            onChange={handleChange}
-                        />}
+                <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
+                    <Group direction="row" p='5px'  style={{}} grow>
+                        <Group direction="row" style={{}} position='left'>
+                          <Checkbox onChange={() => {newToggleComplete()
+                                                      console.log('Complete1 = ',completed)}}/>{num%2==0?completed%2!=0?<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Text weight={600} color='green' size="md">{todo.title}</Text>:<Input
+                              variant="filled"
+                              radius='xl'
+                              type="text"
+                              value={todo.title === "" ? newTitle : todo.title}
+                              className="list"
+                              onChange={handleChange}
+                          />}
+                        </Group>
                         <Group style={{}} position="right" direction="row">
                             {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                               handleEdit(todo, newTitle) 
