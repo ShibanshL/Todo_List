@@ -23,16 +23,16 @@ function App() {
         <Container size={1280} style={{height:'80%'}}>
           {/* <Group position='center' align={'center'} style={{height:'100%'}}> */}
             <Routes>
-                {/* <Route path='/' element={ 
+                <Route path='/' element={ 
                     <Container mt='25vh' p='20px' style={{}} fluid><Login/></Container>
-                }/> */}
+                }/>
                   <Route path='*' element={
                     <Container size="xl" p='20px' px="xl" style={{}}><Error /></Container>
                 } />
                 <Route path='/NTodo' element={
                     <Container p='20px'  style={{height:"100%"}} fluid><Main_1/></Container>
                 }/>
-                <Route path='/' element={
+                <Route path='/signUp' element={
                     <Container mt='25vh' p='20px' style={{}} fluid><SignUp/></Container>
                 }/>
             </Routes>

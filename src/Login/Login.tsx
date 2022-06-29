@@ -21,6 +21,7 @@ interface Authenticate {
     key: string | null
 }
 
+var isLoggedIn;
 
 function Login() {
     let logg = useContext(UserContext)
@@ -59,6 +60,9 @@ function Login() {
                 console.log('lojj in = ',Zlog)
                 ZsetNums(check[0].data.id)
                 // setVid(check[0].data.id)
+                window.localStorage.setItem('Data',true)
+                window.localStorage.setItem('Id_Token',String(check[0].data.id))
+
                 showNotification(
                   { 
                    title: 'Welcome User',

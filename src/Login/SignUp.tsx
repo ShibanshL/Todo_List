@@ -3,7 +3,7 @@ import { useForm } from '@mantine/form';
 import { TextInput, Text, Button, Group, Center, Container, Loader, Notification } from '@mantine/core';
 import { useNavigate, Link} from 'react-router-dom'
 import {AiFillCheckCircle} from 'react-icons/ai'
-import {db} from '../FireBase'
+import {db,db0} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
@@ -23,15 +23,23 @@ interface Authenticate {
   key: string | null
 }
 
+interface Authenticate1 {
+  data:{
+    Zlog:boolean
+  }
+  key: string | null
+}
+
+var isLoggedIn;
 
 function SignUp() {
 
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
-    // const ZsetLog_False = useStore(state => state.setLog_False)
-    // const Znum = useStore1(state => state.num)
+    const [logHistory, setLogHistory]:any[] = useState([])
+    const [currentPageLog,setCurrentPageLog] = useState<boolean>()
     const ZsetNums = useStore1(state => state.setNum)
-
+    
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
     let nav = useNavigate()
@@ -75,7 +83,8 @@ function SignUp() {
             i++
             // setLog(true)
             ZsetLog_True()
-           
+            
+            isLoggedIn = window.localStorage.setItem('IsLoggedIN',true)
 
             showNotification(
               { 
@@ -95,6 +104,24 @@ function SignUp() {
              )
           }
         }
+
+        // useEffect(() => {
+        //   const dbref1 = ref(db0,'userLogRecord')
+        //   onValue(dbref1,(snapshot) => {
+        //     let record:Authenticate1[] = []
+        //     snapshot.forEach(childSnapshot => {
+        //       let keyName = childSnapshot.key
+        //       let data = childSnapshot.val()
+        //       record.push({"key":keyName, "data":data})
+        //     })
+        //     console.log('RRR',record)
+        //     setLogHistory(record)
+        //     setCurrentPageLog(record[0].data.Zlog)
+        //     console.log('Got data ',logHistory)
+        //   })
+        //   j++
+  
+        // },[])
 
         useEffect(() => {
           const dbref = ref(db,'userDataRecord')
@@ -134,7 +161,7 @@ function SignUp() {
         },[Zlog])
      
 
-        if(i%2==0){
+        // if(i%2==0){
             return (
               <>
               <Container style={{}} fluid>
@@ -173,16 +200,16 @@ function SignUp() {
               </Container>
               </>
             )
-        }
-        else{
-          return(
-            <Center style={{width:'30vw'}}>
-                  {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="SignUp was succesfull!!">
-                      Your Details have been submitted, you are being redirected.
-                    </Notification>}
-            </Center>
-          )
-        }
+        // }
+        // else{
+        //   return(
+        //     <Center style={{width:'30vw'}}>
+        //           {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="SignUp was succesfull!!">
+        //               Your Details have been submitted, you are being redirected.
+        //             </Notification>}
+        //     </Center>
+        //   )
+        // }
 }
 
 export default SignUp

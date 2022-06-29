@@ -16,8 +16,9 @@ import { showNotification } from '@mantine/notifications';
 import { useHover } from '@mantine/hooks';
 import {useStore,useStore1} from '../Store'
 import {db0} from '../FireBase'
-import {onValue,ref} from 'firebase/database'
+import {onValue,ref,set} from 'firebase/database'
 import {update} from 'firebase/database'
+import { async } from '@firebase/util';
 
 
 var j = 0
@@ -30,6 +31,7 @@ interface Authenticate {
 }
 
 
+
 function Main_1() {
 
    
@@ -38,6 +40,9 @@ function Main_1() {
     const [logHistory, setLogHistory]:any[] = useState([])
     const [currentPageLog,setCurrentPageLog] = useState<boolean>()
 
+    const isLoggedIn = window.localStorage.getItem('Data')
+
+    const token = window.localStorage.getItem('Id_Token')
 
     const Zlog = useStore(state => state.log)
     // const ZsetLog_True = useStore(state => state.setLog_True)
@@ -60,23 +65,23 @@ function Main_1() {
         return () => unsub();
       }, []);
 
-      useEffect(() => {
-        const dbref1 = ref(db0,'userLogRecord')
-        onValue(dbref1,(snapshot) => {
-          let record:Authenticate[] = []
-          snapshot.forEach(childSnapshot => {
-            let keyName = childSnapshot.key
-            let data = childSnapshot.val()
-            record.push({"key":keyName, "data":data})
-          })
-          console.log('RRR',record)
-          setLogHistory(record)
-          setCurrentPageLog(record[0].data.Zlog)
-          console.log('Got data ',logHistory)
-        })
-        j++
+      // useEffect(() => {
+      //   const dbref1 = ref(db0,'userLogRecord')
+      //   onValue(dbref1,(snapshot) => {
+      //     let record:Authenticate[] = []
+      //     snapshot.forEach(childSnapshot => {
+      //       let keyName = childSnapshot.key
+      //       let data = childSnapshot.val()
+      //       record.push({"key":keyName, "data":data})
+      //     })
+      //     console.log('RRR',record)
+      //     setLogHistory(record)
+      //     setCurrentPageLog(record[0].data.Zlog)
+      //     console.log('Got data ',logHistory)
+      //   })
+      //   j++
 
-      },[])
+      // },[])
 
 
       const handleEdit = async (todo:any, title:string) => {
@@ -92,16 +97,16 @@ function Main_1() {
       };
       
       useEffect(() => {
-        console.log('LogHistory',currentPageLog)
-        if(!currentPageLog && currentPageLog != undefined){
+        // console.log('LogHistory',currentPageLog)
+        if(isLoggedIn == null){
           return nav('/')
         }
         else {}
-      },[j])
+      },[isLoggedIn])
       
       useEffect(()=>{
-        if(todoData.filter((e: any) => e.Vid.vid  == Znum).length){
-          var v = todoData.filter((e: any) => e.Vid.vid  == Znum)
+        if(todoData.filter((e: any) => e.Vid.vid  == token).length){
+          var v = todoData.filter((e: any) => e.Vid.vid  == token)
           setFilterData(v)
           console.log('DD',v)
         }
@@ -111,12 +116,29 @@ function Main_1() {
      
       },[todoData])
 
+      const LogOut_Sub = async (a:string) => {
+       const Ref = ref(db0,'userLogRecord/'+a)
+       set(Ref,{
+        
+          Zlog:false
+      
+       })
+       console.log('LogU ',logHistory)
+       console.log('current ',currentPageLog)
+      // update()
+      }
       
 
-      const LogOut = async ( data:string) => {
-        await update(ref(db0, "userLogRecord"), { Zlog: false });
+      const LogOut = () => {
+       
         // setLog(false)
         ZsetLog_False()
+        window.localStorage.removeItem('Data')
+        window.localStorage.removeItem('Id_Token')
+
+        nav('/')
+ 
+        // LogOut_Sub(data)
         showNotification(
           { 
            title: 'GoodBye User',
@@ -154,7 +176,7 @@ function Main_1() {
             </Group>
           </Group>
         </Container>
-        <Group position='center' style={{position:'absolute', zIndex:'5', top:'5vh', right:'5vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut(logHistory[0].key)}} radius="xl">Log0ut</Button></Group>
+        <Group position='center' style={{position:'absolute', zIndex:'5', top:'5vh', right:'5vw' }}><Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} style={{position:'absolute',top:'5vh',right:'5vh'}} onClick={() => {LogOut()}} radius="xl">Log0ut</Button></Group>
 
         </>
       );
