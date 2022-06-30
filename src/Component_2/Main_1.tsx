@@ -138,7 +138,7 @@ function Main_1() {
                 </Group>
               <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
                 <Grid.Col span={12} style={{}}>
-                {completedLog?
+                {!completedLog?
 
                   <Container size={800} style={{}} fluid>
                       {filterData.map((todo:any) => (
@@ -156,6 +156,7 @@ function Main_1() {
                       ))}
                     </Container>
                 :
+                // null
                   <Container size={800} style={{}} fluid>
                       {filterData.map((todo:any) => (
                       <CompletedTodo
