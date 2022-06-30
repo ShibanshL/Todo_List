@@ -14,6 +14,7 @@ import { Grid, Group, Text, Button, Container } from '@mantine/core';
 import {useNavigate} from 'react-router-dom'
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
+import CompletedTodo from './CompletedTodo';
 
 
 
@@ -34,7 +35,7 @@ function Main_1() {
     const [todoData, setTodoData]:any[] = useState([]);
     const [filterData,setFilterData]:any[] = useState([])
     const [completed, setCompletetd] = useState(0)
-    const [currentPageLog,setCurrentPageLog] = useState<boolean>()
+    const [completedLog,setCompletedLog] = useState<boolean>()
 
     const isLoggedIn = window.localStorage.getItem('Data')
 
@@ -71,7 +72,9 @@ function Main_1() {
         await updateDoc(doc(db1, "todos", todo.id), { title: title });
       };
       const toggleComplete = async (todo:any) => {
+        console.log('ANy :', todo)
         await updateDoc(doc(db1, "todos", todo.id), { completed: !todo.completed });
+        setCompletedLog(todo.completed)
       };
       const newToggleComplete = () => {
         setCompletetd(j+1)
@@ -135,6 +138,8 @@ function Main_1() {
                 </Group>
               <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
                 <Grid.Col span={12} style={{}}>
+                {completedLog?
+
                   <Container size={800} style={{}} fluid>
                       {filterData.map((todo:any) => (
                       <Todo
@@ -146,9 +151,28 @@ function Main_1() {
                           newToggleComplete={newToggleComplete}
                           completed={completed}
                           todoData={todoData}
+                          complete={todo.complete}
                       />
                       ))}
                     </Container>
+                :
+                  <Container size={800} style={{}} fluid>
+                      {filterData.map((todo:any) => (
+                      <CompletedTodo
+                          key={todo.id}
+                          todo={todo}
+                          toggleComplete={toggleComplete}
+                          handleDelete={handleDelete}
+                          handleEdit={handleEdit}
+                          newToggleComplete={newToggleComplete}
+                          completed={completed}
+                          todoData={todoData}
+                          complete={todo.complete}
+                      />
+                      ))}
+                    </Container>
+                
+                }
                 </Grid.Col>
               </Grid>
             </Group>

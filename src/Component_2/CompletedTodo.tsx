@@ -24,9 +24,7 @@ interface props {
 // var i:boolean = true
 var k:number = 0
 
-export default function Todo({ todo, toggleComplete, handleDelete, newToggleComplete,complete,  completed, handleEdit}:props) {
-
-  // console.log(todoData)
+function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,complete,  completed, handleEdit}:props) {
     let nav = useNavigate()
     const [newTitle, setNewTitle] = useState(todo.title);
     const [num,setNum] = useState<number>(0)
@@ -47,13 +45,13 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
     
    return (
     <>
-        <Grid style={{}} grow>
+        <Grid style={{background:'pink'}} grow>
             <Grid.Col className="todo" span={12}>
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     {/* {!todo.completed? */}
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                          <Checkbox onChange={() => {toggleComplete(todo)}}/>{num%2==0?!todo.completed?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Input
+                          <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>{num%2==0?/*!todo.completed?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:*/<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
                               type="text"
@@ -83,6 +81,6 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
       </Grid>
       </>
     );
+}
 
-   
-  }
+export default CompletedTodo
