@@ -47,12 +47,11 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
     <>
         <Grid style={{background:'pink'}} grow>
             <Grid.Col className="todo" span={12}>
+            {todo.completed?
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
-                    {/* {!todo.completed? */}
                     <Group direction="row" p='5px'  style={{}} grow>
-                    {!todo.completed?
                         <Group direction="row" style={{}} position='left'>
-                          <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>{num%2==0?!todo.completed?<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
+                          <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>{num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
                               type="text"
@@ -61,19 +60,6 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
                               onChange={handleChange}
                           />}
                         </Group>
-                         :
-                          <Group direction="row" style={{}} position='left'>
-                             <Checkbox checked={false} onChange={() => {toggleComplete(todo)}}/>{num%2==0?!todo.completed?<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>
-                        :<Input
-                                variant="filled"
-                                radius='xl'
-                                type="text"
-                                value={todo.title === "" ? newTitle : todo.title}
-                                className="list"
-                                onChange={handleChange}
-                            />}
-                        </Group>
-                        }
                         <Group style={{}} position="right" direction="row">
                             {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                               handleEdit(todo, newTitle) 
@@ -85,12 +71,33 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
                             <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
                         </Group>
                     </Group>
-                    {/* // :
-                    // // <Group grow>
-                    //   null
-                    // // </Group>
-                    // }  */}
                 </Group>
+              :  
+              <Group direction="column" p='10px' align='apart' m='10px' style={{display:'none',background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
+                    <Group direction="row" p='5px'  style={{}} grow>
+                        <Group direction="row" style={{}} position='left'>
+                          <Checkbox onChange={() => {toggleComplete(todo)}}/>{num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
+                              variant="filled"
+                              radius='xl'
+                              type="text"
+                              value={todo.title === "" ? newTitle : todo.title}
+                              className="list"
+                              onChange={handleChange}
+                          />}
+                        </Group>
+                        <Group style={{}} position="right" direction="row">
+                            {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                              handleEdit(todo, newTitle) 
+                              Input_Tag()
+                              }}/>:<MdAddCircleOutline id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                                handleEdit(todo, newTitle) 
+                                Input_Tag()
+                                }}/>}
+                            <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
+                        </Group>
+                    </Group>
+                </Group>
+              }
         </Grid.Col>
       </Grid>
       </>

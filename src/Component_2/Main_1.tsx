@@ -27,6 +27,7 @@ interface Authenticate {
   key: string | null
 }
 
+var Cmp = 0
 
 
 function Main_1() {
@@ -75,6 +76,7 @@ function Main_1() {
         console.log('ANy :', todo)
         await updateDoc(doc(db1, "todos", todo.id), { completed: !todo.completed });
         setCompletedLog(todo.completed)
+        Cmp++
       };
       const newToggleComplete = () => {
         setCompletetd(j+1)
@@ -136,46 +138,66 @@ function Main_1() {
                 <Group direction='row' position='center' spacing='xs' p='10px' style={{}} grow>
                   <AddTodo vid={parseFloat(token)}/> 
                 </Group>
-              <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
-                <Grid.Col span={12} style={{}}>
-                {!completedLog?
-
-                  <Container size={800} style={{}} fluid>
-                      {filterData.map((todo:any) => (
-                      <Todo
-                          key={todo.id}
-                          todo={todo}
-                          toggleComplete={toggleComplete}
-                          handleDelete={handleDelete}
-                          handleEdit={handleEdit}
-                          newToggleComplete={newToggleComplete}
-                          completed={completed}
-                          todoData={todoData}
-                          complete={todo.complete}
-                      />
-                      ))}
-                    </Container>
-                :
-                // null
-                  <Container size={800} style={{}} fluid>
-                      {filterData.map((todo:any) => (
-                      <CompletedTodo
-                          key={todo.id}
-                          todo={todo}
-                          toggleComplete={toggleComplete}
-                          handleDelete={handleDelete}
-                          handleEdit={handleEdit}
-                          newToggleComplete={newToggleComplete}
-                          completed={completed}
-                          todoData={todoData}
-                          complete={todo.complete}
-                      />
-                      ))}
-                    </Container>
-                
-                }
-                </Grid.Col>
-              </Grid>
+                {Cmp == 0?
+                    <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
+                      <Grid.Col span={12} style={{}}>
+                        <Container size={800} style={{}} fluid>
+                            {filterData.map((todo:any) => (
+                            <Todo
+                                key={todo.id}
+                                todo={todo}
+                                toggleComplete={toggleComplete}
+                                handleDelete={handleDelete}
+                                handleEdit={handleEdit}
+                                newToggleComplete={newToggleComplete}
+                                completed={completed}
+                                todoData={todoData}
+                                complete={todo.complete}
+                            />
+                            ))}
+                          </Container>
+                      </Grid.Col>
+                    </Grid>
+                  :  
+                  <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
+                      <Grid.Col span={12} style={{maxHeight:'20vh', overflowY:'auto'}}>
+                        <Container size={800} style={{}} fluid>
+                            {filterData.map((todo:any) => (
+                            <Todo
+                                key={todo.id}
+                                todo={todo}
+                                toggleComplete={toggleComplete}
+                                handleDelete={handleDelete}
+                                handleEdit={handleEdit}
+                                newToggleComplete={newToggleComplete}
+                                completed={completed}
+                                todoData={todoData}
+                                complete={todo.complete}
+                            />
+                            ))}
+                          </Container>
+                      </Grid.Col>
+                      <Text weight={600} p='0px 15px'>Completed</Text>
+                      <Grid.Col span={12} style={{maxHeight:'25vh', overflowY:'auto'}}>
+                        
+                      <Container size={800} style={{}} fluid>
+                            {filterData.map((todo:any) => (
+                            <CompletedTodo
+                                key={todo.id}
+                                todo={todo}
+                                toggleComplete={toggleComplete}
+                                handleDelete={handleDelete}
+                                handleEdit={handleEdit}
+                                newToggleComplete={newToggleComplete}
+                                completed={completed}
+                                todoData={todoData}
+                                complete={todo.complete}
+                            />
+                            ))}
+                          </Container>
+                      </Grid.Col>
+                    </Grid>
+                  }
             </Group>
           </Group>
         </Container>
