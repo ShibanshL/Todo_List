@@ -5,7 +5,7 @@ import {AiTwotoneEdit} from 'react-icons/ai'
 // import {IoIosAddCircleOutline} from 'react-icons/io'
 import {MdAddCircleOutline} from 'react-icons/md'
 import { useNavigate } from "react-router-dom";
-import { Grid, Group, Text,  Checkbox  } from "@mantine/core";
+import { Grid, Group, Text,  Checkbox, MediaQuery  } from "@mantine/core";
 // import {TiTick} from 'react-icons/ti'
 import { Input } from '@mantine/core';
 
@@ -49,11 +49,18 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
     <>
         <Grid style={{}} grow>
             <Grid.Col className="todo" span={12}>
+            {/* <MediaQuery query="(min-width: 500px)"
+                              styles={{ display:'none'}}>
+                          <Checkbox onChange={() => {toggleComplete(todo)}}/></MediaQuery> */}
               {!todo.completed?
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                          <Checkbox checked={false} onChange={() => {toggleComplete(todo)}}/>{num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
+                          {/* <MediaQuery query="(max-width: 501px)" */}
+                              {/* styles={{ display:'none'}}> */}
+                          <Checkbox onChange={() => {toggleComplete(todo)}}/>
+                          {/* </MediaQuery> */}
+                          {num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
                               type="text"
@@ -78,7 +85,11 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
               <Group direction="column" p='10px' align='apart' m='10px' style={{display:'none',background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                          <Checkbox onChange={() => {toggleComplete(todo)}}/>{num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
+                        {/* <MediaQuery query="(max-width: 501px)"
+                              styles={{ display:'none'}}> */}
+                          <Checkbox onChange={() => {toggleComplete(todo)}}/>
+                          {/* </MediaQuery> */}
+                          {num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
                               type="text"
