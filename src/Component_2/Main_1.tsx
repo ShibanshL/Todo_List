@@ -177,7 +177,7 @@ function Main_1() {
                             ))}
                           </Container>
                       </Grid.Col>
-                      <Text weight={600} p='0px 15px'>Completed</Text>
+                      <Text weight={600} p='0px 15px' align='center'>Completed</Text>
                       <Grid.Col span={12} style={{maxHeight:'25vh', overflowY:'auto'}}>
                         
                       <Container size={800} style={{}} fluid>

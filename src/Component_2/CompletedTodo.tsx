@@ -45,13 +45,13 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
     
    return (
     <>
-        <Grid style={{background:'pink'}} grow>
+        <Grid style={{background:'lightblue', borderRadius:'10px'}} grow>
             <Grid.Col className="todo" span={12}>
             {todo.completed?
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                          <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>{num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
+                          <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>{num%2==0?<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
                               type="text"
