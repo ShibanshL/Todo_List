@@ -140,7 +140,7 @@ function Main_1() {
                   <Group direction='row' position='center' spacing='xs' p='10px' style={{}} grow>
                     <AddTodo vid={parseFloat(token)}/> 
                   </Group>
-                  {Cmp == 0?
+                  {filterData.filter((e: { completed: boolean; }) => e.completed == true).length == 0?
                       <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
                         <Grid.Col span={12} style={{}}>
                           <Container size={800} style={{}} fluid>
