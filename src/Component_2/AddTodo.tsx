@@ -41,9 +41,6 @@ export default function AddTodo(vid:props) {
               onChange={(e:any) => setTitle(e.target.value)}
               />&nbsp;&nbsp;&nbsp;&nbsp;
               <Button onClick={handleSubmit} radius={'xl'}>Add</Button>
-              {/* <Group ml='-0.5vw'> 
-                <MdAddCircleOutline onClick={handleSubmit} cursor='pointer'/>
-              </Group> */}
           </form>
       </Group>
       </Grid>

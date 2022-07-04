@@ -21,15 +21,15 @@ interface props {
     complete:boolean
 }
 
-// var i:boolean = true
 var k:number = 0
 
 export default function Todo({ todo, toggleComplete, handleDelete, newToggleComplete,complete,  completed, handleEdit}:props) {
 
-  // console.log(todoData)
     let nav = useNavigate()
     const [newTitle, setNewTitle] = useState(todo.title);
     const [num,setNum] = useState<number>(0)
+
+    //This handles the edit buttons functionality from this side of the file.
     const handleChange = (e:any) => {
       e.preventDefault();
       if (todo.complete === true) {
@@ -40,6 +40,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
       }
     };
 
+    //This is being used by a ternary operator to switch between Text to Input tag upon click on the edut button
     const Input_Tag = () => {
       k++
       setNum(k)
@@ -49,17 +50,11 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
     <>
         <Grid style={{}} grow>
             <Grid.Col className="todo" span={12}>
-            {/* <MediaQuery query="(min-width: 500px)"
-                              styles={{ display:'none'}}>
-                          <Checkbox onChange={() => {toggleComplete(todo)}}/></MediaQuery> */}
               {!todo.completed?
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                          {/* <MediaQuery query="(max-width: 501px)" */}
-                              {/* styles={{ display:'none'}}> */}
                           <Checkbox onChange={() => {toggleComplete(todo)}}/>
-                          {/* </MediaQuery> */}
                           {num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
@@ -85,10 +80,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
               <Group direction="column" p='10px' align='apart' m='10px' style={{display:'none',background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                        {/* <MediaQuery query="(max-width: 501px)"
-                              styles={{ display:'none'}}> */}
                           <Checkbox onChange={() => {toggleComplete(todo)}}/>
-                          {/* </MediaQuery> */}
                           {num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'

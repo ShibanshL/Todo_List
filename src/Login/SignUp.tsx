@@ -36,12 +36,9 @@ function SignUp() {
 
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
-    const [logHistory, setLogHistory]:any[] = useState([])
-    const [currentPageLog,setCurrentPageLog] = useState<boolean>()
     const ZsetNums = useStore1(state => state.setNum)
     const isLoggedIn = window.localStorage.getItem('Data');
     const [authData, setAuthData] = useState<Authenticate[]>([])
-    const [num,setNum] = useState(0)
     let nav = useNavigate()
     const form = useForm({
         initialValues: {
@@ -55,14 +52,14 @@ function SignUp() {
           },
         });
 
+        //Here the submition of data takes place after validation. i use a POST request to send data to backend.
+        //Also i use Localstorage to keep me logged in
+
          async function handleSubmit(e: { email: string; password: string; id:number }){
             var Email = e.email
             var Password = e.password
             var id= e.id+(new Date()).getTime()
-            // setVid(id)
             ZsetNums(id)
-            // console.log('Vid =' ,vid)
-            // Vid = id
             if(!authData.filter(e => e.data.Email == Email).length){
 
             const res = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord.json',
@@ -81,8 +78,6 @@ function SignUp() {
             form.setFieldValue('email', '')
             form.setFieldValue('password', '')
             i++
-            // setLog(true)
-            // ZsetLog_True()
             
             window.localStorage.setItem('Data',true)
             window.localStorage.setItem('Id_Token',String(id))
@@ -105,27 +100,9 @@ function SignUp() {
               }
              )
           }
-          // nav('/NTodo')
         }
 
-        // useEffect(() => {
-        //   const dbref1 = ref(db0,'userLogRecord')
-        //   onValue(dbref1,(snapshot) => {
-        //     let record:Authenticate1[] = []
-        //     snapshot.forEach(childSnapshot => {
-        //       let keyName = childSnapshot.key
-        //       let data = childSnapshot.val()
-        //       record.push({"key":keyName, "data":data})
-        //     })
-        //     console.log('RRR',record)
-        //     setLogHistory(record)
-        //     setCurrentPageLog(record[0].data.Zlog)
-        //     console.log('Got data ',logHistory)
-        //   })
-        //   j++
-  
-        // },[])
-
+        //Fetching data from the accounts database to authenticate if any user using the same email has already made an account
         useEffect(() => {
           const dbref = ref(db,'userDataRecord')
           onValue(dbref,(snapshot) => {
@@ -140,24 +117,10 @@ function SignUp() {
           })
         },[i])
 
-        async function LogHistory(){
-          console.log('Zlog = ',Zlog)
-          const res1 = await fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userLogRecord.json',
-          {
-            method:'POST',
-              headers:{
-                 'Content-Type':'application/json'
-              },
-              body:JSON.stringify({
-                  Zlog
-              })
-          })
-        }
 
+        //To check on which page
         useEffect(() => {
           if(isLoggedIn){
-            // LogHistory()
-            // j++/
             return nav('/NTodo')
           }
           else {
@@ -166,7 +129,6 @@ function SignUp() {
         },[isLoggedIn])
      
 
-        // if(i%2==0){
             return (
               <>
               <Container style={{}} fluid>
@@ -176,8 +138,6 @@ function SignUp() {
                       <TextInput
                       required
                       label="Email"
-                      // color="white"
-                      // value={signUp.email}
                       placeholder="your@email.com"
                       radius="xl"
                       p="5px"
@@ -205,16 +165,6 @@ function SignUp() {
               </Container>
               </>
             )
-        // }
-        // else{
-        //   return(
-        //     <Center style={{width:'30vw'}}>
-        //           {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="SignUp was succesfull!!">
-        //               Your Details have been submitted, you are being redirected.
-        //             </Notification>}
-        //     </Center>
-        //   )
-        // }
 }
 
 export default SignUp

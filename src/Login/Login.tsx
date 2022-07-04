@@ -50,6 +50,10 @@ function Login() {
             console.log('check', check)
 
 
+            //Here authentication process takes place, rather than using the firebase auth feature i do authentication manually
+            //by fetching the data and filtering them according to the userinput
+
+
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
                 setTimeout(() =>{setNum(j+1)},2000)
                 i++
@@ -82,7 +86,9 @@ function Login() {
 
            
         }
-        const a = () => { null}
+
+        //Here the fetching of data is taking place from firebase backend
+
         useEffect(() => {
             const dbref = ref(db,'userDataRecord')
             onValue(dbref,(snapshot) => {
@@ -107,15 +113,13 @@ function Login() {
             }
           },[Zlog])
 
-        // if(i%2==0){
             return (
                 <>
                 <Container style={{}} fluid>
-                  {/* <Card sx={{maxWidth:500}}> */}
                     <Group sx={{maxWidth:500 }} mx="auto" p='20px' style={{background:'white',borderRadius:'10px'}} direction='column' position='center' grow>
                           <Text size='xl'align='center'  weight={700}>Login</Text>
                           <form onSubmit={form.onSubmit(e => {handleSubmit(e)
-                                                              a()})} style={{width:'100%'}}>
+                                                              })} style={{width:'100%'}}>
                               <TextInput
                               required
                               label="Email"
@@ -143,23 +147,9 @@ function Login() {
                               <Text align='center' p='10px' color={'black'}>Do not have an account? <Link to={'/SignUp'}>Sign Up</Link></Text>
                           </form>
                       </Group>
-                    {/* </Card> */}
                 </Container>
                 </>
             )
-        // }
-        // else{
-        //     return( 
-        //     <Center style={{width:'30vw'}}>
-        //         {/* {num} */}
-        //         {/* {num%2==0?<Loader color={'cyan'}/>:<Notification disallowClose icon={<AiFillCheckCircle />} radius='md' color="teal" title="Login was successfull!!">
-        //               Login was Successful, you are being redirected.
-        //             </Notification>} */}
-        //              {num%2==0?<Loader color={'cyan'}/>:<Group position='center' onLoad={()=>{}}>working</Group>}
-        //     </Center>
-        //     )
-        // }
-
 }
 
 export default Login
