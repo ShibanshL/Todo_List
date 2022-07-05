@@ -15,6 +15,7 @@ import {useNavigate} from 'react-router-dom'
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
 import CompletedTodo from './CompletedTodo';
+import {useQuery} from 'react-query'
 
 
 
@@ -48,6 +49,10 @@ function Main_1() {
     const Znum = useStore1(state => state.num)
 
     let nav = useNavigate()
+
+
+    // const {} = useQuery()
+
 
     //Here we are pushing data to a collection in backend named 'todos'
     useEffect(() => {
@@ -161,7 +166,7 @@ function Main_1() {
                         </Grid.Col>
                       </Grid>
                     :  
-                    <Grid p='0' style={{width:'100%' }} grow>
+                    <Grid pb='20px' style={{width:'100%' }} grow>
                         <Grid.Col span={12} style={{ }}>
                           <Container size={800} style={{}} fluid>
                               {filterData.map((todo:any) => (
