@@ -16,7 +16,7 @@ function App() {
     <AppShell
       padding={0}
       styles={(theme) => ({
-        main: { height:'100vh', width:'100vw', background:'url(./gb2.jpg)',backgroundSize:'cover', overflow:'hidden' },
+        main: {height:'100vh', maxHeight:'100vh', width:'100vw', background:'url(./gb2.jpg)',backgroundSize:'cover', overflowY:'auto' },
       })}>
         <NotificationsProvider> 
         <Container size={1280} style={{height:'80%'}}>
@@ -29,7 +29,7 @@ function App() {
                     <Container size="xl" p='20px' px="xl" style={{}}><Error /></Container>
                 } />
                 <Route path='/NTodo' element={
-                    <Container p='20px'  style={{height:"100%"}} fluid><Main_1/></Container>
+                    <Container p='20px' style={{}} fluid><Main_1/></Container>
                 }/>
                 <Route path='/signUp' element={
                     <Container mt='25vh' p='20px' style={{}} fluid><SignUp/></Container>

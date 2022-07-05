@@ -133,7 +133,7 @@ function Main_1() {
 
       return (
         <>
-          <Container sx={{maxWidth:600}} mt='15vh' style={{height:'100%'}} fluid>
+          <Container sx={{maxWidth:600}} mt='15vh' pb='20vh' style={{height:'100%'}} fluid>
             <Group style={{ background:'#2FA4FF', borderRadius:'10px'}} align={'center'} position='center' grow>
               <Group align={'center'} direction='column' position='center' spacing={'xs'} style={{overflow:'hidden'}} grow>
                   <Text size='xl' p='5px' weight={700}>Todo List</Text>
@@ -141,9 +141,9 @@ function Main_1() {
                     <AddTodo vid={parseFloat(token)}/> 
                   </Group>
                   {filterData.filter((e: { completed: boolean; }) => e.completed == true).length == 0?
-                      <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
-                        <Grid.Col span={12} style={{}}>
-                          <Container size={800} style={{}} fluid>
+                      <Grid p='0' style={{width:'100%'}} grow>
+                        <Grid.Col span={12} style={{ }}>
+                          <Container size={800} style={{ }} fluid>
                               {filterData.map((todo:any) => (
                               <Todo
                                   key={todo.id}
@@ -161,8 +161,8 @@ function Main_1() {
                         </Grid.Col>
                       </Grid>
                     :  
-                    <Grid p='0' style={{width:'100%',maxHeight:'50vh', overflowY:'auto',}} grow>
-                        <Grid.Col span={12} style={{maxHeight:'20vh', overflowY:'auto'}}>
+                    <Grid p='0' style={{width:'100%' }} grow>
+                        <Grid.Col span={12} style={{ }}>
                           <Container size={800} style={{}} fluid>
                               {filterData.map((todo:any) => (
                               <Todo
@@ -183,7 +183,7 @@ function Main_1() {
                         {/* This displays the completed section once the checkbox is checked*/}
 
                         <Text weight={600} p='0px 15px' align='center'>Completed</Text>
-                        <Grid.Col span={12} style={{maxHeight:'25vh', overflowY:'auto'}}>
+                        <Grid.Col span={12} style={{ }}>
                         <Container size={800} style={{}} fluid>
                               {filterData.map((todo:any) => (
                               <CompletedTodo
