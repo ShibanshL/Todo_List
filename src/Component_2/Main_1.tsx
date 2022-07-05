@@ -166,7 +166,7 @@ function Main_1() {
                         </Grid.Col>
                       </Grid>
                     :  
-                    <Grid pb='20px' style={{width:'100%' }} grow>
+                    <Grid pb='20px' p='10px' style={{width:'100%' }} grow>
                         <Grid.Col span={12} style={{ }}>
                           <Container size={800} style={{}} fluid>
                               {filterData.map((todo:any) => (
@@ -188,22 +188,22 @@ function Main_1() {
                         {/* This displays the completed section once the checkbox is checked*/}
 
                         <Text weight={600} p='0px 15px' align='center'>Completed</Text>
-                        <Grid.Col span={12} style={{ }}>
-                        <Container size={800} style={{}} fluid>
-                              {filterData.map((todo:any) => (
-                              <CompletedTodo
-                                  key={todo.id}
-                                  todo={todo}
-                                  toggleComplete={toggleComplete}
-                                  handleDelete={handleDelete}
-                                  handleEdit={handleEdit}
-                                  newToggleComplete={newToggleComplete}
-                                  completed={completed}
-                                  todoData={todoData}
-                                  complete={todo.complete}
-                              />
-                              ))}
-                            </Container>
+                        <Grid.Col span={12} style={{background:'#c1ffc5', borderRadius:'10px' }}>
+                          <Container size={800} style={{}} fluid>
+                                {filterData.map((todo:any) => (
+                                <CompletedTodo
+                                    key={todo.id}
+                                    todo={todo}
+                                    toggleComplete={toggleComplete}
+                                    handleDelete={handleDelete}
+                                    handleEdit={handleEdit}
+                                    newToggleComplete={newToggleComplete}
+                                    completed={completed}
+                                    todoData={todoData}
+                                    complete={todo.complete}
+                                />
+                                ))}
+                          </Container>
                         </Grid.Col>
                       </Grid>
                     }

@@ -6,7 +6,7 @@ import {db} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
-
+import {useQuery} from 'react-query'
 
 var i = 0
 var j = 0
@@ -102,6 +102,9 @@ function Login() {
               console.log('Get ',authData)
             })
           },[i])
+
+          // const {data, error, isLoading} = useQuery('randomFacts', a);
+          // console.log("react Query Data = ",data)
 
           useEffect(() => {
             console.log('lojj = ',Zlog)

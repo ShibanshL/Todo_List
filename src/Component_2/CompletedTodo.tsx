@@ -45,7 +45,7 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
     
    return (
     <>
-        <Grid style={{background:'#c1ffc5', borderRadius:'10px'}} grow>
+        <Grid style={{}} grow>
             <Grid.Col className="todo" span={12}>
             {todo.completed?
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(59, 245, 72,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
