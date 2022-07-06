@@ -7,6 +7,7 @@ import SignUp from './Login/SignUp';
 import Main_1 from './Component_2/Main_1';
 import { NotificationsProvider } from '@mantine/notifications';
 import {QueryClientProvider, QueryClient} from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
 // import { Log } from './Log';
 
 var logg = false

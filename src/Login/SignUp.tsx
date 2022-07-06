@@ -7,7 +7,7 @@ import {db,db0} from '../FireBase'
 import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
-
+import { useMutation } from 'react-query';
 
 var i = 0
 var j = 0
@@ -55,6 +55,48 @@ function SignUp() {
         //Here the submition of data takes place after validation. i use a POST request to send data to backend.
         //Also i use Localstorage to keep me logged in
 
+
+        const sendData = (e: { email: string; password: string; id:number }) => useMutation(
+          () => {
+                var Email = e.email
+                var Password = e.password
+                var id= e.id+(new Date()).getTime()
+              fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord_1.json'),
+              {
+                body:JSON.stringify({
+                  Email,Password,id
+              }),
+                method:'POST',
+                Credential:'include',
+                header : {
+                  'Content-Type':'application/json'
+                }
+              }
+              ,
+              {
+                onError: () => {
+                  // An error happened!
+                  console.log(`rolling back optimistic update with id`)
+                },
+                onSuccess: () => {
+                  // Boom baby!
+                  showNotification(
+                    { 
+                     title: 'Welcome New User from Query',
+                     message: 'Welcom back to your TodoList',
+                     color:'teal',
+                    }
+                   )
+                },
+                onSettled: () => {
+                  // Error or success... doesn't matter!
+                },
+             
+              }
+          }
+        )
+
+
          async function handleSubmit(e: { email: string; password: string; id:number }){
             var Email = e.email
             var Password = e.password
@@ -83,13 +125,13 @@ function SignUp() {
             window.localStorage.setItem('Id_Token',String(id))
 
 
-            showNotification(
-              { 
-               title: 'Welcome New User',
-               message: 'Welcom back to your TodoList',
-               color:'teal',
-              }
-             )
+            // showNotification(
+            //   { 
+            //    title: 'Welcome New User',
+            //    message: 'Welcom back to your TodoList',
+            //    color:'teal',
+            //   }
+            //  )
           }
           else{
             showNotification(
