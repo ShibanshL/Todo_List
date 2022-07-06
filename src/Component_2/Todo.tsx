@@ -54,7 +54,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
                 <Group direction="column" p='10px' align='apart' m='10px' style={{background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
                     <Group direction="row" p='5px'  style={{}} grow>
                         <Group direction="row" style={{}} position='left'>
-                          <Checkbox onChange={() => {toggleComplete(todo)}}/>
+                          <Checkbox checked={false} onChange={() => {toggleComplete(todo)}}/>
                           {num%2==0?<Text weight={600} color={'green'} style={{}} size="md">{todo.title}</Text>:<Input
                               variant="filled"
                               radius='xl'
