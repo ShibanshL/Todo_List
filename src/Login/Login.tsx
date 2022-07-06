@@ -8,8 +8,13 @@ import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
 import {useQuery} from 'react-query'
 
+import {BsEyeFill} from 'react-icons/bs'
+import {BsEyeSlashFill} from 'react-icons/bs'
+
+
 var i = 0
 var j = 0
+var k = 0
 interface Authenticate {
     data:
     {
@@ -30,6 +35,10 @@ function Login() {
     const ZsetNums = useStore1(state => state.setNum)
     const [authData, setAuthData] = useState<Authenticate[]>([])
     const [num,setNum] = useState(0)
+
+    const [pass,setPass] = useState('password')
+    const [icon, setIcon] = useState('BsEyeSlashFill')
+
     let nav = useNavigate()
     let load = false
     const form = useForm({
@@ -87,6 +96,21 @@ function Login() {
            
         }
 
+        //function for the toggle button in password field 
+        
+        const Password = () => {
+          if(k%2 == 0){
+            setPass('text')
+            console.log('Icon = ',pass)
+            k++
+          }
+          else{
+            setPass('password')
+            console.log('Icon = ',pass)
+            k++
+          }
+        }
+
         //Here the fetching of data is taking place from firebase backend
 
         useEffect(() => {
@@ -134,12 +158,13 @@ function Login() {
                               />
                               <TextInput
                               required
-                              type='password'
+                              type={pass}
                               label="Password"
                               placeholder="Password"
                               radius="xl"
                               p='5px'
-                              {...form.getInputProps('password')}
+                              rightSection ={k%2 == 0?<BsEyeSlashFill onClick={Password}/>:<BsEyeFill onClick={Password}/>}
+                              {...form.getInputProps(pass)}
                               
                               />
 

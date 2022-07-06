@@ -8,9 +8,12 @@ import {ref,onValue} from 'firebase/database'
 import { showNotification } from '@mantine/notifications';
 import {useStore,useStore1} from '../Store'
 import { useMutation } from 'react-query';
+import {BsEyeFill} from 'react-icons/bs'
+import {BsEyeSlashFill} from 'react-icons/bs'
 
 var i = 0
 var j = 0
+var k = 0
 
 
 interface Authenticate {
@@ -34,6 +37,8 @@ interface Authenticate1 {
 
 function SignUp() {
 
+    const [pass,setPass] = useState('password')
+    const [icon, setIcon] = useState('BsEyeSlashFill')
     const Zlog = useStore(state => state.log)
     const ZsetLog_True = useStore(state => state.setLog_True)
     const ZsetNums = useStore1(state => state.setNum)
@@ -56,15 +61,17 @@ function SignUp() {
         //Also i use Localstorage to keep me logged in
 
 
-        const sendData = (e: { email: string; password: string; id:number }) => useMutation(
-          () => {
-                var Email = e.email
-                var Password = e.password
-                var id= e.id+(new Date()).getTime()
+        const sendData = (post:any) => 
+        useMutation(
+          (post) => {
+              //  { 
+                // var Email = e.email
+                // var Password = e.password
+                // var id= e.id+(new Date()).getTime()
               fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord_1.json'),
               {
                 body:JSON.stringify({
-                  Email,Password,id
+                  post
               }),
                 method:'POST',
                 Credential:'include',
@@ -93,8 +100,13 @@ function SignUp() {
                 },
              
               }
+              return post
+            // }
           }
         )
+
+  const {mutate:sendNewData} = sendData({...form.values})
+
 
 
          async function handleSubmit(e: { email: string; password: string; id:number }){
@@ -144,6 +156,21 @@ function SignUp() {
           }
         }
 
+         //function for the toggle button in password field 
+        
+         const Password = () => {
+          if(k%2 == 0){
+            setPass('text')
+            console.log('Icon = ',pass)
+            k++
+          }
+          else{
+            setPass('password')
+            console.log('Icon = ',pass)
+            k++
+          }
+        }
+
         //Fetching data from the accounts database to authenticate if any user using the same email has already made an account
         useEffect(() => {
           const dbref = ref(db,'userDataRecord')
@@ -188,12 +215,13 @@ function SignUp() {
                       />
                       <TextInput
                       required
-                      type='password'
+                      type={pass}
                       label="Password"
                       placeholder="Password"
+                      rightSection ={k%2 == 0?<BsEyeSlashFill color='black' onClick={Password}/>:<BsEyeFill color='black' onClick={Password}/>}
                       radius="xl"
                       p="5px"
-                      {...form.getInputProps('password')}
+                      {...form.getInputProps(pass)}
                       
                       />
 
