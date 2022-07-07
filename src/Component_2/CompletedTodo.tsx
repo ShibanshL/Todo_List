@@ -5,7 +5,7 @@ import {AiTwotoneEdit} from 'react-icons/ai'
 // import {IoIosAddCircleOutline} from 'react-icons/io'
 import {MdAddCircleOutline} from 'react-icons/md'
 import { useNavigate } from "react-router-dom";
-import { Grid, Group, Text,  Checkbox  } from "@mantine/core";
+import { Grid, Group, Text,  Checkbox, MediaQuery  } from "@mantine/core";
 // import {TiTick} from 'react-icons/ti'
 import { Input } from '@mantine/core';
 
@@ -107,41 +107,43 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
                       <Grid.Col className="todo" span={12}>
                       {todo.completed?
                           <Group direction="column" p='10px' align='apart' position="center" m='10px' style={{background:'rgba(59, 245, 72,0.5)',borderRadius:'60px'}} grow>
-                          <Grid dir="row" align='center' justify='center' p='5px'  style={{}} grow>
-                              <Grid.Col dir="row" span={10} style={{}}>
-                                <Grid grow>
-                                  <Grid.Col span={2}>
-                                     <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>
+                            <MediaQuery   query="(max-width:500px)" styles={{maxHeight:'250px !important'}}>
+                              <Grid dir="row" align='center' justify='center' p='5px'  style={{}} grow>
+                                  <Grid.Col dir="row" span={10} style={{}}>
+                                    <Grid grow>
+                                      <Grid.Col span={2}>
+                                        <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>
+                                      </Grid.Col>
+                                      <Grid.Col span={10}>
+                                          {num%2==0?<Text weight={600} color={'red'} style={{fontStyle:'line-through'}} size="md">{todo.title}</Text>:<Input
+                                            variant="filled"
+                                            radius='xl'
+                                            type="text"
+                                            value={todo.title === "" ? newTitle : todo.title}
+                                            className="list"
+                                            onChange={handleChange}
+                                        />}
+                                      </Grid.Col>
+                                    </Grid>
                                   </Grid.Col>
-                                  <Grid.Col span={10}>
-                                      {num%2==0?<Text weight={600} color={'red'} style={{fontStyle:'line-through'}} size="md">{todo.title}</Text>:<Input
-                                        variant="filled"
-                                        radius='xl'
-                                        type="text"
-                                        value={todo.title === "" ? newTitle : todo.title}
-                                        className="list"
-                                        onChange={handleChange}
-                                    />}
+                                  <Grid.Col style={{}} span={2} dir="row">
+                                    <Grid>
+                                      <Grid.Col span={6}>
+                                          {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                                            handleEdit(todo, newTitle) 
+                                            Input_Tag()
+                                            }}/>:<MdAddCircleOutline id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                                              handleEdit(todo, newTitle) 
+                                              Input_Tag()
+                                              }}/>}
+                                        </Grid.Col>
+                                        <Grid.Col span={6}>
+                                          <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
+                                        </Grid.Col>
+                                      </Grid>
                                   </Grid.Col>
-                                </Grid>
-                              </Grid.Col>
-                              <Grid.Col style={{}} span={2} dir="row">
-                                <Grid>
-                                  <Grid.Col span={6}>
-                                      {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
-                                        handleEdit(todo, newTitle) 
-                                        Input_Tag()
-                                        }}/>:<MdAddCircleOutline id="i" style={{cursor:'pointer'}} onClick={() =>{ 
-                                          handleEdit(todo, newTitle) 
-                                          Input_Tag()
-                                          }}/>}
-                                    </Grid.Col>
-                                    <Grid.Col span={6}>
-                                      <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
-                                    </Grid.Col>
-                                  </Grid>
-                              </Grid.Col>
-                          </Grid>
+                              </Grid>
+                          </MediaQuery>
                       </Group>
                         :  
                         <Group direction="column" p='10px' align='apart' m='10px' style={{display:'none',background:'rgba(255,255,255,0.5)',borderRadius:'60px', justifyContent:'space-between'}} grow>
