@@ -131,7 +131,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
                             </Grid.Col>
                           </Grid>
                         </Grid.Col>
-                        <Grid.Col style={{background:'pink'}} span={2} dir="row">
+                        <Grid.Col style={{}} span={2} dir="row">
                           <Grid>
                             <Grid.Col span={6}>
                                 {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
