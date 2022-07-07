@@ -57,57 +57,10 @@ function SignUp() {
           },
         });
 
+        
         //Here the submition of data takes place after validation. i use a POST request to send data to backend.
+        //We validate here that if any email id with the same credentials pre exist
         //Also i use Localstorage to keep me logged in
-
-
-        const sendData = (post:any) => 
-        useMutation(
-          (post) => {
-              //  { 
-                // var Email = e.email
-                // var Password = e.password
-                // var id= e.id+(new Date()).getTime()
-              fetch('https://reactfirebasebackend-default-rtdb.firebaseio.com/userDataRecord_1.json'),
-              {
-                body:JSON.stringify({
-                  post
-              }),
-                method:'POST',
-                Credential:'include',
-                header : {
-                  'Content-Type':'application/json'
-                }
-              }
-              ,
-              {
-                onError: () => {
-                  // An error happened!
-                  console.log(`rolling back optimistic update with id`)
-                },
-                onSuccess: () => {
-                  // Boom baby!
-                  showNotification(
-                    { 
-                     title: 'Welcome New User from Query',
-                     message: 'Welcom back to your TodoList',
-                     color:'teal',
-                    }
-                   )
-                },
-                onSettled: () => {
-                  // Error or success... doesn't matter!
-                },
-             
-              }
-              return post
-            // }
-          }
-        )
-
-  const {mutate:sendNewData} = sendData({...form.values})
-
-
 
          async function handleSubmit(e: { email: string; password: string; id:number }){
             var Email = e.email
@@ -156,7 +109,7 @@ function SignUp() {
           }
         }
 
-         //function for the toggle button in password field 
+         //function for the toggle button in password field, basically to see and hide password
         
          const Password = () => {
           if(k%2 == 0){
@@ -172,6 +125,7 @@ function SignUp() {
         }
 
         //Fetching data from the accounts database to authenticate if any user using the same email has already made an account
+
         useEffect(() => {
           const dbref = ref(db,'userDataRecord')
           onValue(dbref,(snapshot) => {
@@ -218,7 +172,7 @@ function SignUp() {
                       type={pass}
                       label="Password"
                       placeholder="Password"
-                      rightSection ={k%2 == 0?<BsEyeSlashFill color='black' onClick={Password}/>:<BsEyeFill color='black' onClick={Password}/>}
+                      rightSection ={k%2 == 0?<BsEyeSlashFill style={{cursor:'pointer'}} color='black' onClick={Password}/>:<BsEyeFill style={{cursor:'pointer'}} color='black' onClick={Password}/>}
                       radius="xl"
                       p="5px"
                       {...form.getInputProps(pass)}

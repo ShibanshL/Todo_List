@@ -15,6 +15,7 @@ export default function AddTodo(vid:props) {
   const Znum = useStore1(state => state.num)
   const ZsetNums = useStore1(state => state.setNum)
 
+  //This basicalllly adds the todos to the firebase collection
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     if (title !== "") {

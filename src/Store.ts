@@ -1,5 +1,7 @@
 import create from 'zustand'
 
+
+//This is being used to pass aglobal state to be used within the project
 interface LOG {
     log:boolean
     setLog_True: () => void

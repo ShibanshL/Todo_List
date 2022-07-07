@@ -28,6 +28,8 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
     let nav = useNavigate()
     const [newTitle, setNewTitle] = useState(todo.title);
     const [num,setNum] = useState<number>(0)
+
+     //This handles the edit buttons functionality from this side of the file.
     const handleChange = (e:any) => {
       e.preventDefault();
       if (todo.complete === true) {
@@ -38,6 +40,7 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
       }
     };
 
+    //This is being used by a ternary operator to switch between Text to Input tag upon click on the edit button
     const Input_Tag = () => {
       k++
       setNum(k)
@@ -106,16 +109,16 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
           <Grid style={{}} grow>
                       <Grid.Col className="todo" span={12}>
                       {todo.completed?
-                          <Group direction="column" p='10px' align='apart' position="center" m='10px' style={{background:'rgba(59, 245, 72,0.5)',borderRadius:'60px'}} grow>
+                          <Group direction="column" p='10px' align='apart' position="center" m='10px' style={{background:'#00ff99',borderRadius:'60px'}} grow>
                             <MediaQuery   query="(max-width:500px)" styles={{maxHeight:'250px !important'}}>
-                              <Grid dir="row" align='center' justify='center' p='5px'  style={{}} grow>
+                              <Grid dir="row" align='center' justify='center' p='5px'  style={{maxHeight:'50px'}} grow>
                                   <Grid.Col dir="row" span={10} style={{}}>
                                     <Grid grow>
                                       <Grid.Col span={2}>
                                         <Checkbox checked={true} onChange={() => {toggleComplete(todo)}}/>
                                       </Grid.Col>
                                       <Grid.Col span={10}>
-                                          {num%2==0?<Text weight={600} color={'red'} style={{fontStyle:'line-through'}} size="md">{todo.title}</Text>:<Input
+                                          {num%2==0?<Text weight={600} color={'red'} style={{textDecoration:'line-through'}} size="md">{todo.title}</Text>:<Input
                                             variant="filled"
                                             radius='xl'
                                             type="text"

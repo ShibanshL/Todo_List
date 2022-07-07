@@ -40,7 +40,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
       }
     };
 
-    //This is being used by a ternary operator to switch between Text to Input tag upon click on the edut button
+    //This is being used by a ternary operator to switch between Text to Input tag upon click on the edit button
     const Input_Tag = () => {
       k++
       setNum(k)

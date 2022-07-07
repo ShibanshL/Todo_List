@@ -54,7 +54,7 @@ function Main_1() {
     // const {} = useQuery()
 
 
-    //Here we are pushing data to a collection in backend named 'todos'
+    //Here we are fetching data as soon as we load this page
     useEffect(() => {
         const q = query(collection(db1, "todos"));
         const unsub = onSnapshot(q, (querySnapshot) => {
@@ -68,14 +68,16 @@ function Main_1() {
         return () => unsub();
       }, []);
 
-      //This is to edit the todos
+
+      //This is to edit the todos, we pass this to Todo or CompletedTodo to ge the new data in
       const handleEdit = async (todo:any, title:string) => {
         console.log('t',todo)
         console.log('Id ',todo.id)
         await updateDoc(doc(db1, "todos", todo.id), { title: title });
       };
 
-      //This is when todos have been completed
+      //This is when todos have been completed, here we change a value in backend. With every todo in collection there is
+      //also a boolean value which is used to complete this request
       const toggleComplete = async (todo:any) => {
         console.log('ANy :', todo)
         await updateDoc(doc(db1, "todos", todo.id), { completed: !todo.completed });
@@ -89,7 +91,7 @@ function Main_1() {
           j++
       }
 
-      //This is to delete the todos
+      //This is to delete the todos, as you can see this uses googles default deletedoc button
       const handleDelete = async (id:any) => {
         await deleteDoc(doc(db1, "todos", id));
       };
@@ -118,7 +120,7 @@ function Main_1() {
       },[todoData])
 
    
-      //Logout function to return to the base login page
+      //Logout function to return to the base login page, as you can see we use local storage to keep us logged in on load
       const LogOut = () => {
        
         ZsetLog_False()
@@ -188,7 +190,7 @@ function Main_1() {
                         {/* This displays the completed section once the checkbox is checked*/}
 
                         <Text weight={600} p='0px 15px' align='center'>Completed</Text>
-                        <Grid.Col span={12} style={{background:'#c1ffc5', borderRadius:'10px' }}>
+                        <Grid.Col span={12} style={{ borderRadius:'10px', border:'5px solid indigo' }}>
                           <Container size={800} style={{}} fluid>
                                 {filterData.map((todo:any) => (
                                 <CompletedTodo

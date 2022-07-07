@@ -61,7 +61,7 @@ function Login() {
 
             //Here authentication process takes place, rather than using the firebase auth feature i do authentication manually
             //by fetching the data and filtering them according to the userinput
-
+            //We also use Localstorage here to keep us loggd in or out even after refresh
 
             if(authData.filter( e => e.data.Email == Mail ).length && authData.filter( e => e.data.Password == Password ).length){
                 setTimeout(() =>{setNum(j+1)},2000)
@@ -96,7 +96,7 @@ function Login() {
            
         }
 
-        //function for the toggle button in password field 
+        //function for the toggle button in password field, basically to see and hide password
         
         const Password = () => {
           if(k%2 == 0){
@@ -129,6 +129,8 @@ function Login() {
 
           // const {data, error, isLoading} = useQuery('randomFacts', a);
           // console.log("react Query Data = ",data)
+
+          // i was using this before to check which page we are on and then navigate accordingly
 
           useEffect(() => {
             console.log('lojj = ',Zlog)
@@ -163,7 +165,7 @@ function Login() {
                               placeholder="Password"
                               radius="xl"
                               p='5px'
-                              rightSection ={k%2 == 0?<BsEyeSlashFill onClick={Password}/>:<BsEyeFill onClick={Password}/>}
+                              rightSection ={k%2 == 0?<BsEyeSlashFill style={{cursor:'pointer'}} onClick={Password}/>:<BsEyeFill style={{cursor:'pointer'}} onClick={Password}/>}
                               {...form.getInputProps(pass)}
                               
                               />
