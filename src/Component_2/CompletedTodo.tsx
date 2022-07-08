@@ -123,6 +123,7 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
                                             radius='xl'
                                             type="text"
                                             value={todo.title === "" ? newTitle : todo.title}
+                                            mt='-5px'
                                             className="list"
                                             onChange={handleChange}
                                         />}

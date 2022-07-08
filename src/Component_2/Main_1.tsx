@@ -189,8 +189,8 @@ function Main_1() {
 
                         {/* This displays the completed section once the checkbox is checked*/}
 
-                        <Text weight={600} p='0px 15px' align='center'>Completed</Text>
-                        <Grid.Col span={12} style={{ borderRadius:'10px', border:'5px solid indigo' }}>
+                        <Text weight={600} p='0px 15px' align='center' style={{}}>Completed</Text>
+                        <Grid.Col span={12} style={{borderTop:'5px solid indigo' }}>
                           <Container size={800} style={{}} fluid>
                                 {filterData.map((todo:any) => (
                                 <CompletedTodo

@@ -127,6 +127,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, newToggleComp
                                     type="text"
                                     value={todo.title === "" ? newTitle : todo.title}
                                     className="list"
+                                    mt='-5px'
                                     onChange={handleChange}
                                 />}
                               </Grid.Col>
