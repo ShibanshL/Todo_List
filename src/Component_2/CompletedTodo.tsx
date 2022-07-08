@@ -133,13 +133,13 @@ function CompletedTodo({ todo, toggleComplete, handleDelete, newToggleComplete,c
                                   <Grid.Col style={{}} span={2} dir="row">
                                     <Grid>
                                       <Grid.Col span={6}>
-                                          {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
+                                          {/* {num%2==0?<AiTwotoneEdit id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                                             handleEdit(todo, newTitle) 
                                             Input_Tag()
                                             }}/>:<MdAddCircleOutline id="i" style={{cursor:'pointer'}} onClick={() =>{ 
                                               handleEdit(todo, newTitle) 
                                               Input_Tag()
-                                              }}/>}
+                                              }}/>} */}
                                         </Grid.Col>
                                         <Grid.Col span={6}>
                                           <GrClose id="i" style={{cursor:'pointer'}} onClick={() => handleDelete(todo.id)}/>
